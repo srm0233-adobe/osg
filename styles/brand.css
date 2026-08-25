@@ -1,0 +1,31 @@
+/*
+ * brand.css — Petersen's Hunting design tokens
+ * Extracted from the source site (Source Sans Pro typography, charcoal text,
+ * green accent). Imported first by styles.css.
+ */
+:root {
+  /* fonts */
+  --heading-font-family: "Source Sans Pro", "Montserrat", sans-serif;
+  --body-font-family: "Source Sans Pro", sans-serif;
+
+  /* colors */
+  --background-color: #fff;
+  --text-color: rgb(44 46 50);
+  --link-color: rgb(44 46 50);
+  --link-hover-color: rgb(94 127 79);
+  --light-color: rgb(246 245 246);
+  --dark-color: rgb(44 46 50);
+  --accent-color: rgb(94 127 79);
+
+  /* spacing */
+  --section-padding: 25px;
+  --content-max-width: 1296px;
+
+  /* heading sizes (desktop) */
+  --heading-size-xxl: 44px;
+  --heading-size-xl: 28px;
+  --heading-size-l: 24px;
+  --heading-size-m: 22px;
+  --heading-size-s: 18px;
+  --heading-size-xs: 15px;
+}

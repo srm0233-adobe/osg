@@ -1,0 +1,125 @@
+/* cards-covers — magazine cover tiles with hover-reveal overlay
+   Values extracted from source: section#FooterMagazineGlobal_getmagazineSection .row.has-prods
+   (Petersen's Hunting "Other Magazines" / "Special Interest Magazines" grids). */
+
+/* --- Grid: 2 columns mobile, 4 columns desktop --- */
+.cards-covers > ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px 16px;
+}
+
+@media (width >= 900px) {
+  .cards-covers > ul {
+    /* Source: 4 covers of 300px + 3 gaps of 32px = 1296px content width */
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0 32px;
+  }
+}
+
+/* --- Tile --- */
+.cards-covers > ul > li {
+  position: relative;
+  overflow: hidden;
+  border: 0;
+  background-color: transparent;
+  line-height: 1;
+  color: rgb(47 46 50);
+  font-family: var(--body-font-family);
+}
+
+/* --- Cover image (fills the tile, sets its height) --- */
+.cards-covers .cards-covers-card-image {
+  line-height: 0;
+}
+
+.cards-covers .cards-covers-card-image p {
+  margin: 0;
+  line-height: 0;
+}
+
+.cards-covers .cards-covers-card-image a {
+  display: block;
+}
+
+.cards-covers .cards-covers-card-image img {
+  display: block;
+  width: 100%;
+  height: auto;
+
+  /* Source cover natural 300x407 — portrait */
+  aspect-ratio: 300 / 407;
+  object-fit: cover;
+}
+
+/* --- Overlay panel (title + CTA), slides up on hover --- */
+.cards-covers .cards-covers-card-body {
+  position: absolute;
+  inset: 0;
+  z-index: 5;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 15px;
+  background-color: rgb(50 52 57 / 90%);
+  color: #fff;
+
+  /* Default: hidden below, leaving a 5px peek at the bottom of the cover */
+  transform: translateY(calc(100% - 5px));
+  transition: transform 0.3s;
+}
+
+.cards-covers > ul > li:hover .cards-covers-card-body,
+.cards-covers > ul > li:focus-within .cards-covers-card-body {
+  transform: translateY(0);
+}
+
+/* Title */
+.cards-covers .cards-covers-card-body h3 {
+  margin: 15px 0;
+  color: #fff;
+  font-size: 40px;
+  font-weight: 300;
+  line-height: 1;
+}
+
+/* Duplicate title (hidden in source) */
+.cards-covers .cards-covers-card-body h6 {
+  display: none;
+}
+
+/* --- CTA pill ("Subscribe" / "Buy A Copy") ---
+   Re-establishes pill styling that styles.css strips from a.button. */
+.cards-covers .cards-covers-card-body .button-container {
+  margin: 0;
+}
+
+.cards-covers .cards-covers-card-body a.button:any-link {
+  position: absolute;
+  bottom: 15px;
+  left: 50%;
+  transform: translateX(-50%);
+  margin: 0;
+  border: 0;
+  border-radius: 50px;
+  padding: 15px 20px;
+  background-color: #fff;
+  color: var(--accent-color);
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: normal;
+  text-align: center;
+  text-transform: none;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: color 0.3s, background-color 0.3s;
+}
+
+.cards-covers .cards-covers-card-body a.button:hover,
+.cards-covers .cards-covers-card-body a.button:focus {
+  background-color: var(--accent-color);
+  color: #fff;
+}

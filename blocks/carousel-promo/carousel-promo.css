@@ -1,0 +1,159 @@
+/*
+ * carousel-promo — multi-item logo tile carousel
+ * Source: Petersen's Hunting ".caro.multi" inside ".has-logos"
+ * ("More You May Be Interested In" sister-brand logo strip)
+ *
+ * Design intent (from source computed styles):
+ *  - 4 logo tiles visible per view on desktop (block 1296px, 20px padding,
+ *    each .caro-item = 314px -> 1256/4), 2 per view on mobile
+ *  - tiles are transparent, no border, logo centered at natural size
+ *  - transparent side arrows with dark-gray chevrons (Flickity buttons)
+ *  - no visible page dots (source uses arrow navigation only)
+ */
+
+.carousel-promo {
+  box-sizing: border-box;
+  padding: 20px;
+}
+
+.carousel-promo .carousel-promo-slides-container {
+  position: relative;
+}
+
+.carousel-promo .carousel-promo-slides,
+.carousel-promo .carousel-promo-slide-indicators {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.carousel-promo .carousel-promo-slides {
+  display: flex;
+  gap: 0;
+  scroll-behavior: smooth;
+  scroll-snap-type: x mandatory;
+  overflow: scroll clip;
+}
+
+.carousel-promo .carousel-promo-slides::-webkit-scrollbar {
+  display: none;
+}
+
+/* Each tile holds one logo. 2 per view (mobile), 4 per view (desktop). */
+.carousel-promo .carousel-promo-slide {
+  flex: 0 0 50%;
+  box-sizing: border-box;
+  scroll-snap-align: start;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  width: auto;
+  min-height: 80px;
+  padding: 12px;
+  text-align: center;
+}
+
+/* Logo link cell — normal flow, centered (override base full-bleed image cell) */
+.carousel-promo .carousel-promo-slide .carousel-promo-slide-image {
+  width: 100%;
+  text-align: center;
+}
+
+.carousel-promo .carousel-promo-slide .carousel-promo-slide-image a {
+  display: inline-block;
+}
+
+/* EDS wraps the logo image/link in a <p> — remove its default margins */
+.carousel-promo .carousel-promo-slide .carousel-promo-slide-image p {
+  margin: 0;
+  line-height: 0;
+}
+
+.carousel-promo .carousel-promo-slide .carousel-promo-slide-image picture {
+  position: static;
+  inset: auto;
+  display: inline-block;
+  line-height: 0;
+}
+
+.carousel-promo .carousel-promo-slide .carousel-promo-slide-image picture > img {
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  object-fit: contain;
+}
+
+/* Second cell is empty in source content — remove it */
+.carousel-promo .carousel-promo-slide .carousel-promo-slide-content {
+  display: none;
+}
+
+/* Source logo variant uses arrow navigation only — hide the dot indicators */
+.carousel-promo .carousel-promo-slide-indicators {
+  display: none;
+}
+
+.carousel-promo nav[aria-label] {
+  display: none;
+}
+
+/* Navigation arrows — transparent, dark-gray chevrons at the edges */
+.carousel-promo .carousel-promo-navigation-buttons {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  transform: translateY(-50%);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* stylelint-disable-next-line no-descending-specificity */
+.carousel-promo .carousel-promo-navigation-buttons button {
+  position: relative;
+  width: 44px;
+  height: 44px;
+  margin: 0;
+  border: none;
+  border-radius: 0;
+  padding: 0;
+  background-color: transparent;
+  opacity: 0.7;
+  pointer-events: auto;
+  transition: opacity 0.2s;
+}
+
+.carousel-promo .carousel-promo-navigation-buttons button:hover,
+.carousel-promo .carousel-promo-navigation-buttons button:focus-visible {
+  background-color: transparent;
+  opacity: 1;
+}
+
+.carousel-promo .carousel-promo-navigation-buttons button::after {
+  display: block;
+  content: '';
+  border: 3px solid rgb(0 0 0 / 30%);
+  border-bottom: 0;
+  border-left: 0;
+  height: 14px;
+  width: 14px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(-135deg);
+}
+
+.carousel-promo .carousel-promo-navigation-buttons button.slide-next::after {
+  transform: translate(-50%, -50%) rotate(45deg);
+}
+
+@media (width >= 900px) {
+  .carousel-promo .carousel-promo-slide {
+    flex: 0 0 25%;
+  }
+}

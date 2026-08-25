@@ -1,0 +1,41 @@
+{
+  "variantName": "carousel-promo",
+  "baseBlock": "carousel",
+  "version": "1.0.0",
+  "created": "2026-08-25T18:20:34.061Z",
+  "sourceContext": {
+    "originUrl": "https://www.petersenshunting.com/",
+    "originPage": "hunting magazine homepage",
+    "blockPosition": "bottom"
+  },
+  "visualCharacteristics": {
+    "colorScheme": "light",
+    "density": "compact",
+    "purpose": "promo-tiles",
+    "imagePattern": "large"
+  },
+  "contentPattern": {
+    "structure": "image-only slide (linked)",
+    "buttonCount": 0,
+    "imageCount": 1
+  },
+  "reuseGuidance": {
+    "suitableFor": [
+      "image-only cross-sell/recommendation carousels",
+      "promotional tile sliders",
+      "multi-item image galleries"
+    ],
+    "notSuitableFor": [
+      "text-rich slides",
+      "single static banner",
+      "content requiring headings per slide"
+    ]
+  },
+  "usage": {
+    "pagesUsing": [
+      "/home-local"
+    ],
+    "reuseCount": 1,
+    "lastUsed": "2026-08-25T18:20:34.061Z"
+  }
+}

@@ -1,0 +1,41 @@
+{
+  "variantName": "video-embed",
+  "baseBlock": "video",
+  "version": "1.0.0",
+  "created": "2026-08-25T18:20:34.061Z",
+  "sourceContext": {
+    "originUrl": "https://www.petersenshunting.com/",
+    "originPage": "hunting magazine homepage",
+    "blockPosition": "top"
+  },
+  "visualCharacteristics": {
+    "colorScheme": "light",
+    "density": "spacious",
+    "purpose": "embedded-player",
+    "imagePattern": "large"
+  },
+  "contentPattern": {
+    "structure": "video source URL + optional poster image",
+    "buttonCount": 0,
+    "imageCount": 1
+  },
+  "reuseGuidance": {
+    "suitableFor": [
+      "standalone embedded video players",
+      "featured YouTube/Vimeo/MP4 embeds",
+      "poster + play-button video placeholders"
+    ],
+    "notSuitableFor": [
+      "rotating video galleries (use carousel)",
+      "video card grids (use cards)",
+      "non-video media"
+    ]
+  },
+  "usage": {
+    "pagesUsing": [
+      "/home-local"
+    ],
+    "reuseCount": 1,
+    "lastUsed": "2026-08-25T18:20:34.061Z"
+  }
+}

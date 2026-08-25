@@ -1,0 +1,94 @@
+/*
+ * Video Embed Block — "Featured Video" widget
+ * Values extracted from source: .home-sidebar-video .is-fixed (Petersen's Hunting).
+ * Label (h2) + 16:9 frame + title (h3) + full-width CTA.
+ */
+
+.video-embed {
+  color: var(--text-color);
+  text-align: start;
+}
+
+/* "Featured Video" label — accent-green, underlined divider, NOT uppercase */
+.video-embed h2 {
+  margin: 0 0 20px;
+  padding: 0 0 10px;
+  border-bottom: 1px solid rgb(231 230 231);
+  font-family: var(--heading-font-family);
+  font-size: 22.4px;
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: normal;
+  text-transform: none;
+  color: var(--accent-color);
+}
+
+/* 16:9 video frame — iframe/video/poster absolute-fills */
+.video-embed .frame-video {
+  position: relative;
+  width: 100%;
+  height: 0;
+  padding-bottom: 56.25%; /* 16:9 */
+  overflow: hidden;
+  background-color: rgb(44 46 50); /* placeholder fill for lazy/empty iframe */
+}
+
+.video-embed .frame-video iframe,
+.video-embed .frame-video video,
+.video-embed .frame-video .video-embed-poster,
+.video-embed .frame-video .video-embed-poster img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+.video-embed .frame-video .video-embed-poster img {
+  object-fit: cover;
+}
+
+/* Featured video title */
+.video-embed h3 {
+  margin: 20px 0 15px;
+  padding: 0;
+  font-family: var(--heading-font-family);
+  font-size: 18.4px;
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: normal;
+  text-transform: none;
+  color: var(--text-color);
+}
+
+/* CTA "See All Videos" — full-width green pill button */
+.video-embed .video-embed-cta {
+  margin: 0;
+}
+
+.video-embed a.btn.full-gray {
+  display: block;
+  width: 100%;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 12px 36px;
+  border: 0;
+  border-radius: 32px;
+  background-color: var(--accent-color);
+  color: #fff;
+  font-family: var(--body-font-family);
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: normal;
+  text-align: center;
+  text-transform: none;
+  text-decoration: none;
+}
+
+.video-embed a.btn.full-gray:hover,
+.video-embed a.btn.full-gray:focus {
+  background-color: var(--dark-color);
+  color: #fff;
+  text-decoration: none;
+}

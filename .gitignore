@@ -8,3 +8,5 @@ helix-importer-ui
 *.bak
 .idea
 tools/target/config.json
+migration-work/navigation-validation/
+migration-work/footer-validation/

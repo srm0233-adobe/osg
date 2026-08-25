@@ -1,0 +1,41 @@
+{
+  "variantName": "columns-media",
+  "baseBlock": "columns",
+  "version": "1.0.0",
+  "created": "2026-08-25T18:20:34.061Z",
+  "sourceContext": {
+    "originUrl": "https://www.petersenshunting.com/",
+    "originPage": "hunting magazine homepage",
+    "blockPosition": "middle"
+  },
+  "visualCharacteristics": {
+    "colorScheme": "light",
+    "density": "spacious",
+    "purpose": "media-text",
+    "imagePattern": "large"
+  },
+  "contentPattern": {
+    "structure": "media/image cell + text (heading/description/CTA) cell",
+    "buttonCount": 1,
+    "imageCount": 1
+  },
+  "reuseGuidance": {
+    "suitableFor": [
+      "side-by-side media + text promos",
+      "embedded video + description layouts",
+      "icon/cover + call-to-action rows"
+    ],
+    "notSuitableFor": [
+      "repeating uniform card grids",
+      "interactive tab/accordion content",
+      "full-bleed hero banners"
+    ]
+  },
+  "usage": {
+    "pagesUsing": [
+      "/home-local"
+    ],
+    "reuseCount": 1,
+    "lastUsed": "2026-08-25T18:20:34.061Z"
+  }
+}

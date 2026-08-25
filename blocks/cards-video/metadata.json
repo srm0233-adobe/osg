@@ -1,0 +1,41 @@
+{
+  "variantName": "cards-video",
+  "baseBlock": "cards",
+  "version": "1.0.0",
+  "created": "2026-08-25T18:20:34.061Z",
+  "sourceContext": {
+    "originUrl": "https://www.petersenshunting.com/",
+    "originPage": "hunting magazine homepage",
+    "blockPosition": "middle"
+  },
+  "visualCharacteristics": {
+    "colorScheme": "light",
+    "density": "spacious",
+    "purpose": "video-grid",
+    "imagePattern": "large"
+  },
+  "contentPattern": {
+    "structure": "video thumbnail + category tag + title",
+    "buttonCount": 0,
+    "imageCount": 1
+  },
+  "reuseGuidance": {
+    "suitableFor": [
+      "video listing grids",
+      "episode/clip galleries with thumbnail + title",
+      "media catalog tiles"
+    ],
+    "notSuitableFor": [
+      "text-only cards",
+      "icon feature rows",
+      "promotional CTA cards"
+    ]
+  },
+  "usage": {
+    "pagesUsing": [
+      "/home-local"
+    ],
+    "reuseCount": 1,
+    "lastUsed": "2026-08-25T18:20:34.061Z"
+  }
+}

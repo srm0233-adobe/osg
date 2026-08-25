@@ -1,0 +1,114 @@
+/* Block: columns-media — media + text two-column promo.
+ * Values extracted from source computed styles (petersenshunting home).
+ * Two rows: row 1 = full-width section heading with rule; row 2 = media + text columns.
+ */
+
+/* --- Content typography --- */
+.columns-media h2 {
+  margin: 18.592px 0 32px;
+  border-bottom: 1px solid rgb(231 230 231);
+  padding-bottom: 10px;
+  color: var(--accent-color);
+  font-size: 22.4px;
+  font-weight: 600;
+  line-height: 22.4px;
+  letter-spacing: normal;
+  text-transform: none;
+}
+
+.columns-media h3 {
+  margin: 0 0 15px;
+  color: var(--text-color);
+  font-size: 40px;
+  font-weight: 300;
+  line-height: 1;
+}
+
+.columns-media p {
+  margin: 13.5px 0;
+  color: var(--text-color);
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 1.4;
+}
+
+.columns-media .columns-media-img-col img {
+  display: block;
+}
+
+/* --- Row 1: full-width heading with bottom rule --- */
+.columns-media > div:first-child {
+  display: block;
+}
+
+/* --- Row 2: media + text content --- */
+.columns-media > div:last-child {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.columns-media > div:last-child > div {
+  flex: 1;
+}
+
+/* image / logo column keeps its natural width, does not stretch */
+.columns-media > div > .columns-media-img-col {
+  flex: 0 0 auto;
+}
+
+/* hide the empty second cell of the heading row */
+.columns-media > div:first-child > div:last-child:empty {
+  display: none;
+}
+
+/* --- App-store badge links (instance 2) sit side by side --- */
+.columns-media > div:has(.columns-media-img-col) p:has(a img) {
+  display: inline-block;
+  margin: 12px 12px 0 0;
+  vertical-align: middle;
+}
+
+.columns-media > div:has(.columns-media-img-col) p a img {
+  display: block;
+}
+
+/* --- CTA pill (instance 1) — restore source green pill over the global button reset --- */
+main .columns-media a.button:any-link {
+  display: inline-block;
+  margin: 13.5px 0 0;
+  border: none;
+  border-radius: 32px;
+  padding: 12px 36px;
+  background: var(--accent-color);
+  color: #fff;
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: normal;
+  text-transform: none;
+  white-space: normal;
+}
+
+main .columns-media a.button:hover {
+  background: var(--text-color);
+  color: #fff;
+  text-decoration: none;
+}
+
+@media (width >= 900px) {
+  .columns-media > div:last-child {
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 32px;
+  }
+
+  /* instance with app/logo icon column is vertically centered (source .row.middle-sm) */
+  .columns-media > div:last-child:has(.columns-media-img-col) {
+    align-items: center;
+  }
+
+  /* media-left variant (video): source split 58.333% media / 41.667% text */
+  .columns-media > div:last-child:not(:has(.columns-media-img-col)) > div:first-child {
+    flex: 0 0 58.333%;
+  }
+}

@@ -1,0 +1,125 @@
+/*
+ * carousel-shows — "Watch" feature row of show promos.
+ * Source: .caro.wide.feature.caps-feature (Petersen's Hunting home).
+ * A full-width dark band of equal panels, each with vertically-centered white
+ * content: a large thin uppercase title (link), a description, and a white
+ * pill CTA with green text. Source shows all panels at once with no visible
+ * carousel controls, so nav buttons + indicators are hidden.
+ * Base carousel JS behavior is preserved (slides list, controls in DOM).
+ */
+
+/* Full-width breakout of the dark band (section div otherwise caps at 1296px) */
+.carousel-shows-wrapper {
+  max-width: 100% !important;
+  padding: 0 !important;
+}
+
+.carousel-shows .carousel-shows-slides-container {
+  position: relative;
+}
+
+.carousel-shows .carousel-shows-slides {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Each slide is a dark panel (image fallback color) with centered content */
+.carousel-shows .carousel-shows-slide {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  background-color: var(--dark-color);
+}
+
+/* Image cell is empty in this variant — collapse it */
+.carousel-shows .carousel-shows-slide-image {
+  display: none;
+}
+
+.carousel-shows .carousel-shows-slide-content {
+  color: #fff;
+  padding: 60px 24px;
+  text-align: left;
+}
+
+.carousel-shows .carousel-shows-slide-content h3 {
+  margin: 15px 0;
+  font-family: var(--body-font-family);
+  font-weight: 300;
+  font-size: 40px;
+  line-height: 0.9;
+  letter-spacing: 1.4px;
+  color: #fff;
+}
+
+.carousel-shows .carousel-shows-slide-content h3 a:any-link {
+  color: #fff;
+  font-weight: 300;
+}
+
+.carousel-shows .carousel-shows-slide-content p {
+  margin: 13.5px 0;
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 1.4;
+  color: #fff;
+}
+
+/* CTA — white pill with green text (overrides global EDS button reset) */
+.carousel-shows .carousel-shows-slide-content .button-container {
+  display: block;
+  margin: 0;
+}
+
+main .carousel-shows a.button:any-link {
+  display: inline-block;
+  margin: 10px 0;
+  border: 0;
+  border-radius: 32px;
+  padding: 12px 36px;
+  background-color: #fff;
+  color: var(--accent-color);
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 1.4;
+  letter-spacing: normal;
+  text-transform: none;
+}
+
+main .carousel-shows a.button:hover,
+main .carousel-shows a.button:focus {
+  background-color: #fff;
+  color: var(--dark-color);
+  text-decoration: none;
+}
+
+/* Source presents a static feature row — hide carousel controls */
+.carousel-shows .carousel-shows-navigation-buttons,
+.carousel-shows > nav {
+  display: none;
+}
+
+@media (width >= 900px) {
+  /* All panels shown side-by-side in one full-width row */
+  .carousel-shows .carousel-shows-slides {
+    flex-direction: row;
+  }
+
+  .carousel-shows .carousel-shows-slide {
+    flex: 1 1 0;
+    min-width: 0;
+  }
+
+  .carousel-shows .carousel-shows-slide-content {
+    padding: 145px 50px;
+    max-width: 100%;
+  }
+
+  .carousel-shows .carousel-shows-slide-content h3 {
+    font-size: 56px;
+    line-height: 50.4px;
+  }
+}

@@ -1,3 +1,5 @@
+@import url('brand.css');
+
 /*
  * Copyright 2020 Adobe. All rights reserved.
  * This file is licensed to you under the Apache License, Version 2.0 (the "License");
@@ -11,30 +13,30 @@
  */
 
 :root {
-  /* colors */
-  --background-color: white;
-  --light-color: #f8f8f8;
-  --dark-color: #505050;
-  --text-color: #131313;
-  --link-color: #3b63fb;
-  --link-hover-color: #1d3ecf;
+  /* colors — sourced from brand.css */
+  --background-color: #fff;
+  --light-color: rgb(246 245 246);
+  --dark-color: rgb(44 46 50);
+  --text-color: rgb(44 46 50);
+  --link-color: rgb(44 46 50);
+  --link-hover-color: rgb(94 127 79);
 
   /* fonts */
-  --body-font-family: roboto, roboto-fallback, sans-serif;
-  --heading-font-family: roboto-condensed, roboto-condensed-fallback, sans-serif;
+  --body-font-family: "Source Sans Pro", sans-serif;
+  --heading-font-family: "Source Sans Pro", "Montserrat", sans-serif;
 
   /* body sizes */
-  --body-font-size-m: 22px;
-  --body-font-size-s: 19px;
-  --body-font-size-xs: 17px;
+  --body-font-size-m: 16px;
+  --body-font-size-s: 15px;
+  --body-font-size-xs: 14px;
 
-  /* heading sizes */
-  --heading-font-size-xxl: 55px;
-  --heading-font-size-xl: 44px;
-  --heading-font-size-l: 34px;
-  --heading-font-size-m: 27px;
-  --heading-font-size-s: 24px;
-  --heading-font-size-xs: 22px;
+  /* heading sizes (mobile-first) */
+  --heading-font-size-xxl: 36px;
+  --heading-font-size-xl: 28px;
+  --heading-font-size-l: 24px;
+  --heading-font-size-m: 20px;
+  --heading-font-size-s: 18px;
+  --heading-font-size-xs: 16px;
 
   /* nav heights */
   --nav-height: 64px;
@@ -42,33 +44,15 @@
   --header-height: var(--nav-height);
 }
 
-/* fallback fonts */
-@font-face {
-  font-family: roboto-condensed-fallback;
-  size-adjust: 88.82%;
-  src: local('Arial');
-}
-
-@font-face {
-  font-family: roboto-fallback;
-  size-adjust: 99.529%;
-  src: local('Arial');
-}
-
 @media (width >= 900px) {
   :root {
-    /* body sizes */
-    --body-font-size-m: 18px;
-    --body-font-size-s: 16px;
-    --body-font-size-xs: 14px;
-
-    /* heading sizes */
-    --heading-font-size-xxl: 45px;
-    --heading-font-size-xl: 36px;
-    --heading-font-size-l: 28px;
+    /* heading sizes (desktop) */
+    --heading-font-size-xxl: 44px;
+    --heading-font-size-xl: 28px;
+    --heading-font-size-l: 24px;
     --heading-font-size-m: 22px;
-    --heading-font-size-s: 20px;
-    --heading-font-size-xs: 18px;
+    --heading-font-size-s: 18px;
+    --heading-font-size-xs: 15px;
   }
 }
 
@@ -79,7 +63,7 @@ body {
   color: var(--text-color);
   font-family: var(--body-font-family);
   font-size: var(--body-font-size-m);
-  line-height: 1.6;
+  line-height: 1.575;
 }
 
 body.appear {
@@ -113,10 +97,11 @@ h4,
 h5,
 h6 {
   margin-top: 0.8em;
-  margin-bottom: 0.25em;
+  margin-bottom: 0.5em;
   font-family: var(--heading-font-family);
   font-weight: 600;
-  line-height: 1.25;
+  line-height: 1.15;
+  color: var(--text-color);
   scroll-margin: 40px;
 }
 
@@ -126,6 +111,13 @@ h3 { font-size: var(--heading-font-size-l); }
 h4 { font-size: var(--heading-font-size-m); }
 h5 { font-size: var(--heading-font-size-s); }
 h6 { font-size: var(--heading-font-size-xs); }
+
+/* Section titles on this site render in the green brand accent, uppercase-ish weight */
+main > .section > div > h2 {
+  color: var(--accent-color);
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
 
 p,
 dl,
@@ -164,13 +156,14 @@ button {
 /* links */
 a:any-link {
   color: var(--link-color);
+  font-weight: 300;
   text-decoration: none;
   word-break: break-word;
 }
 
 a:hover {
   color: var(--link-hover-color);
-  text-decoration: underline;
+  text-decoration: none;
 }
 
 /* buttons */
@@ -217,6 +210,30 @@ button.secondary {
   color: var(--text-color);
 }
 
+/* EDS button reset — source styles CTAs as plain accent links, not pills */
+main .button-container { display: inline; }
+
+main a.button:any-link {
+  margin: 0;
+  border: none;
+  border-radius: 0;
+  padding: 0;
+  background: none;
+  color: var(--accent-color);
+  font-size: inherit;
+  font-weight: 600;
+  text-decoration: none;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  white-space: normal;
+}
+
+main a.button:hover {
+  background: none;
+  color: var(--text-color);
+  text-decoration: underline;
+}
+
 main img {
   max-width: 100%;
   width: auto;
@@ -240,7 +257,7 @@ main > .section {
 }
 
 main > .section > div {
-  max-width: 1200px;
+  max-width: var(--content-max-width);
   margin: auto;
   padding: 0 24px;
 }
@@ -261,4 +278,18 @@ main .section.highlight {
   background-color: var(--light-color);
   margin: 0;
   padding: 40px 0;
+}
+
+main .section.dark {
+  background-color: var(--dark-color);
+  color: #fff;
+  margin: 0;
+  padding: 40px 0;
+}
+
+main .section.dark a:any-link,
+main .section.dark h1,
+main .section.dark h2,
+main .section.dark h3 {
+  color: #fff;
 }

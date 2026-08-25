@@ -1,0 +1,123 @@
+/* Block: cards-articles — "Latest Articles" grid.
+ * Values extracted from source computed styles (Petersen's Hunting home).
+ * Grid: 4-up @ desktop, 300px cols / 32px gap inside 1296px container.
+ * Card: full-bleed 3:2 image, green category pill overlapping image bottom,
+ * light-gray text block (#f9f9f9), title / description / author. No border. */
+
+.cards-articles > ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 32px;
+}
+
+@media (width >= 600px) {
+  .cards-articles > ul {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (width >= 900px) {
+  .cards-articles > ul {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.cards-articles > ul > li {
+  position: relative;
+  background-color: var(--background-color);
+}
+
+/* --- Image --- */
+.cards-articles .cards-articles-card-image {
+  line-height: 0;
+}
+
+.cards-articles .cards-articles-card-image p {
+  margin: 0;
+}
+
+/* the image anchor also holds a duplicated title text node after the picture;
+   source renders it sr-only — hide it while leaving the picture visible */
+.cards-articles .cards-articles-card-image a {
+  display: block;
+  font-size: 0;
+}
+
+.cards-articles > ul > li img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 3 / 2;
+  object-fit: cover;
+}
+
+/* --- Text block --- */
+.cards-articles .cards-articles-card-body {
+  position: relative;
+  padding: 20px;
+  background-color: rgb(249 249 249);
+}
+
+/* --- Category pill (EDS decorates the category link as a.button) ---
+   Override the global plain-link button reset back into the source's
+   green pill, and float it up over the image bottom-left. */
+.cards-articles .cards-articles-card-body .button-container {
+  position: absolute;
+  bottom: 100%;
+  left: 0;
+  margin: 0 0 -16px;
+}
+
+.cards-articles .cards-articles-card-body a.button:any-link {
+  display: block;
+  margin: 0;
+  border: none;
+  border-radius: 0 30px 30px 0;
+  padding: 4px 64px 4px 20px;
+  background: var(--accent-color);
+  color: #fff;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.75;
+  letter-spacing: normal;
+  text-transform: none;
+  white-space: nowrap;
+}
+
+.cards-articles .cards-articles-card-body a.button:hover {
+  background: var(--accent-color);
+  color: #fff;
+  text-decoration: none;
+}
+
+/* --- Title --- */
+.cards-articles .cards-articles-card-body h3 {
+  margin: 5px 0;
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+.cards-articles .cards-articles-card-body h3 a:any-link {
+  color: var(--text-color);
+  font-weight: 600;
+}
+
+.cards-articles .cards-articles-card-body h3 a:hover {
+  color: var(--link-hover-color);
+}
+
+/* --- Description + author (both are bare <p>; author is always last) --- */
+.cards-articles .cards-articles-card-body > p {
+  margin: 0 0 12px;
+  color: var(--text-color);
+  font-size: 16px;
+  line-height: 1.4;
+}
+
+.cards-articles .cards-articles-card-body > p:last-child {
+  margin: 0;
+  font-size: 14px;
+}

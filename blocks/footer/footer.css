@@ -1,20 +1,168 @@
+/* Petersen's Hunting footer — white main area with logo + social + 3 link
+ * columns, then a dark charcoal legal bar. Matches source appearance. */
+
+/* stylelint-disable no-descending-specificity -- footer sub-components (brand,
+   columns, legal bar) are styled in DOM order, not specificity order. */
+
 footer {
-  background-color: var(--light-color);
-  font-size: var(--body-font-size-xs);
+  background: #fff;
+  font-family: var(--body-font-family);
 }
 
-footer .footer > div {
-  margin: auto;
-  max-width: 1200px;
-  padding: 40px 24px 24px;
+footer .footer-inner {
+  width: 100%;
 }
 
-footer .footer p {
+footer ul {
+  list-style: none;
   margin: 0;
+  padding: 0;
 }
 
-@media (width >= 900px) {
-  footer .footer > div {
-    padding: 40px 32px 24px;
+footer a:any-link {
+  color: rgb(113 118 131);
+  text-decoration: none;
+}
+
+footer a:hover {
+  color: var(--accent-color, rgb(94 127 79));
+}
+
+/* --- Main row --- */
+.footer-main {
+  max-width: var(--content-max-width, 1296px);
+  margin: 0 auto;
+  padding: 40px 24px 24px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 32px;
+  align-items: flex-start;
+}
+
+.footer-brand {
+  flex: 1 1 300px;
+}
+
+.footer-brand p {
+  margin: 0 0 16px;
+}
+
+.footer-brand img {
+  width: 237px;
+  max-width: 100%;
+  height: auto;
+}
+
+.footer-social {
+  display: flex;
+  gap: 14px;
+  align-items: center;
+}
+
+.footer-social a {
+  display: inline-flex;
+  width: 22px;
+  height: 22px;
+  color: rgb(113 118 131);
+}
+
+.footer-social a:hover {
+  color: var(--accent-color, rgb(94 127 79));
+}
+
+.footer-social img {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+/* --- Link columns --- */
+.footer-columns {
+  flex: 2 1 500px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 32px;
+}
+
+.footer-column {
+  flex: 1 1 160px;
+}
+
+.footer-column h2 {
+  margin: 0 0 12px;
+  color: var(--text-color, rgb(44 46 50));
+  font-size: 16px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+
+.footer-column li {
+  margin: 0 0 8px;
+}
+
+.footer-column a {
+  font-size: 15px;
+}
+
+/* --- Legal bar (dark) --- */
+.footer-legal {
+  background: var(--dark-color, rgb(44 46 50));
+  color: #fff;
+}
+
+.footer-legal-inner {
+  max-width: var(--content-max-width, 1296px);
+  margin: 0 auto;
+  padding: 16px 24px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px 24px;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.footer-legal-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 20px;
+}
+
+.footer-legal-links a {
+  color: #fff;
+  font-size: 13px;
+}
+
+.footer-legal-links a:hover {
+  color: var(--accent-color, rgb(94 127 79));
+  text-decoration: underline;
+}
+
+.footer-copyright {
+  margin: 0;
+  color: rgb(200 200 200);
+  font-size: 13px;
+}
+
+/* --- Mobile --- */
+@media (width < 900px) {
+  .footer-main {
+    flex-direction: column;
+    gap: 24px;
+    padding: 32px 16px 20px;
+  }
+
+  .footer-columns {
+    gap: 24px;
+  }
+
+  .footer-column {
+    flex: 1 1 100%;
+  }
+
+  .footer-legal-inner {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 16px;
   }
 }
