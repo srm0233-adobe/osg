@@ -1,0 +1,23 @@
+{
+  "project": "DA Block Collection",
+  "editUrlLabel": "Document Authoring",
+  "editUrlPattern": "https://da.live/edit#/{{org}}/{{site}}{{pathname}}",
+  "plugins": [
+    {
+      "id": "generate-variations",
+      "title": "Generate Variations",
+      "url": "https://experience.adobe.com/aem/generate-variations",
+      "passConfig": true,
+      "environments": ["preview", "live", "edit"],
+      "includePaths": ["**"]
+    },
+    {
+      "id": "target",
+      "title": "Target",
+      "url": "https://experience.adobe.com/#/@acsmarketing/target/activities/activityLibrary",
+      "passConfig": true,
+      "environments": ["preview", "live", "edit"],
+      "includePaths": ["**"]
+    }
+  ]
+}

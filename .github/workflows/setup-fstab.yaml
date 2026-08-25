@@ -1,0 +1,57 @@
+name: Setup fstab for new repo
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  update-fstab:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Update fstab.yaml with this repo's org and name
+        id: fstab
+        run: |
+          ORG="${{ github.repository_owner }}"
+          REPO="${{ github.event.repository.name }}"
+          EXPECTED="https://content.da.live/$ORG/$REPO/"
+          CURRENT=$(grep -o 'https://content\.da\.live/[^/]*/[^/]*/' fstab.yaml || true)
+          if [ "$CURRENT" = "$EXPECTED" ]; then
+            echo "fstab.yaml already up to date — nothing to do."
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          sed -i "s|https://content\.da\.live/[^/]*/[^/]*/|$EXPECTED|g" fstab.yaml
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add fstab.yaml
+          git commit -m "chore: set fstab.yaml for $ORG/$REPO"
+          git pull --rebase
+          git push
+          echo "changed=true" >> "$GITHUB_OUTPUT"
+
+      - name: Use Node.js 20
+        if: steps.fstab.outputs.changed == 'true'
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Copy adobe-target sheet from template repo
+        if: steps.fstab.outputs.changed == 'true'
+        env:
+          DA_TOKEN: ${{ secrets.DA_TOKEN }}
+          SOURCE_ORG: ynaka-adobe
+          SOURCE_REPO: da-demo-kit
+          DEST_ORG: ${{ github.repository_owner }}
+          DEST_REPO: ${{ github.event.repository.name }}
+        run: |
+          if [ -z "$DA_TOKEN" ]; then
+            echo "::warning::DA_TOKEN secret not set — skipping .da/adobe-target sheet copy."
+            exit 0
+          fi
+          node tools/create-content/copy-sheet.mjs

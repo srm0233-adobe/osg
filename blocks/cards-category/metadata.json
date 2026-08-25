@@ -1,0 +1,40 @@
+{
+  "variantName": "cards-category",
+  "baseBlock": "cards",
+  "version": "1.0.0",
+  "created": "2026-06-23T00:00:00.000Z",
+  "sourceContext": {
+    "originUrl": "https://parts.cat.com/en/catcorp",
+    "originPage": "Cat Parts Store homepage",
+    "blockPosition": "middle"
+  },
+  "visualCharacteristics": {
+    "colorScheme": "light",
+    "density": "compact",
+    "purpose": "category-tiles",
+    "imagePattern": "icon"
+  },
+  "contentPattern": {
+    "structure": "per card: thumbnail image + linked label",
+    "buttonCount": 0,
+    "imageCount": 1,
+    "hasDescription": false
+  },
+  "reuseGuidance": {
+    "suitableFor": [
+      "shop-by-category / browse grids",
+      "compact image + linked-label navigation tiles",
+      "directory or taxonomy link grids"
+    ],
+    "notSuitableFor": [
+      "cards with descriptive paragraphs",
+      "large promotional cards with CTAs",
+      "dark-background feature highlights"
+    ]
+  },
+  "usage": {
+    "pagesUsing": ["/en/catcorp"],
+    "reuseCount": 1,
+    "lastUsed": "2026-06-23T00:00:00.000Z"
+  }
+}

@@ -1,0 +1,40 @@
+{
+  "variantName": "cards-feature",
+  "baseBlock": "cards",
+  "version": "1.0.0",
+  "created": "2026-06-23T00:00:00.000Z",
+  "sourceContext": {
+    "originUrl": "https://parts.cat.com/en/catcorp",
+    "originPage": "Cat Parts Store homepage",
+    "blockPosition": "middle"
+  },
+  "visualCharacteristics": {
+    "colorScheme": "dark",
+    "density": "spacious",
+    "purpose": "feature",
+    "imagePattern": "icon"
+  },
+  "contentPattern": {
+    "structure": "per card: icon + title + description",
+    "buttonCount": 0,
+    "imageCount": 1,
+    "hasDescription": true
+  },
+  "reuseGuidance": {
+    "suitableFor": [
+      "value-proposition / why-choose-us sections on dark backgrounds",
+      "icon + title + description feature rows",
+      "benefit highlights in a uniform row"
+    ],
+    "notSuitableFor": [
+      "image-led product or category tiles",
+      "promotional cards with CTAs and large imagery",
+      "simple icon-only callout strips without descriptions"
+    ]
+  },
+  "usage": {
+    "pagesUsing": ["/en/catcorp"],
+    "reuseCount": 1,
+    "lastUsed": "2026-06-23T00:00:00.000Z"
+  }
+}

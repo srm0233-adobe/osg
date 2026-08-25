@@ -1,0 +1,17 @@
+<meta
+  http-equiv="Content-Security-Policy"
+  content="script-src 'nonce-aem' 'strict-dynamic' 'unsafe-inline' http: https:; base-uri 'self'; object-src 'none';"
+  move-to-http-header="true"
+>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<!-- Target: set content="1" on pages that should use Target; vendor-at.js is at.js 2.11.8 -->
+<!-- <meta name="target" content="1"/> -->
+<meta name="target-at-js" content="/deps/at/vendor-at.js"/>
+<!-- Optional: override Target edge server domain -->
+<!-- <meta name="target-server-domain" content="your.target.edge.hostname"/> -->
+<!-- Optional: legacy getOffer/applyOffer for a hero mbox (selector must exist in DOM) -->
+<!-- <meta name="target-mbox-hero" content="eds-hero-mbox"/> -->
+<!-- <meta name="target-mbox-hero-selector" content=".hero.block .hero-inner"/> -->
+<script nonce="aem" src="/scripts/aem.js" type="module"></script>
+<script nonce="aem" src="/scripts/scripts.js" type="module"></script>
+<link rel="stylesheet" href="/styles/styles.css"/>

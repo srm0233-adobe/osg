@@ -1,0 +1,9 @@
+{
+  "variantName": "target-offer",
+  "baseBlock": "target-offer",
+  "version": "1.0.0",
+  "created": "2026-06-07T00:00:00.000Z",
+  "visualCharacteristics": {
+    "purpose": "adobe-target-html-offer-slot"
+  }
+}

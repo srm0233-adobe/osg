@@ -1,0 +1,6 @@
+/* Full-bleed: break out of the section's max-width container */
+.promo-banner-wrapper {
+  max-width: 100% !important;
+  padding: 0 !important;
+  margin: 0;
+}

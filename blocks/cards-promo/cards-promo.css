@@ -1,0 +1,113 @@
+/* cards-promo — promotional feature cards: 1 yellow (tall) + 2 navy (split) */
+.cards-promo > ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+}
+
+.cards-promo > ul > li {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  border: none;
+  border-radius: var(--border-radius);
+  background-color: var(--cat-neutral-10);
+}
+
+.cards-promo .cards-promo-card-image {
+  line-height: 0;
+}
+
+.cards-promo .cards-promo-card-image img {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+}
+
+.cards-promo .cards-promo-card-body {
+  margin: 0;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  gap: 8px;
+}
+
+.cards-promo .cards-promo-card-body h2,
+.cards-promo .cards-promo-card-body h3,
+.cards-promo .cards-promo-card-body h4 {
+  margin: 0;
+  font-family: var(--heading-font-family);
+  font-weight: var(--font-weight-bold);
+  font-size: var(--heading-font-size-l);
+  line-height: 1.2;
+}
+
+.cards-promo .cards-promo-card-body p {
+  margin: 0;
+  font-size: var(--body-font-size-m);
+  line-height: 1.5;
+}
+
+.cards-promo .cards-promo-card-body a:any-link {
+  align-self: flex-start;
+  margin-top: auto;
+}
+
+/* first card = Cat Yellow (black text) */
+.cards-promo > ul > li:first-child {
+  background-color: var(--brand-yellow);
+  color: var(--text-strong-color);
+}
+
+/* remaining cards = navy (knockout text) */
+.cards-promo > ul > li:not(:first-child) {
+  background-color: var(--brand-navy);
+  color: var(--background-color);
+}
+
+.cards-promo > ul > li:not(:first-child) h2,
+.cards-promo > ul > li:not(:first-child) h3,
+.cards-promo > ul > li:not(:first-child) h4 {
+  color: var(--background-color);
+}
+
+/* CTA inside navy cards uses yellow button */
+.cards-promo > ul > li a.button:any-link {
+  background-color: var(--brand-yellow);
+  border-color: var(--brand-yellow);
+  color: var(--text-strong-color);
+}
+
+@media (width >= 900px) {
+  .cards-promo > ul {
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+  }
+
+  /* left yellow card spans both rows */
+  .cards-promo > ul > li:first-child {
+    grid-row: span 2;
+  }
+
+  /* navy cards: image left, text right */
+  .cards-promo > ul > li:not(:first-child) {
+    flex-direction: row;
+  }
+
+  .cards-promo > ul > li:not(:first-child) .cards-promo-card-image {
+    flex: 0 0 45%;
+  }
+
+  .cards-promo > ul > li:not(:first-child) .cards-promo-card-image img {
+    height: 100%;
+    aspect-ratio: auto;
+  }
+
+  .cards-promo > ul > li:not(:first-child) .cards-promo-card-body {
+    flex: 1;
+  }
+}

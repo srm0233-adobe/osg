@@ -1,0 +1,4 @@
+mountpoints:
+  /:
+    url: https://content.da.live/ynaka-adobe/da-demo-kit/
+    type: markup

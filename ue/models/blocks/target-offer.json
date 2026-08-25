@@ -1,0 +1,56 @@
+{
+  "definitions": [
+    {
+      "title": "Target offer",
+      "id": "target-offer",
+      "model": "target-offer",
+      "plugins": {
+        "da": {
+          "unsafeHTML": "<div class=\"target-offer\"><span class=\"target-offer-export-id\" hidden></span><div class=\"target-offer-config\"><div><p class=\"target-offer-mbox\"></p></div></div><div class=\"target-offer-default\"><div><p>Default content</p></div></div></div>",
+          "fields": [
+            {
+              "name": "exportId",
+              "selector": "span.target-offer-export-id"
+            },
+            {
+              "name": "mboxName",
+              "selector": "p.target-offer-mbox"
+            },
+            {
+              "name": "content",
+              "selector": "div.target-offer-default"
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "models": [
+    {
+      "id": "target-offer",
+      "fields": [
+        {
+          "component": "text",
+          "name": "mboxName",
+          "label": "Target mbox name",
+          "value": "",
+          "valueType": "string"
+        },
+        {
+          "component": "text",
+          "name": "exportId",
+          "label": "Export / offer id",
+          "value": "",
+          "valueType": "string"
+        },
+        {
+          "component": "richtext",
+          "name": "content",
+          "label": "Default content",
+          "valueType": "string"
+        }
+      ]
+    }
+  ],
+  "filters": []
+}

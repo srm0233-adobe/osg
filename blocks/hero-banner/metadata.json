@@ -1,0 +1,38 @@
+{
+  "variantName": "hero-banner",
+  "baseBlock": "hero",
+  "version": "1.0.0",
+  "created": "2026-06-23T00:00:00.000Z",
+  "sourceContext": {
+    "originUrl": "https://parts.cat.com/en/catcorp",
+    "originPage": "Cat Parts Store homepage",
+    "blockPosition": "top"
+  },
+  "visualCharacteristics": {
+    "colorScheme": "dark",
+    "density": "spacious",
+    "purpose": "hero",
+    "imagePattern": "large"
+  },
+  "contentPattern": {
+    "structure": "background image + title + subheading + CTA",
+    "buttonCount": 1,
+    "imageCount": 1
+  },
+  "reuseGuidance": {
+    "suitableFor": [
+      "homepage top banners",
+      "landing pages with a full-bleed background photo",
+      "pages needing knockout heading + subheading + single CTA over an image"
+    ],
+    "notSuitableFor": [
+      "text-only intros without a background image",
+      "sections requiring multiple stacked content blocks"
+    ]
+  },
+  "usage": {
+    "pagesUsing": ["/en/catcorp"],
+    "reuseCount": 1,
+    "lastUsed": "2026-06-23T00:00:00.000Z"
+  }
+}

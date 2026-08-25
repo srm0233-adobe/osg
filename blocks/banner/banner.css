@@ -1,0 +1,274 @@
+/* ── Banner block — shared base ────────────────────────────────── */
+
+.banner-wrapper {
+  padding: 0;
+  max-width: unset;
+}
+
+.banner {
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  background: var(--background-color, #fff);
+  border: 1px solid #e0e0e0;
+  border-radius: 4px;
+  font-family: var(--body-font-family, sans-serif);
+}
+
+.banner .banner-image {
+  flex-shrink: 0;
+  line-height: 0;
+}
+
+.banner .banner-image picture,
+.banner .banner-image img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.banner .banner-body {
+  padding: 12px 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 6px;
+}
+
+.banner .banner-body p {
+  margin: 0;
+  font-size: 0.875rem;
+  line-height: 1.4;
+  color: var(--text-color, #333);
+}
+
+.banner .banner-body a.button:any-link {
+  display: inline-block;
+  background-color: var(--brand-yellow, #ffcb00);
+  color: var(--text-strong-color, #1a1a1a);
+  font-weight: 700;
+  font-size: 0.8125rem;
+  padding: 6px 18px;
+  border-radius: 3px;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: background 0.12s;
+}
+
+.banner .banner-body a.button:hover {
+  background-color: #e6b800;
+}
+
+.banner .banner-body h1,
+.banner .banner-body h2,
+.banner .banner-body h3 {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 700;
+  line-height: 1.2;
+  color: var(--heading-color, #111);
+}
+
+/* ── Leader Board (728 × 90) ───────────────────────────────────── */
+/*  Full-width horizontal strip; image fills the left, text + CTA right  */
+
+.banner.leader-board {
+  height: 90px;
+  max-width: 100%;
+}
+
+.banner.leader-board .banner-image {
+  width: 40%;
+  max-width: 420px;
+  height: 90px;
+}
+
+.banner.leader-board .banner-body {
+  flex-direction: row;
+  align-items: center;
+  flex: 1;
+  gap: 16px;
+  padding: 8px 24px;
+}
+
+.banner.leader-board .banner-body p {
+  font-size: 0.8125rem;
+  flex: 1;
+}
+
+@media (width < 600px) {
+  .banner.leader-board {
+    height: auto;
+    flex-direction: column;
+  }
+
+  .banner.leader-board .banner-image {
+    width: 100%;
+    max-width: unset;
+    height: 60px;
+  }
+
+  .banner.leader-board .banner-body {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 10px 14px;
+  }
+}
+
+/* ── Medium Rectangle (300 × 250) ─────────────────────────────── */
+/*  Compact card-style; image on top, body below; not full-width   */
+
+.banner.medium-rectangle {
+  flex-direction: column;
+  width: 300px;
+  height: 250px;
+  align-items: stretch;
+}
+
+.banner.medium-rectangle .banner-image {
+  width: 100%;
+  height: 140px;
+}
+
+.banner.medium-rectangle .banner-body {
+  flex: 1;
+  padding: 10px 14px;
+  gap: 4px;
+  justify-content: center;
+}
+
+.banner.medium-rectangle .banner-body p {
+  font-size: 0.75rem;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* ── Large Rectangle (970 × 250) ──────────────────────────────── */
+/*  Full-width; image left (40 %), text right; taller than leader board */
+
+.banner.large-rectangle {
+  height: 250px;
+  max-width: 100%;
+}
+
+.banner.large-rectangle .banner-image {
+  width: 45%;
+  height: 250px;
+}
+
+.banner.large-rectangle .banner-body {
+  flex: 1;
+  padding: 24px 32px;
+  gap: 10px;
+}
+
+.banner.large-rectangle .banner-body h1,
+.banner.large-rectangle .banner-body h2,
+.banner.large-rectangle .banner-body h3 {
+  font-size: 1.25rem;
+}
+
+.banner.large-rectangle .banner-body p {
+  font-size: 0.9375rem;
+}
+
+.banner.large-rectangle .banner-body a.button:any-link {
+  font-size: 0.875rem;
+  padding: 8px 22px;
+}
+
+@media (width < 600px) {
+  .banner.large-rectangle {
+    height: auto;
+    flex-direction: column;
+  }
+
+  .banner.large-rectangle .banner-image {
+    width: 100%;
+    height: 160px;
+  }
+
+  .banner.large-rectangle .banner-body {
+    padding: 16px;
+  }
+}
+
+/* ── Ribbon (full-width × ~48 px) ─────────────────────────────── */
+/*  Thin notification/offer strip; icon + text + CTA all in one row */
+
+.banner-wrapper.banner-ribbon-wrapper,
+.banner.ribbon-wrapper {
+  max-width: 100% !important;
+  padding: 0 !important;
+}
+
+.banner.ribbon {
+  height: 48px;
+  border-radius: 0;
+  border-left: none;
+  border-right: none;
+  background: var(--brand-yellow, #ffcb00);
+  justify-content: center;
+  gap: 16px;
+  padding: 0 24px;
+}
+
+.banner.ribbon .banner-image {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.banner.ribbon .banner-image img {
+  width: 32px;
+  height: 32px;
+  object-fit: cover;
+}
+
+.banner.ribbon .banner-body {
+  flex-direction: row;
+  align-items: center;
+  padding: 0;
+  gap: 14px;
+}
+
+.banner.ribbon .banner-body p {
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: #1a1a1a;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.banner.ribbon .banner-body a.button:any-link {
+  background: #1a1a1a;
+  color: #ffcb00;
+  font-size: 0.75rem;
+  padding: 4px 14px;
+  white-space: nowrap;
+}
+
+.banner.ribbon .banner-body a.button:hover {
+  background: #333;
+}
+
+@media (width < 480px) {
+  .banner.ribbon {
+    height: auto;
+    padding: 8px 16px;
+  }
+
+  .banner.ribbon .banner-body {
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+
+  .banner.ribbon .banner-body p {
+    white-space: normal;
+  }
+}

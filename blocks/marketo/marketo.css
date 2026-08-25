@@ -1,0 +1,156 @@
+.marketo {
+  min-height: 216px;
+  padding: 0 20px 20px 20px;
+}
+
+.marketo form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%  !important;
+}
+
+.marketo label {
+  display: block;
+  margin-bottom: 10px !important;
+  font-size: 1rem;
+  color: #7e889a;
+}
+
+.marketo .mktoLabel{
+  width: auto !important;
+}
+
+.marketo .mktoFieldWrap{
+  padding: 0.1em 0;
+}
+
+.marketo input {
+  width: 100% !important;
+  border-radius: 0 !important;
+  border: 1px solid #000 !important;
+  padding: 10px !important;
+  color: #000 !important;
+  font-size: 1rem !important;
+  transition: all 0.3s ease;
+}
+
+.marketo input:focus {
+  border: 1px solid #0766d1 !important;
+  color: #000 !important;
+  outline: #0766d1 !important;
+  transform: scale(1, 1.1);
+}
+
+.marketo select {
+  width: 100% !important;
+  border-radius: 0 !important;
+  border: 1px solid #000 !important;
+  padding: 10px !important;
+  color: #000 !important;
+  font-size: 1rem !important;
+  transition: all 0.3s ease;
+  bottom: 100%;
+}
+
+.marketo select:focus {
+  border: 1px solid #0766d1 !important;
+  color: #000 !important;
+  outline: #0766d1 !important;
+  transform: scale(1, 1.1);
+}
+
+.marketo .mktoFormCol {
+  width: 100% !important;
+}
+
+.marketo .mktoForm .mktoFieldWrap {
+  width: 100%;
+}
+
+.marketo .mktoGutter{
+  width: 0 !important;
+}
+
+.marketo .mktoAsterix{
+  padding: 0 0 0 4px !important;
+  color: #dd5757;
+}
+
+.marketo .mktoForm .mktoError .mktoErrorMsg {
+  display: block;
+  margin-top: 7px;
+  background-color: transparent !important;
+  background-image: none;
+  border: none !important;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+  color: #dd5757;
+  font-size: 1rem;
+  font-weight: bold;
+  padding: 0.25em 0;
+  text-shadow: none !important;
+}
+
+.mktoForm .mktoError .mktoErrorArrow {
+  background-color: transparent !important;
+  border: none !important;
+}
+
+.marketo .mktoButtonWrap{
+  margin-left: 0 !important;
+}
+
+.marketo .mktoForm div{
+  text-align: center !important;
+}
+
+.marketo button{
+  font-size: 1.25rem !important;
+  margin-top:2em !important;
+  background-color: #0766d1;
+  background-image: none;
+  color: #fff;
+  transform: scale(1.1);
+}
+
+.marketo-container .group-2 .default-content-wrapper .button-container a{
+  color: #0766d1 !important;
+  background-color: transparent !important;
+  padding: 0 !important;
+}
+
+.marketo-container .layout-wrapper .group-1 .default-content-wrapper h1{
+  margin-bottom: 30px !important;
+}
+
+.marketo-container .layout-wrapper .group-1 .default-content-wrapper p{
+  line-height: 1.35;
+  font-size: 1rem;
+}
+
+.marketo-container .layout-wrapper .group-1 .default-content-wrapper ul{
+  line-height: 1.35;
+  font-size: 1rem;
+}
+
+.marketo-container .layout-wrapper .group-1 .default-content-wrapper p strong{
+  margin-top:20px !important;
+  display: block;
+}
+
+.marketo-container .group-2 .default-content-wrapper p:first-child{
+  padding-bottom: 15px !important;
+}
+
+.marketo-container .group-2 .default-content-wrapper p:last-child{
+  padding-bottom: 15px !important;
+  border-top: 1px solid #0766d1 !important;
+  padding-top: 2.5em !important;
+  margin-top: 1em !important;
+  line-height: 1;
+}
+
+.marketo-container .group-2 sub{
+  font-size: 0.75rem !important;
+}

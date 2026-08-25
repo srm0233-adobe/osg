@@ -1,0 +1,68 @@
+.commerce-products-loading {
+  text-align: center;
+  padding: 40px;
+  color: var(--text-color);
+}
+
+.commerce-products-grid {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 24px;
+}
+
+.commerce-products-card {
+  border-top: 4px solid var(--brand-primary);
+  border-right: 1px solid rgba(152, 60, 201, 0.2);
+  border-bottom: 1px solid rgba(152, 60, 201, 0.2);
+  border-left: 1px solid rgba(152, 60, 201, 0.2);
+  background: #fff;
+  transition: background-color 0.2s ease;
+}
+
+.commerce-products-card:hover {
+  background-color: var(--brand-primary);
+}
+
+.commerce-products-card > a {
+  display: flex;
+  flex-direction: column;
+  text-decoration: none;
+  color: var(--text-color);
+  height: 100%;
+}
+
+.commerce-products-card:hover > a {
+  color: #fff;
+}
+
+.commerce-products-image img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 1;
+  object-fit: cover;
+}
+
+.commerce-products-body {
+  padding: 16px;
+}
+
+.commerce-products-name {
+  margin: 0 0 8px;
+  font-family: var(--heading-font-family);
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.commerce-products-price {
+  margin: 0;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--brand-primary);
+}
+
+.commerce-products-card:hover .commerce-products-price {
+  color: #fff;
+}

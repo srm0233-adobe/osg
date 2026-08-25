@@ -1,0 +1,63 @@
+{
+  "definitions": [
+    {
+      "title": "Cards Promo",
+      "id": "cards-promo",
+      "plugins": {
+        "xwalk": {
+          "page": {
+            "resourceType": "core/franklin/components/block/v1/block",
+            "template": {
+              "name": "Cards Promo",
+              "filter": "cards-promo"
+            }
+          }
+        }
+      }
+    },
+    {
+      "title": "Promo",
+      "id": "card-promo",
+      "plugins": {
+        "xwalk": {
+          "page": {
+            "resourceType": "core/franklin/components/block/v1/block/item",
+            "template": {
+              "name": "Promo",
+              "model": "card-promo"
+            }
+          }
+        }
+      }
+    }
+  ],
+  "models": [
+    {
+      "id": "card-promo",
+      "fields": [
+        {
+          "component": "richtext",
+          "valueType": "string",
+          "name": "image",
+          "label": "Image",
+          "multi": false
+        },
+        {
+          "component": "richtext",
+          "name": "text",
+          "value": "",
+          "label": "Text",
+          "valueType": "string"
+        }
+      ]
+    }
+  ],
+  "filters": [
+    {
+      "id": "cards-promo",
+      "components": [
+        "card-promo"
+      ]
+    }
+  ]
+}

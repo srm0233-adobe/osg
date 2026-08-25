@@ -1,0 +1,13 @@
+#!/bin/sh
+REMOTE_URL=$(git remote get-url origin 2>/dev/null)
+[ -z "$REMOTE_URL" ] && exit 0
+
+# Support both HTTPS (github.com/org/repo) and SSH (git@github.com:org/repo)
+REPO_PATH=$(echo "$REMOTE_URL" | sed -E 's|.*github\.com[:/]([^/]+/[^/]+)(\.git)?$|\1|')
+ORG=$(echo "$REPO_PATH" | cut -d'/' -f1)
+REPO=$(echo "$REPO_PATH" | cut -d'/' -f2)
+
+[ -z "$ORG" ] || [ -z "$REPO" ] && exit 0
+
+sed -i.bak "s|https://content\.da\.live/[^/]*/[^/]*/|https://content.da.live/$ORG/$REPO/|g" fstab.yaml && rm -f fstab.yaml.bak
+echo "fstab.yaml updated: https://content.da.live/$ORG/$REPO/"

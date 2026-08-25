@@ -1,0 +1,41 @@
+{
+  "variantName": "cards-promo",
+  "baseBlock": "cards",
+  "version": "1.0.0",
+  "created": "2026-06-23T00:00:00.000Z",
+  "sourceContext": {
+    "originUrl": "https://parts.cat.com/en/catcorp",
+    "originPage": "Cat Parts Store homepage",
+    "blockPosition": "bottom"
+  },
+  "visualCharacteristics": {
+    "colorScheme": "colored",
+    "density": "spacious",
+    "purpose": "promo",
+    "imagePattern": "large"
+  },
+  "contentPattern": {
+    "structure": "per card: feature image + title + body + CTA",
+    "buttonCount": 1,
+    "imageCount": 1,
+    "hasDescription": true,
+    "hasCTA": true
+  },
+  "reuseGuidance": {
+    "suitableFor": [
+      "promotional feature cards with image + title + body + CTA",
+      "marketing espots / cross-sell blocks",
+      "campaign highlights on colored card backgrounds"
+    ],
+    "notSuitableFor": [
+      "compact icon callout strips",
+      "simple navigation tile grids without CTAs",
+      "plain text feature lists"
+    ]
+  },
+  "usage": {
+    "pagesUsing": ["/en/catcorp"],
+    "reuseCount": 1,
+    "lastUsed": "2026-06-23T00:00:00.000Z"
+  }
+}

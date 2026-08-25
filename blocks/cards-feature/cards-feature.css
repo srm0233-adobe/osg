@@ -1,0 +1,63 @@
+/* cards-feature — 3 icon + title + description cards on the dark section */
+.cards-feature > ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+}
+
+.cards-feature > ul > li {
+  display: flex;
+  gap: 16px;
+  padding: 20px 24px;
+  border: none;
+  background-color: transparent;
+}
+
+.cards-feature .cards-feature-card-body {
+  margin: 0;
+}
+
+.cards-feature .cards-feature-card-body h2,
+.cards-feature .cards-feature-card-body h3 {
+  margin: 0 0 0.35em;
+  font-family: var(--heading-font-family);
+  font-weight: var(--font-weight-bold);
+  font-size: var(--heading-font-size-m);
+  line-height: 1.2;
+  color: inherit;
+}
+
+.cards-feature .cards-feature-card-body p {
+  margin: 0;
+  font-size: var(--body-font-size-m);
+  line-height: 1.5;
+  color: inherit;
+}
+
+/* yellow icon glyph */
+.cards-feature .cards-feature-card-image {
+  flex: 0 0 auto;
+  line-height: 0;
+  color: var(--brand-yellow);
+}
+
+/* hide empty image cells (web-component icons) */
+.cards-feature .cards-feature-card-image:empty {
+  display: none;
+}
+
+.cards-feature .cards-feature-card-image img {
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
+}
+
+@media (width >= 900px) {
+  .cards-feature > ul {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+}

@@ -1,0 +1,54 @@
+/* cards-callouts — horizontal strip of icon + short label items */
+.cards-callouts > ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px 48px;
+}
+
+.cards-callouts > ul > li {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  border: none;
+  background-color: transparent;
+}
+
+.cards-callouts .cards-callouts-card-body {
+  margin: 0;
+}
+
+.cards-callouts .cards-callouts-card-body h2,
+.cards-callouts .cards-callouts-card-body h3 {
+  margin: 0;
+  font-family: var(--body-font-family);
+  font-weight: var(--font-weight-semibold);
+  font-size: var(--body-font-size-m);
+  line-height: 1.4;
+  color: inherit;
+}
+
+.cards-callouts .cards-callouts-card-image {
+  line-height: 0;
+  color: var(--brand-yellow);
+}
+
+/* hide empty image cell (source icons are web-component glyphs, not imgs) */
+.cards-callouts .cards-callouts-card-image:empty {
+  display: none;
+}
+
+.cards-callouts .cards-callouts-card-image img {
+  width: 28px;
+  height: 28px;
+  object-fit: contain;
+}
+
+@media (width >= 900px) {
+  .cards-callouts > ul {
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+  }
+}

@@ -1,0 +1,63 @@
+{
+  "definitions": [
+    {
+      "title": "Cards Callouts",
+      "id": "cards-callouts",
+      "plugins": {
+        "xwalk": {
+          "page": {
+            "resourceType": "core/franklin/components/block/v1/block",
+            "template": {
+              "name": "Cards Callouts",
+              "filter": "cards-callouts"
+            }
+          }
+        }
+      }
+    },
+    {
+      "title": "Callout",
+      "id": "card-callouts",
+      "plugins": {
+        "xwalk": {
+          "page": {
+            "resourceType": "core/franklin/components/block/v1/block/item",
+            "template": {
+              "name": "Callout",
+              "model": "card-callouts"
+            }
+          }
+        }
+      }
+    }
+  ],
+  "models": [
+    {
+      "id": "card-callouts",
+      "fields": [
+        {
+          "component": "richtext",
+          "valueType": "string",
+          "name": "image",
+          "label": "Icon",
+          "multi": false
+        },
+        {
+          "component": "richtext",
+          "name": "text",
+          "value": "",
+          "label": "Text",
+          "valueType": "string"
+        }
+      ]
+    }
+  ],
+  "filters": [
+    {
+      "id": "cards-callouts",
+      "components": [
+        "card-callouts"
+      ]
+    }
+  ]
+}

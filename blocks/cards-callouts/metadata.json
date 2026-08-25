@@ -1,0 +1,40 @@
+{
+  "variantName": "cards-callouts",
+  "baseBlock": "cards",
+  "version": "1.0.0",
+  "created": "2026-06-23T00:00:00.000Z",
+  "sourceContext": {
+    "originUrl": "https://parts.cat.com/en/catcorp",
+    "originPage": "Cat Parts Store homepage",
+    "blockPosition": "top"
+  },
+  "visualCharacteristics": {
+    "colorScheme": "dark",
+    "density": "compact",
+    "purpose": "callout-strip",
+    "imagePattern": "icon"
+  },
+  "contentPattern": {
+    "structure": "per card: icon + short label",
+    "buttonCount": 0,
+    "imageCount": 1,
+    "hasDescription": false
+  },
+  "reuseGuidance": {
+    "suitableFor": [
+      "horizontal icon + label trust/feature strips",
+      "value-proposition callouts beneath a hero",
+      "compact icon badges with no description"
+    ],
+    "notSuitableFor": [
+      "cards with descriptive paragraphs",
+      "large promotional cards with CTAs",
+      "image-led product or category tiles"
+    ]
+  },
+  "usage": {
+    "pagesUsing": ["/en/catcorp"],
+    "reuseCount": 1,
+    "lastUsed": "2026-06-23T00:00:00.000Z"
+  }
+}

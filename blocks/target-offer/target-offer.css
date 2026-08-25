@@ -1,0 +1,8 @@
+.target-offer {
+  /* Stable hook for VEC / Replace content / cssSelector in Target activities */
+  min-height: 0;
+}
+
+.target-offer__slot:empty {
+  min-height: 0;
+}

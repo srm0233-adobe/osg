@@ -1,0 +1,30 @@
+{
+  "name": "Banner",
+  "description": "Promotional banner in one of four standard ad sizes. Add the variant name as a second class on the block.",
+  "variants": [
+    {
+      "name": "Leader Board",
+      "class": "leader-board",
+      "description": "Full-width horizontal strip, 728 × 90 px. Image left, description + CTA right."
+    },
+    {
+      "name": "Medium Rectangle",
+      "class": "medium-rectangle",
+      "description": "Compact card, 300 × 250 px. Image top, description + CTA below. Does not span full width."
+    },
+    {
+      "name": "Large Rectangle",
+      "class": "large-rectangle",
+      "description": "Full-width horizontal banner, ~970 × 250 px. Taller than the Leader Board."
+    },
+    {
+      "name": "Ribbon",
+      "class": "ribbon",
+      "description": "Thin full-width strip, ~48 px tall. Use for offers, voucher codes, or cookie notices."
+    }
+  ],
+  "fields": [
+    { "name": "Image", "type": "image", "description": "Banner image or brand logo." },
+    { "name": "Body", "type": "richtext", "description": "Heading, description text, and CTA link." }
+  ]
+}
