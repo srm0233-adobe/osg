@@ -27,3 +27,4 @@ export default async function init(html) {
   const editables = document.body.querySelectorAll(EDITABLE_SELECTORS);
   editables.forEach((editable) => { handleEditable(editable); });
 }
+
