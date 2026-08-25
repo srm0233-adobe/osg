@@ -199,11 +199,11 @@ function buildNav(fragment, block) {
  * @param {Element} block The header block element
  */
 export default async function decorate(block) {
-  // Dual-fetch: localhost / aem up first, DA/EDS production fallback.
-  const navPath = block.querySelector('a')?.getAttribute('href') || '/content/nav';
+  // Dual-fetch: localhost / aem up serves content under /content; DA/EDS
+  // production serves it at the site root. Try both.
   let resp = await fetch('/content/nav.plain.html');
   if (!resp.ok) {
-    resp = await fetch(`${navPath}.plain.html`);
+    resp = await fetch('/nav.plain.html');
   }
   if (!resp.ok) return;
   const html = await resp.text();

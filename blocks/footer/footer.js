@@ -79,11 +79,11 @@ function buildFooter(fragment, block) {
  * @param {Element} block The footer block element
  */
 export default async function decorate(block) {
-  // Dual-fetch: localhost / aem up first, DA/EDS production fallback.
-  const footerPath = block.querySelector('a')?.getAttribute('href') || '/content/footer';
+  // Dual-fetch: localhost / aem up serves content under /content; DA/EDS
+  // production serves it at the site root. Try both.
   let resp = await fetch('/content/footer.plain.html');
   if (!resp.ok) {
-    resp = await fetch(`${footerPath}.plain.html`);
+    resp = await fetch('/footer.plain.html');
   }
   if (!resp.ok) return;
   const html = await resp.text();
