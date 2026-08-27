@@ -40,18 +40,20 @@ function buildNav(fragment, block) {
   const utilInner = document.createElement('div');
   utilInner.className = 'nav-utility-inner';
   const lists = brandSection ? brandSection.querySelectorAll('ul') : [];
+  // First <ul> = social links → utility bar. Second <ul> = subscribe links →
+  // the masthead promo (built below), matching the source layout.
   if (lists[0]) {
     const social = lists[0].cloneNode(true);
     social.className = 'nav-social';
     utilInner.append(social);
   }
-  if (lists[1]) {
-    const subscribe = lists[1].cloneNode(true);
-    subscribe.className = 'nav-subscribe';
-    utilInner.append(subscribe);
-  }
   utilBar.append(utilInner);
   nav.append(utilBar);
+
+  // Identify the logo paragraph (the <p> holding the logo image) so the promo
+  // can reuse every OTHER brand paragraph (Digital Now text, cover image, etc.).
+  const brandParas = brandSection ? [...brandSection.querySelectorAll(':scope > p')] : [];
+  const logoPara = brandParas.find((p) => p.querySelector('img[src*="logo"]')) || brandParas[0];
 
   // --- Masthead (hamburger + logo + search) ---
   const masthead = document.createElement('div');
@@ -67,12 +69,66 @@ function buildNav(fragment, block) {
   hamburger.innerHTML = '<span class="nav-hamburger-icon"></span>';
   mastheadInner.append(hamburger);
 
-  const brandLink = brandSection ? brandSection.querySelector('p a') : null;
+  const brandLink = logoPara ? logoPara.querySelector('a') : null;
   if (brandLink) {
     const brand = document.createElement('div');
     brand.className = 'nav-brand';
     brand.append(brandLink.cloneNode(true));
     mastheadInner.append(brand);
+  }
+
+  // --- Subscribe promo (Digital Now text + cover image + subscribe CTAs) ---
+  // Built from the brand section's non-logo paragraphs + the second <ul>.
+  const promoParas = brandParas.filter((p) => p !== logoPara);
+  const subscribeList = lists[1];
+  if (promoParas.length || subscribeList) {
+    const promo = document.createElement('div');
+    promo.className = 'nav-subscribe-promo';
+
+    // Text lines and cover image, in document order.
+    const promoText = document.createElement('div');
+    promoText.className = 'nav-promo-text';
+    const promoCover = document.createElement('div');
+    promoCover.className = 'nav-promo-cover';
+    promoParas.forEach((p) => {
+      if (p.querySelector('img')) promoCover.append(p.cloneNode(true));
+      else promoText.append(p.cloneNode(true));
+    });
+
+    // Subscribe CTAs: first link becomes the primary button; rest are links.
+    const promoCtas = document.createElement('div');
+    promoCtas.className = 'nav-promo-ctas';
+    if (subscribeList) {
+      const items = [...subscribeList.querySelectorAll('li')];
+      let secondaryWrap = null;
+      items.forEach((li, i) => {
+        const a = li.querySelector('a');
+        if (!a) return;
+        const link = a.cloneNode(true);
+        if (i === 0) {
+          // Primary CTA → pill button.
+          link.classList.add('nav-subscribe-btn');
+          const p = document.createElement('p');
+          p.append(link);
+          promoCtas.append(p);
+          return;
+        }
+        // Secondary CTAs → a single pipe-separated line.
+        if (!secondaryWrap) {
+          secondaryWrap = document.createElement('p');
+          secondaryWrap.className = 'nav-promo-links';
+          promoCtas.append(secondaryWrap);
+        } else {
+          secondaryWrap.append(document.createTextNode(' | '));
+        }
+        secondaryWrap.append(link);
+      });
+    }
+
+    if (promoText.children.length) promo.append(promoText);
+    if (promoCover.children.length) promo.append(promoCover);
+    if (promoCtas.children.length) promo.append(promoCtas);
+    mastheadInner.append(promo);
   }
 
   masthead.append(mastheadInner);
