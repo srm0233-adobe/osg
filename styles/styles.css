@@ -320,6 +320,7 @@ main .section.get-magazine h2 {
   color: var(--text-color);
   font-weight: 300;
   line-height: 1.05;
+  text-transform: none;
 }
 
 /* "GET THE MAGAZINE" eyebrow above the headline */
