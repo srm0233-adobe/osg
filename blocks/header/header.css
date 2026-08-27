@@ -212,7 +212,9 @@ header nav :any-link {
   border: none;
   background: var(--accent-color, rgb(94 127 79));
   color: #fff;
-  padding: 8px 34px;
+  flex: 0 0 200px;
+  width: 200px;
+  padding: 8px;
   display: flex;
   align-items: center;
   justify-content: center;
