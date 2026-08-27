@@ -389,8 +389,7 @@ main .section.get-magazine p:last-child a:hover {
   main .section.get-magazine > div {
     display: grid;
     grid-template-columns: auto minmax(0, 460px);
-    align-content: center; /* keep text rows content-sized, group centered */
-    justify-content: center;
+    place-content: center; /* keep text rows content-sized, group centered */
     column-gap: 56px;
     max-width: 900px;
     margin: 0 auto;
