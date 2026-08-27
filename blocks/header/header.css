@@ -212,15 +212,21 @@ header nav :any-link {
   border: none;
   background: var(--accent-color, rgb(94 127 79));
   color: #fff;
-  padding: 8px 40px;
-  font-size: 13px;
-  font-weight: 600;
-  text-transform: uppercase;
+  padding: 8px 34px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   cursor: pointer;
 }
 
 .nav-search button:hover {
   background: var(--text-color, rgb(44 46 50));
+}
+
+.nav-search-icon {
+  width: 20px;
+  height: 20px;
+  display: block;
 }
 
 /* --- Main nav bar --- */
