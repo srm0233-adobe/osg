@@ -138,11 +138,18 @@ main .carousel-shows a.button:focus {
   text-decoration: none;
 }
 
-/* --- Carousel controls: green prev/next arrows --- */
+/* --- Carousel controls: green prev/next arrows ---
+ * Constrained to the content width (like the slide text) and centered, so the
+ * arrows sit at the edges of the content column rather than the page edges. */
 .carousel-shows .carousel-shows-navigation-buttons {
   position: absolute;
   inset: 0;
   z-index: 2;
+  width: 100%;
+  max-width: var(--content-max-width, 1296px);
+  margin: 0 auto;
+  padding: 0 24px;
+  box-sizing: border-box;
   display: flex;
   justify-content: space-between;
   align-items: center;
