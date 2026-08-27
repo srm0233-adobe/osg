@@ -1,0 +1,190 @@
+{
+  "templates": [
+    {
+      "name": "homepage",
+      "urls": [
+        "http://localhost:8899/home-local.html"
+      ],
+      "coverageGaps": [],
+      "description": "Petersen's Hunting homepage - magazine landing page with latest articles, featured video, recent videos carousel, digital single issue purchase, related magazines grid, and special interest magazines grid.",
+      "blocks": [
+        {
+          "name": "video-embed",
+          "instances": [
+            ".home-sidebar-video .is-fixed"
+          ]
+        },
+        {
+          "name": "cards-articles",
+          "instances": [
+            ".grid.default-grid.four-wide.latest-articles"
+          ]
+        },
+        {
+          "name": "carousel-shows",
+          "instances": [
+            ".caro.wide.feature.caps-feature"
+          ]
+        },
+        {
+          "name": "columns-media",
+          "instances": [
+            "section.wrapper.home-video-promo.clearfix",
+            "section.wrapper.buy-issue"
+          ]
+        },
+        {
+          "name": "cards-video",
+          "instances": [
+            ".row.flex-grid.video-grid"
+          ]
+        },
+        {
+          "name": "cards-covers",
+          "instances": [
+            "section#FooterMagazineGlobal_getmagazineSection.has-prods-container .row.has-prods",
+            "section#FooterMagazineGlobal_specialinterestSection.has-prods-container .row.has-prods"
+          ]
+        },
+        {
+          "name": "carousel-promo",
+          "instances": [
+            "div.wrapper > .caro.multi"
+          ]
+        }
+      ],
+      "sections": [
+        {
+          "id": "section-1",
+          "name": "Latest Articles",
+          "selector": [
+            "section.wrapper.has-grid.lastest-articles.clearfix:nth-of-type(1)"
+          ],
+          "style": null,
+          "blocks": [
+            "video-embed",
+            "cards-articles"
+          ],
+          "defaultContent": [
+            "section.wrapper.has-grid.lastest-articles.clearfix:nth-of-type(1) > h2, section.wrapper.has-grid.lastest-articles.clearfix:nth-of-type(1) h2:first-of-type"
+          ]
+        },
+        {
+          "id": "section-2",
+          "name": "Watch",
+          "selector": [
+            "div.wrapper.no-padding-bottom"
+          ],
+          "style": null,
+          "blocks": [
+            "carousel-shows"
+          ],
+          "defaultContent": [
+            "div.wrapper.no-padding-bottom h2"
+          ]
+        },
+        {
+          "id": "section-3",
+          "name": "Hunting Adventures TV",
+          "selector": [
+            "section.wrapper.home-video-promo.clearfix"
+          ],
+          "style": null,
+          "blocks": [
+            "columns-media"
+          ],
+          "defaultContent": [
+            "section.wrapper.home-video-promo.clearfix h2"
+          ]
+        },
+        {
+          "id": "section-4",
+          "name": "Recent Videos",
+          "selector": [
+            "section.wrapper.has-grid.lastest-articles.clearfix:nth-of-type(2)"
+          ],
+          "style": null,
+          "blocks": [
+            "cards-video"
+          ],
+          "defaultContent": [
+            "section.wrapper.has-grid.lastest-articles.clearfix:nth-of-type(2) h2"
+          ]
+        },
+        {
+          "id": "section-5",
+          "name": "Get the Magazine",
+          "selector": [
+            "div.wrapper.narrow"
+          ],
+          "style": null,
+          "blocks": [],
+          "defaultContent": [
+            "div.wrapper.narrow h2",
+            "div.wrapper.narrow p",
+            "div.wrapper.narrow a"
+          ]
+        },
+        {
+          "id": "section-6",
+          "name": "Buy Digital Single Issues",
+          "selector": [
+            "section.wrapper.buy-issue"
+          ],
+          "style": null,
+          "blocks": [
+            "columns-media"
+          ],
+          "defaultContent": [
+            "section.wrapper.buy-issue h2"
+          ]
+        },
+        {
+          "id": "section-7",
+          "name": "Other Magazines",
+          "selector": [
+            "section#FooterMagazineGlobal_getmagazineSection.has-prods-container"
+          ],
+          "style": null,
+          "blocks": [
+            "cards-covers"
+          ],
+          "defaultContent": [
+            "section#FooterMagazineGlobal_getmagazineSection h2"
+          ]
+        },
+        {
+          "id": "section-8",
+          "name": "Special Interest Magazines",
+          "selector": [
+            "section#FooterMagazineGlobal_specialinterestSection.has-prods-container"
+          ],
+          "style": null,
+          "blocks": [
+            "cards-covers"
+          ],
+          "defaultContent": [
+            "section#FooterMagazineGlobal_specialinterestSection h2"
+          ]
+        },
+        {
+          "id": "section-9",
+          "name": "More You May Be Interested In",
+          "selector": [
+            "div.wrapper > .caro.multi"
+          ],
+          "style": null,
+          "blocks": [
+            "carousel-promo"
+          ],
+          "defaultContent": [
+            "div.wrapper .caro.multi"
+          ]
+        }
+      ]
+    }
+  ],
+  "metadata": {
+    "projectType": "da"
+  }
+}

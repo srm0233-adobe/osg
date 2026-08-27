@@ -1,0 +1,19 @@
+{
+  "status": "success",
+  "url": "http://localhost:8899/home-local.html",
+  "path": "home-local",
+  "timestamp": "2026-08-25T18:55:53.891Z",
+  "title": "Hunting Gear, News, Gear & Education - Petersen's Hunting",
+  "template": "homepage",
+  "blocks": [
+    "video-embed",
+    "cards-articles",
+    "carousel-shows",
+    "columns-media",
+    "columns-media",
+    "cards-video",
+    "cards-covers",
+    "cards-covers",
+    "carousel-promo"
+  ]
+}

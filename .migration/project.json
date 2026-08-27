@@ -1,0 +1,11 @@
+{
+  "type": "da",
+  "sites": {
+    "osg": {
+      "previewOrg": "srm0233-adobe",
+      "previewSite": "osg",
+      "contentHostUrl": "https://content.da.live/srm0233-adobe/osg/",
+      "libraryUrl": "https://main--sta-boilerplate--aemdemos.aem.page/tools/sidekick/library.json"
+    }
+  }
+}
