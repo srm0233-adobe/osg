@@ -175,16 +175,15 @@ header nav :any-link {
   margin: 0 auto;
   padding: 12px 24px;
   display: flex;
-  justify-content: flex-end;
+  justify-content: stretch;
 }
 
 .nav-search {
   display: flex;
   align-items: stretch;
   border: 1px solid rgb(210 210 210);
-  border-radius: 2px;
+  border-radius: 28px;
   overflow: hidden;
-  max-width: 420px;
   width: 100%;
 }
 
@@ -192,7 +191,7 @@ header nav :any-link {
   border: none;
   border-right: 1px solid rgb(210 210 210);
   background: rgb(246 245 246);
-  padding: 8px 10px;
+  padding: 8px 10px 8px 22px;
   font-size: 13px;
   color: var(--text-color);
 }
@@ -213,7 +212,7 @@ header nav :any-link {
   border: none;
   background: var(--accent-color, rgb(94 127 79));
   color: #fff;
-  padding: 8px 18px;
+  padding: 8px 40px;
   font-size: 13px;
   font-weight: 600;
   text-transform: uppercase;
