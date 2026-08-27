@@ -160,7 +160,7 @@ function buildNav(fragment, block) {
   submit.type = 'submit';
   submit.setAttribute('aria-label', 'Submit search');
   // Magnifying-glass icon (matches source). aria-label carries the accessible name.
-  submit.innerHTML = '<svg class="nav-search-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="10.5" cy="10.5" r="6.5" fill="none" stroke="currentColor" stroke-width="2"/><line x1="15.5" y1="15.5" x2="21" y2="21" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>';
+  submit.innerHTML = '<svg class="nav-search-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="10" cy="10" r="6" fill="none" stroke="currentColor" stroke-width="1.8"/><line x1="14.5" y1="14.5" x2="20" y2="20" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>';
   search.append(select, input, submit);
   searchInner.append(search);
   searchRow.append(searchInner);
