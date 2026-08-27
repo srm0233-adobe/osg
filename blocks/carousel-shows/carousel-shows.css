@@ -137,6 +137,7 @@ main .carousel-shows a.button:any-link {
   line-height: 1.4;
   letter-spacing: normal;
   text-transform: none;
+  text-shadow: none;
 }
 
 main .carousel-shows a.button:hover,
