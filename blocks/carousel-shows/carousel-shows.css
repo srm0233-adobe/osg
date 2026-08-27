@@ -1,14 +1,16 @@
 /*
- * carousel-shows — "Watch" feature row of show promos.
- * Source: .caro.wide.feature.caps-feature (Petersen's Hunting home).
- * A full-width dark band of equal panels, each with vertically-centered white
- * content: a large thin uppercase title (link), a description, and a white
- * pill CTA with green text. Source shows all panels at once with no visible
- * carousel controls, so nav buttons + indicators are hidden.
- * Base carousel JS behavior is preserved (slides list, controls in DOM).
+ * carousel-shows — "Watch" show promos as a single-slide image carousel.
+ * Each slide: a full-bleed background image with a dark gradient scrim and
+ * left-aligned white content (thin uppercase title link, description, pill CTA).
+ * One slide is shown at a time; green prev/next arrows advance the carousel.
+ * The first cell of each authored row is the background image; the second cell
+ * holds the title / description / CTA.
  */
 
-/* Full-width breakout of the dark band (section div otherwise caps at 1296px) */
+/* stylelint-disable no-descending-specificity -- nav buttons vs indicator dots
+   are distinct controls styled in DOM order, not specificity order. */
+
+/* Full-width breakout of the band (section div otherwise caps at 1296px) */
 .carousel-shows-wrapper {
   max-width: 100% !important;
   padding: 0 !important;
@@ -18,31 +20,64 @@
   position: relative;
 }
 
+/* Horizontal track — slides sit side by side; container clips to one slide */
 .carousel-shows .carousel-shows-slides {
   list-style: none;
   margin: 0;
   padding: 0;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  overflow: hidden;
+  scroll-behavior: smooth;
+  scroll-snap-type: x mandatory;
 }
 
-/* Each slide is a dark panel (image fallback color) with centered content */
+/* Each slide fills the viewport width; content overlays the background image */
 .carousel-shows .carousel-shows-slide {
+  position: relative;
+  flex: 0 0 100%;
+  width: 100%;
+  min-height: 420px;
+  scroll-snap-align: start;
   display: flex;
   align-items: center;
   justify-content: flex-start;
   background-color: var(--dark-color);
+  overflow: hidden;
 }
 
-/* Image cell is empty in this variant — collapse it */
+/* Background image cell — absolutely fills the slide behind the content */
 .carousel-shows .carousel-shows-slide-image {
-  display: none;
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  margin: 0;
 }
 
+.carousel-shows .carousel-shows-slide-image picture,
+.carousel-shows .carousel-shows-slide-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Dark scrim for legibility over the photo (stronger on the left) */
+.carousel-shows .carousel-shows-slide-image::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, rgb(0 0 0 / 60%) 0%, rgb(0 0 0 / 35%) 45%, rgb(0 0 0 / 10%) 100%);
+}
+
+/* Content overlays the image on the left */
 .carousel-shows .carousel-shows-slide-content {
+  position: relative;
+  z-index: 1;
   color: #fff;
   padding: 60px 24px;
   text-align: left;
+  max-width: 640px;
 }
 
 .carousel-shows .carousel-shows-slide-content h3 {
@@ -50,9 +85,10 @@
   font-family: var(--body-font-family);
   font-weight: 300;
   font-size: 40px;
-  line-height: 0.9;
+  line-height: 0.95;
   letter-spacing: 1.4px;
   color: #fff;
+  text-shadow: 0 1px 6px rgb(0 0 0 / 45%);
 }
 
 .carousel-shows .carousel-shows-slide-content h3 a:any-link {
@@ -66,6 +102,7 @@
   font-weight: 500;
   line-height: 1.4;
   color: #fff;
+  text-shadow: 0 1px 6px rgb(0 0 0 / 45%);
 }
 
 /* CTA — white pill with green text (overrides global EDS button reset) */
@@ -96,26 +133,89 @@ main .carousel-shows a.button:focus {
   text-decoration: none;
 }
 
-/* Source presents a static feature row — hide carousel controls */
-.carousel-shows .carousel-shows-navigation-buttons,
+/* --- Carousel controls: green prev/next arrows --- */
+.carousel-shows .carousel-shows-navigation-buttons {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  pointer-events: none;
+}
+
+.carousel-shows .carousel-shows-navigation-buttons button {
+  pointer-events: auto;
+  width: 44px;
+  height: 88px;
+  border: 0;
+  background-color: var(--accent-color, rgb(94 127 79));
+  cursor: pointer;
+  position: relative;
+  opacity: 0.92;
+  transition: opacity 0.2s ease;
+}
+
+.carousel-shows .carousel-shows-navigation-buttons button:hover {
+  opacity: 1;
+}
+
+/* Chevron glyphs */
+.carousel-shows .carousel-shows-navigation-buttons button::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 12px;
+  height: 12px;
+  border-right: 2px solid #fff;
+  border-bottom: 2px solid #fff;
+}
+
+.carousel-shows .carousel-shows-navigation-buttons .slide-prev::after {
+  transform: translate(-30%, -50%) rotate(135deg);
+}
+
+.carousel-shows .carousel-shows-navigation-buttons .slide-next::after {
+  transform: translate(-70%, -50%) rotate(-45deg);
+}
+
+/* Slide indicator dots */
+.carousel-shows .carousel-shows-slide-indicators {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin: 0;
+  padding: 16px 0;
+  list-style: none;
+}
+
+.carousel-shows .carousel-shows-slide-indicator button {
+  width: 10px;
+  height: 10px;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background-color: rgb(198 198 201);
+  cursor: pointer;
+}
+
+.carousel-shows .carousel-shows-slide-indicator button[disabled] {
+  background-color: var(--accent-color, rgb(94 127 79));
+}
+
 .carousel-shows > nav {
-  display: none;
+  display: flex;
+  justify-content: center;
 }
 
 @media (width >= 900px) {
-  /* All panels shown side-by-side in one full-width row */
-  .carousel-shows .carousel-shows-slides {
-    flex-direction: row;
-  }
-
   .carousel-shows .carousel-shows-slide {
-    flex: 1 1 0;
-    min-width: 0;
+    min-height: 520px;
   }
 
   .carousel-shows .carousel-shows-slide-content {
-    padding: 145px 50px;
-    max-width: 100%;
+    padding: 120px 80px;
   }
 
   .carousel-shows .carousel-shows-slide-content h3 {
