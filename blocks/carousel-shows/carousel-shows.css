@@ -41,8 +41,8 @@
 }
 
 /* Each slide fills the viewport width; content overlays the background image.
- * Content is centered in a header-width container (justify-content: center) so
- * its left edge lines up with the nav/logo, not the page edge. */
+ * Content is left-aligned within the slide so the copy sits near the left edge
+ * (with its own padding), not centered in the slide. */
 .carousel-shows .carousel-shows-slide {
   position: relative;
   flex: 0 0 100%;
@@ -51,7 +51,7 @@
   scroll-snap-align: start;
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   background-color: var(--dark-color);
   overflow: hidden;
 }
@@ -89,7 +89,7 @@
   max-width: 583px;
   box-sizing: content-box;
   color: #fff;
-  padding: 60px 50px 60px 48px;
+  padding: 60px 50px;
   text-align: left;
 }
 
@@ -229,7 +229,7 @@ main .carousel-shows a.button:focus {
   }
 
   .carousel-shows .carousel-shows-slide-content {
-    padding: 120px 50px 120px 48px;
+    padding: 120px 50px;
   }
 
   .carousel-shows .carousel-shows-slide-content h3 {
