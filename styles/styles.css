@@ -389,7 +389,7 @@ main .section.get-magazine p:last-child a:hover {
   main .section.get-magazine > div {
     display: grid;
     grid-template-columns: auto minmax(0, 460px);
-    align-items: center;
+    align-content: center; /* keep text rows content-sized, group centered */
     justify-content: center;
     column-gap: 56px;
     max-width: 900px;
@@ -397,7 +397,7 @@ main .section.get-magazine p:last-child a:hover {
     text-align: left;
   }
 
-  /* cover occupies column 1, all rows */
+  /* cover occupies column 1, all rows, vertically centered against the text */
   main .section.get-magazine > div > p:first-child {
     grid-column: 1;
     grid-row: 1 / -1;
@@ -405,8 +405,9 @@ main .section.get-magazine p:last-child a:hover {
     margin: 0;
   }
 
-  /* every other element flows into column 2 */
+  /* every other element flows into column 2, content-height rows */
   main .section.get-magazine > div > :not(p:first-child) {
     grid-column: 2;
+    align-self: start;
   }
 }
