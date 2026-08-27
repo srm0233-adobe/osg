@@ -386,28 +386,27 @@ main .section.get-magazine p:last-child a:hover {
 @media (width >= 900px) {
   /* Grid: cover in the left column (spans all rows so it centers vertically
    * against the text), copy stacked in the right column and left-aligned. */
+  /* Cover floats left; the copy flows tightly beside it (no row gaps). */
   main .section.get-magazine > div {
-    display: grid;
-    grid-template-columns: auto minmax(0, 460px);
-    grid-auto-rows: min-content; /* text rows stay tight, don't stretch to cover */
-    place-content: center; /* center the text group vertically against the cover */
-    column-gap: 56px;
+    display: block;
     max-width: 900px;
     margin: 0 auto;
     text-align: left;
   }
 
-  /* cover occupies column 1, all rows, vertically centered against the text */
   main .section.get-magazine > div > p:first-child {
-    grid-column: 1;
-    grid-row: 1 / -1;
-    align-self: center;
-    margin: 0;
+    float: left;
+    margin: 0 56px 0 0;
   }
 
-  /* every other element flows into column 2, content-height rows */
-  main .section.get-magazine > div > :not(p:first-child) {
-    grid-column: 2;
-    align-self: start;
+  main .section.get-magazine > div::after {
+    content: "";
+    display: block;
+    clear: both;
+  }
+
+  /* push the copy down so it sits roughly centered against the tall cover */
+  main .section.get-magazine h2 {
+    margin-top: 40px;
   }
 }
