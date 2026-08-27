@@ -80,14 +80,16 @@
   background: linear-gradient(90deg, rgb(0 0 0 / 60%) 0%, rgb(0 0 0 / 35%) 45%, rgb(0 0 0 / 10%) 100%);
 }
 
-/* Content overlays the image on the left. The block is already capped at the
- * content width, so the content just needs left alignment and padding. */
+/* Content overlays the image on the left. Capped at 583px so the copy wraps
+ * within that width, with a 50px gutter on the right edge. */
 .carousel-shows .carousel-shows-slide-content {
   position: relative;
   z-index: 1;
   width: 100%;
+  max-width: 583px;
+  box-sizing: content-box;
   color: #fff;
-  padding: 60px 48px;
+  padding: 60px 50px 60px 48px;
   text-align: left;
 }
 
