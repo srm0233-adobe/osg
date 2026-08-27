@@ -216,33 +216,9 @@ main .carousel-shows a.button:focus {
   transform: translate(-70%, -50%) rotate(-45deg);
 }
 
-/* Slide indicator dots */
-.carousel-shows .carousel-shows-slide-indicators {
-  display: flex;
-  justify-content: center;
-  gap: 10px;
-  margin: 0;
-  padding: 16px 0;
-  list-style: none;
-}
-
-.carousel-shows .carousel-shows-slide-indicator button {
-  width: 10px;
-  height: 10px;
-  padding: 0;
-  border: 0;
-  border-radius: 50%;
-  background-color: rgb(198 198 201);
-  cursor: pointer;
-}
-
-.carousel-shows .carousel-shows-slide-indicator button[disabled] {
-  background-color: var(--accent-color, rgb(94 127 79));
-}
-
+/* Slide indicator dots hidden — navigation is via the prev/next arrows only. */
 .carousel-shows > nav {
-  display: flex;
-  justify-content: center;
+  display: none;
 }
 
 @media (width >= 900px) {
