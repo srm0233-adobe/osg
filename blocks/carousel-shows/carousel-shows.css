@@ -32,7 +32,9 @@
   scroll-snap-type: x mandatory;
 }
 
-/* Each slide fills the viewport width; content overlays the background image */
+/* Each slide fills the viewport width; content overlays the background image.
+ * Content is centered in a header-width container (justify-content: center) so
+ * its left edge lines up with the nav/logo, not the page edge. */
 .carousel-shows .carousel-shows-slide {
   position: relative;
   flex: 0 0 100%;
@@ -41,7 +43,7 @@
   scroll-snap-align: start;
   display: flex;
   align-items: center;
-  justify-content: flex-start;
+  justify-content: center;
   background-color: var(--dark-color);
   overflow: hidden;
 }
@@ -70,14 +72,17 @@
   background: linear-gradient(90deg, rgb(0 0 0 / 60%) 0%, rgb(0 0 0 / 35%) 45%, rgb(0 0 0 / 10%) 100%);
 }
 
-/* Content overlays the image on the left */
+/* Content overlays the image, constrained to the header content width so its
+ * left edge aligns with the nav/logo instead of stretching to the page edge. */
 .carousel-shows .carousel-shows-slide-content {
   position: relative;
   z-index: 1;
+  width: 100%;
+  max-width: var(--content-max-width, 1296px);
+  margin: 0 auto;
   color: #fff;
   padding: 60px 24px;
   text-align: left;
-  max-width: 640px;
 }
 
 .carousel-shows .carousel-shows-slide-content h3 {
@@ -215,7 +220,7 @@ main .carousel-shows a.button:focus {
   }
 
   .carousel-shows .carousel-shows-slide-content {
-    padding: 120px 80px;
+    padding: 120px 24px;
   }
 
   .carousel-shows .carousel-shows-slide-content h3 {
