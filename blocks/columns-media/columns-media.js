@@ -5,7 +5,7 @@
 
 function isVideoUrl(href) {
   if (!href) return false;
-  return /youtube\.com|youtu\.be|vimeo\.com|\.mp4(\?|$)|\.webm(\?|$)/i.test(href);
+  return /youtube\.com|youtu\.be|vimeo\.com|\.mp4(\?|$)|\.webm(\?|$)|video_iframe|\/embed\//i.test(href);
 }
 
 function embedYoutube(url) {
@@ -35,6 +35,16 @@ function embedVimeo(url) {
   return iframe;
 }
 
+function embedIframe(href) {
+  const iframe = document.createElement('iframe');
+  iframe.setAttribute('src', href);
+  iframe.setAttribute('allow', 'autoplay; fullscreen; picture-in-picture; encrypted-media');
+  iframe.setAttribute('allowfullscreen', '');
+  iframe.setAttribute('title', 'Video');
+  iframe.setAttribute('loading', 'lazy');
+  return iframe;
+}
+
 function buildEmbed(frame, href, poster) {
   if (frame.dataset.embedLoaded === 'true') return;
   frame.dataset.embedLoaded = 'true';
@@ -43,7 +53,8 @@ function buildEmbed(frame, href, poster) {
     frame.append(embedYoutube(url));
   } else if (/vimeo\.com/i.test(href)) {
     frame.append(embedVimeo(url));
-  } else {
+  } else if (/\.mp4(\?|$)|\.webm(\?|$)/i.test(href)) {
+    // Direct video file → native player.
     const video = document.createElement('video');
     video.setAttribute('controls', '');
     video.setAttribute('playsinline', '');
@@ -53,6 +64,9 @@ function buildEmbed(frame, href, poster) {
     sourceEl.setAttribute('type', `video/${href.split('.').pop().split('?')[0]}`);
     video.append(sourceEl);
     frame.append(video);
+  } else {
+    // Any other player URL (e.g. a hosted iframe player) → embed as an iframe.
+    frame.append(embedIframe(href));
   }
 }
 
