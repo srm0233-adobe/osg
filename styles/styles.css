@@ -384,8 +384,6 @@ main .section.get-magazine p:last-child a:hover {
 }
 
 @media (width >= 900px) {
-  /* Grid: cover in the left column (spans all rows so it centers vertically
-   * against the text), copy stacked in the right column and left-aligned. */
   /* Cover floats left; the copy flows tightly beside it (no row gaps). */
   main .section.get-magazine > div {
     display: block;
