@@ -10,12 +10,20 @@
 /* stylelint-disable no-descending-specificity -- nav buttons vs indicator dots
    are distinct controls styled in DOM order, not specificity order. */
 
-/* Full-width breakout of the band (section div otherwise caps at 1296px) */
+/* Wrapper spans full width so the arrows can sit in the page margins; the
+ * carousel itself is capped at the content width and centered. */
 .carousel-shows-wrapper {
   max-width: 100% !important;
   padding: 0 !important;
 }
 
+.carousel-shows.block {
+  max-width: var(--content-max-width, 1296px);
+  margin: 0 auto;
+  position: relative;
+}
+
+/* Overflow visible so the prev/next arrows can extend into the side margins */
 .carousel-shows .carousel-shows-slides-container {
   position: relative;
 }
@@ -72,16 +80,14 @@
   background: linear-gradient(90deg, rgb(0 0 0 / 60%) 0%, rgb(0 0 0 / 35%) 45%, rgb(0 0 0 / 10%) 100%);
 }
 
-/* Content overlays the image, constrained to the header content width so its
- * left edge aligns with the nav/logo instead of stretching to the page edge. */
+/* Content overlays the image on the left. The block is already capped at the
+ * content width, so the content just needs left alignment and padding. */
 .carousel-shows .carousel-shows-slide-content {
   position: relative;
   z-index: 1;
   width: 100%;
-  max-width: var(--content-max-width, 1296px);
-  margin: 0 auto;
   color: #fff;
-  padding: 60px 24px;
+  padding: 60px 48px;
   text-align: left;
 }
 
@@ -139,37 +145,55 @@ main .carousel-shows a.button:focus {
 }
 
 /* --- Carousel controls: green prev/next arrows ---
- * Constrained to the content width (like the slide text) and centered, so the
- * arrows sit at the edges of the content column rather than the page edges. */
+ * The image is capped at the content width; the arrows sit OUTSIDE it, in the
+ * page side-margins, vertically centered on the slide. */
 .carousel-shows .carousel-shows-navigation-buttons {
   position: absolute;
   inset: 0;
   z-index: 2;
-  width: 100%;
-  max-width: var(--content-max-width, 1296px);
-  margin: 0 auto;
-  padding: 0 24px;
-  box-sizing: border-box;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
   pointer-events: none;
 }
 
 .carousel-shows .carousel-shows-navigation-buttons button {
   pointer-events: auto;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
   width: 44px;
   height: 88px;
   border: 0;
   background-color: var(--accent-color, rgb(94 127 79));
   cursor: pointer;
-  position: relative;
   opacity: 0.92;
   transition: opacity 0.2s ease;
 }
 
 .carousel-shows .carousel-shows-navigation-buttons button:hover {
   opacity: 1;
+}
+
+/* Default (narrow viewports): arrows overlay the image edges so they never
+ * overflow the screen. */
+.carousel-shows .carousel-shows-navigation-buttons .slide-prev {
+  left: 0;
+}
+
+.carousel-shows .carousel-shows-navigation-buttons .slide-next {
+  right: 0;
+}
+
+/* Wide viewports: page side-margins exist, so move the arrows OUTSIDE the
+ * image into those margins (matching the source). */
+@media (width >= 1400px) {
+  .carousel-shows .carousel-shows-navigation-buttons .slide-prev {
+    left: auto;
+    right: 100%;
+  }
+
+  .carousel-shows .carousel-shows-navigation-buttons .slide-next {
+    right: auto;
+    left: 100%;
+  }
 }
 
 /* Chevron glyphs */
