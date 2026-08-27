@@ -310,14 +310,15 @@ main .section.get-magazine > div > p:first-child {
 }
 
 main .section.get-magazine > div > p:first-child img {
-  width: 300px;
-  max-width: 60vw;
+  width: 340px;
+  max-width: 70vw;
   height: auto;
 }
 
 main .section.get-magazine h2 {
   margin: 0 0 4px;
   color: var(--text-color);
+  font-size: 44px;
   font-weight: 300;
   line-height: 1.05;
   text-transform: none;
@@ -383,28 +384,29 @@ main .section.get-magazine p:last-child a:hover {
 }
 
 @media (width >= 900px) {
-  /* center the whole promo group and left-align its text */
+  /* Grid: cover in the left column (spans all rows so it centers vertically
+   * against the text), copy stacked in the right column and left-aligned. */
   main .section.get-magazine > div {
-    display: block;
+    display: grid;
+    grid-template-columns: auto minmax(0, 460px);
+    align-items: center;
+    justify-content: center;
+    column-gap: 56px;
     max-width: 900px;
     margin: 0 auto;
     text-align: left;
   }
 
-  /* cover floats left; copy flows to its right */
+  /* cover occupies column 1, all rows */
   main .section.get-magazine > div > p:first-child {
-    float: left;
-    margin: 0 56px 0 0;
+    grid-column: 1;
+    grid-row: 1 / -1;
+    align-self: center;
+    margin: 0;
   }
 
-  main .section.get-magazine > div::after {
-    content: "";
-    display: block;
-    clear: both;
-  }
-
-  /* nudge the text block down so it sits centered against the tall cover */
-  main .section.get-magazine h2 {
-    margin-top: 30px;
+  /* every other element flows into column 2 */
+  main .section.get-magazine > div > :not(p:first-child) {
+    grid-column: 2;
   }
 }
