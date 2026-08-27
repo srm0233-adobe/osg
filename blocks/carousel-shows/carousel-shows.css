@@ -165,6 +165,7 @@ main .carousel-shows a.button:focus {
   width: 44px;
   height: 88px;
   border: 0;
+  border-radius: 0;
   background-color: var(--accent-color, rgb(94 127 79));
   cursor: pointer;
   opacity: 0.92;
