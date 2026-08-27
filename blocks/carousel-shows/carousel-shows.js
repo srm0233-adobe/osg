@@ -35,9 +35,13 @@ function updateActiveSlide(slide) {
 
 export function showSlide(block, slideIndex = 0) {
   const slides = block.querySelectorAll('.carousel-shows-slide');
-  let realSlideIndex = slideIndex < 0 ? slides.length - 1 : slideIndex;
-  if (slideIndex >= slides.length) realSlideIndex = 0;
+  if (!slides.length) return;
+  // Guard against NaN (e.g. before activeSlide is set) — default to first slide.
+  const requested = Number.isNaN(slideIndex) ? 0 : slideIndex;
+  let realSlideIndex = requested < 0 ? slides.length - 1 : requested;
+  if (requested >= slides.length) realSlideIndex = 0;
   const activeSlide = slides[realSlideIndex];
+  if (!activeSlide) return;
 
   activeSlide.querySelectorAll('a').forEach((link) => link.removeAttribute('tabindex'));
   block.querySelector('.carousel-shows-slides').scrollTo({
@@ -63,7 +67,7 @@ function bindEvents(block) {
   let autoTimer;
   const startAuto = () => {
     autoTimer = setInterval(() => {
-      showSlide(block, parseInt(block.dataset.activeSlide, 10) + 1);
+      showSlide(block, parseInt(block.dataset.activeSlide || '0', 10) + 1);
     }, AUTO_ADVANCE_INTERVAL);
   };
   const stopAuto = () => clearInterval(autoTimer);
