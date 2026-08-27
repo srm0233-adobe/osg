@@ -1,5 +1,7 @@
 import { fetchPlaceholders } from '../../scripts/aem.js';
 
+const AUTO_ADVANCE_INTERVAL = 6000; // ms between slides
+
 function updateActiveSlide(slide) {
   const block = slide.closest('.carousel-shows');
   const slideIndex = parseInt(slide.dataset.slideIndex, 10);
@@ -56,11 +58,30 @@ function bindEvents(block) {
     });
   });
 
+  // Auto-advance on a timer; pause on hover/focus, resume on leave. Manual
+  // navigation resets the timer so it doesn't jump right after a user click.
+  let autoTimer;
+  const startAuto = () => {
+    autoTimer = setInterval(() => {
+      showSlide(block, parseInt(block.dataset.activeSlide, 10) + 1);
+    }, AUTO_ADVANCE_INTERVAL);
+  };
+  const stopAuto = () => clearInterval(autoTimer);
+  const resetAuto = () => {
+    stopAuto();
+    startAuto();
+  };
+
   block.querySelector('.slide-prev').addEventListener('click', () => {
     showSlide(block, parseInt(block.dataset.activeSlide, 10) - 1);
+    resetAuto();
   });
   block.querySelector('.slide-next').addEventListener('click', () => {
     showSlide(block, parseInt(block.dataset.activeSlide, 10) + 1);
+    resetAuto();
+  });
+  slideIndicators.querySelectorAll('button').forEach((button) => {
+    button.addEventListener('click', resetAuto);
   });
 
   const slideObserver = new IntersectionObserver((entries) => {
@@ -71,6 +92,14 @@ function bindEvents(block) {
   block.querySelectorAll('.carousel-shows-slide').forEach((slide) => {
     slideObserver.observe(slide);
   });
+
+  // Pause while the user is interacting with the carousel.
+  block.addEventListener('mouseenter', stopAuto);
+  block.addEventListener('mouseleave', startAuto);
+  block.addEventListener('focusin', stopAuto);
+  block.addEventListener('focusout', startAuto);
+
+  startAuto();
 }
 
 function createSlide(row, slideIndex, carouselId) {
