@@ -5,6 +5,12 @@
   background: rgb(244 244 245);
   padding: 14px 24px 18px;
   text-align: center;
+
+  /* Full-bleed: grey band spans the whole viewport, regardless of the
+   * section's content max-width. */
+  width: 100vw;
+  margin-left: calc(50% - 50vw);
+  margin-right: calc(50% - 50vw);
 }
 
 .spotlight-label {
@@ -48,33 +54,6 @@
 .spotlight-item a {
   display: inline-block;
   line-height: 0;
-}
-
-/* Rotation dots */
-.spotlight-dots {
-  display: flex;
-  justify-content: center;
-  gap: 8px;
-  margin-top: 12px;
-}
-
-.spotlight-dot {
-  width: 9px;
-  height: 9px;
-  padding: 0;
-  border: none;
-  border-radius: 50%;
-  background: rgb(198 198 201);
-  cursor: pointer;
-  transition: background 0.2s ease;
-}
-
-.spotlight-dot:hover {
-  background: rgb(150 150 154);
-}
-
-.spotlight-dot[aria-current="true"] {
-  background: var(--accent-color, rgb(94 127 79));
 }
 
 @media (width < 900px) {

@@ -1,7 +1,8 @@
 // Advertisement block — a grey-backed banner slot that rotates through ad
-// creatives on a timer (carousel). Content-first: each row of the block is one
-// ad; a cell with a link makes the ad clickable, otherwise it's a static image.
-// The "Advertisement" label and rotation behaviour are added here.
+// creatives on a timer. Content-first: each row of the block is one ad; a cell
+// with a link makes the ad clickable, otherwise it's a static image. The
+// "Advertisement" label and automatic rotation are added here. Rotation is
+// timer-only — no manual navigation controls.
 
 const ROTATE_INTERVAL = 6000; // ms between ads
 
@@ -18,13 +19,6 @@ function showAd(block, index) {
       if (active) link.removeAttribute('tabindex');
       else link.setAttribute('tabindex', '-1');
     });
-  });
-  const dots = block.querySelectorAll('.spotlight-dot');
-  dots.forEach((dot, i) => {
-    const active = i === realIndex;
-    dot.setAttribute('aria-current', active ? 'true' : 'false');
-    if (active) dot.setAttribute('disabled', 'true');
-    else dot.removeAttribute('disabled');
   });
 }
 
@@ -56,44 +50,13 @@ export default function decorate(block) {
   const ads = track.querySelectorAll('.spotlight-item');
   if (ads.length === 0) return;
 
-  // Rotation controls: dots for multiple ads.
-  let timer;
-  const startTimer = () => {
-    if (ads.length < 2) return;
-    timer = setInterval(() => {
+  showAd(block, 0);
+
+  // Auto-rotate on a timer when there is more than one ad. No manual controls —
+  // ads advance automatically (and a fresh page load starts from the first).
+  if (ads.length > 1) {
+    setInterval(() => {
       showAd(block, parseInt(block.dataset.activeAd || '0', 10) + 1);
     }, ROTATE_INTERVAL);
-  };
-  const resetTimer = () => {
-    clearInterval(timer);
-    startTimer();
-  };
-
-  if (ads.length > 1) {
-    const dots = document.createElement('div');
-    dots.className = 'spotlight-dots';
-    dots.setAttribute('role', 'tablist');
-    dots.setAttribute('aria-label', 'Advertisement selector');
-    ads.forEach((ad, idx) => {
-      const dot = document.createElement('button');
-      dot.type = 'button';
-      dot.className = 'spotlight-dot';
-      dot.setAttribute('aria-label', `Show spotlight ${idx + 1} of ${ads.length}`);
-      dot.addEventListener('click', () => {
-        showAd(block, idx);
-        resetTimer();
-      });
-      dots.append(dot);
-    });
-    block.append(dots);
-
-    // Pause rotation on hover/focus so users can read/click.
-    block.addEventListener('mouseenter', () => clearInterval(timer));
-    block.addEventListener('mouseleave', startTimer);
-    block.addEventListener('focusin', () => clearInterval(timer));
-    block.addEventListener('focusout', startTimer);
   }
-
-  showAd(block, 0);
-  startTimer();
 }
