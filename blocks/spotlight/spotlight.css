@@ -1,13 +1,13 @@
 /* Advertisement block — full-width grey band with a centered rotating banner
  * creative and an "Advertisement" label above it (matches source). */
 
-.advertisement.block {
+.spotlight.block {
   background: rgb(244 244 245);
   padding: 14px 24px 18px;
   text-align: center;
 }
 
-.advertisement-label {
+.spotlight-label {
   margin: 0 0 10px;
   font-size: 12px;
   color: rgb(120 120 124);
@@ -16,49 +16,49 @@
 }
 
 /* Creative stage — all ads stacked; only the active one is shown. */
-.advertisement-track {
+.spotlight-track {
   position: relative;
   display: flex;
   justify-content: center;
   min-height: 90px;
 }
 
-.advertisement-ad {
+.spotlight-item {
   display: none;
   margin: 0 auto;
   max-width: 970px;
   width: 100%;
 }
 
-.advertisement-ad.advertisement-ad-active {
+.spotlight-item.spotlight-item-active {
   display: block;
 }
 
-.advertisement-ad p {
+.spotlight-item p {
   margin: 0;
 }
 
-.advertisement-ad img {
+.spotlight-item img {
   display: block;
   margin: 0 auto;
   max-width: 100%;
   height: auto;
 }
 
-.advertisement-ad a {
+.spotlight-item a {
   display: inline-block;
   line-height: 0;
 }
 
 /* Rotation dots */
-.advertisement-dots {
+.spotlight-dots {
   display: flex;
   justify-content: center;
   gap: 8px;
   margin-top: 12px;
 }
 
-.advertisement-dot {
+.spotlight-dot {
   width: 9px;
   height: 9px;
   padding: 0;
@@ -69,20 +69,20 @@
   transition: background 0.2s ease;
 }
 
-.advertisement-dot:hover {
+.spotlight-dot:hover {
   background: rgb(150 150 154);
 }
 
-.advertisement-dot[aria-current="true"] {
+.spotlight-dot[aria-current="true"] {
   background: var(--accent-color, rgb(94 127 79));
 }
 
 @media (width < 900px) {
-  .advertisement.block {
+  .spotlight.block {
     padding: 12px 16px 14px;
   }
 
-  .advertisement-track {
+  .spotlight-track {
     min-height: 60px;
   }
 }

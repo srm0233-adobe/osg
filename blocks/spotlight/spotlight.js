@@ -6,20 +6,20 @@
 const ROTATE_INTERVAL = 6000; // ms between ads
 
 function showAd(block, index) {
-  const ads = block.querySelectorAll('.advertisement-ad');
+  const ads = block.querySelectorAll('.spotlight-item');
   if (!ads.length) return;
   const realIndex = ((index % ads.length) + ads.length) % ads.length;
   block.dataset.activeAd = realIndex;
   ads.forEach((ad, i) => {
     const active = i === realIndex;
-    ad.classList.toggle('advertisement-ad-active', active);
+    ad.classList.toggle('spotlight-item-active', active);
     ad.setAttribute('aria-hidden', active ? 'false' : 'true');
     ad.querySelectorAll('a').forEach((link) => {
       if (active) link.removeAttribute('tabindex');
       else link.setAttribute('tabindex', '-1');
     });
   });
-  const dots = block.querySelectorAll('.advertisement-dot');
+  const dots = block.querySelectorAll('.spotlight-dot');
   dots.forEach((dot, i) => {
     const active = i === realIndex;
     dot.setAttribute('aria-current', active ? 'true' : 'false');
@@ -33,11 +33,11 @@ export default function decorate(block) {
 
   // Build the ad track from the authored rows.
   const track = document.createElement('div');
-  track.className = 'advertisement-track';
+  track.className = 'spotlight-track';
 
   rows.forEach((row, idx) => {
     const ad = document.createElement('div');
-    ad.className = 'advertisement-ad';
+    ad.className = 'spotlight-item';
     ad.dataset.adIndex = idx;
     // Move the row's content (image and/or link) into the ad slot.
     [...row.childNodes].forEach((node) => ad.append(node));
@@ -47,13 +47,13 @@ export default function decorate(block) {
 
   // "Advertisement" label above the creative, matching the source.
   const label = document.createElement('p');
-  label.className = 'advertisement-label';
+  label.className = 'spotlight-label';
   label.textContent = 'Advertisement';
 
   block.append(label);
   block.append(track);
 
-  const ads = track.querySelectorAll('.advertisement-ad');
+  const ads = track.querySelectorAll('.spotlight-item');
   if (ads.length === 0) return;
 
   // Rotation controls: dots for multiple ads.
@@ -71,14 +71,14 @@ export default function decorate(block) {
 
   if (ads.length > 1) {
     const dots = document.createElement('div');
-    dots.className = 'advertisement-dots';
+    dots.className = 'spotlight-dots';
     dots.setAttribute('role', 'tablist');
     dots.setAttribute('aria-label', 'Advertisement selector');
     ads.forEach((ad, idx) => {
       const dot = document.createElement('button');
       dot.type = 'button';
-      dot.className = 'advertisement-dot';
-      dot.setAttribute('aria-label', `Show advertisement ${idx + 1} of ${ads.length}`);
+      dot.className = 'spotlight-dot';
+      dot.setAttribute('aria-label', `Show spotlight ${idx + 1} of ${ads.length}`);
       dot.addEventListener('click', () => {
         showAd(block, idx);
         resetTimer();

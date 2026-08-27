@@ -1,6 +1,6 @@
 {
-  "variantName": "advertisement",
-  "baseBlock": "advertisement",
+  "variantName": "spotlight",
+  "baseBlock": "spotlight",
   "version": "1.0.0",
   "created": "2026-08-27T00:00:00.000Z",
   "sourceContext": {
