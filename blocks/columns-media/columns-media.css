@@ -36,6 +36,25 @@
   display: block;
 }
 
+/* --- Video column: 16:9 player frame --- */
+.columns-media .columns-media-video {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  background: #000;
+  overflow: hidden;
+}
+
+.columns-media .columns-media-video iframe,
+.columns-media .columns-media-video video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  object-fit: cover;
+}
+
 /* --- Row 1: full-width heading with bottom rule --- */
 .columns-media > div:first-child {
   display: block;
