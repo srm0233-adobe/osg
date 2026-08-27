@@ -293,3 +293,117 @@ main .section.dark h2,
 main .section.dark h3 {
   color: #fff;
 }
+
+/* --- "Get the Magazine" promo section (Style: get-magazine) ---
+ * Cover image on the left, subscribe copy flowing to the right. The content is
+ * flat sibling elements, so the cover floats left and text wraps beside it. */
+
+/* stylelint-disable no-descending-specificity -- promo sub-elements (cover, headings,
+   CTA pills, secondary links) are styled in reading order, not specificity order. */
+main .section.get-magazine > div {
+  text-align: center;
+}
+
+/* cover image (first paragraph holds the picture) */
+main .section.get-magazine > div > p:first-child {
+  margin: 0 0 24px;
+}
+
+main .section.get-magazine > div > p:first-child img {
+  width: 300px;
+  max-width: 60vw;
+  height: auto;
+}
+
+main .section.get-magazine h2 {
+  margin: 0 0 4px;
+  color: var(--text-color);
+  font-weight: 300;
+  line-height: 1.05;
+}
+
+/* "GET THE MAGAZINE" eyebrow above the headline */
+main .section.get-magazine h2 em {
+  display: block;
+  margin-bottom: 8px;
+  color: var(--text-color);
+  font-style: normal;
+  font-weight: 400;
+  font-size: 0.42em;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+main .section.get-magazine p {
+  margin: 6px 0;
+}
+
+/* Primary SUBSCRIBE NOW pill (first button-container) */
+main .section.get-magazine a.button:any-link {
+  display: inline-block;
+  margin: 10px 0;
+  border-radius: 24px;
+  padding: 13px 32px;
+  background: var(--accent-color);
+  color: #fff;
+  font-size: 15px;
+  letter-spacing: 0.03em;
+}
+
+main .section.get-magazine a.button:hover {
+  background: var(--text-color);
+  color: #fff;
+  text-decoration: none;
+}
+
+/* Gift / Subscriber Services — small green links on one line */
+main .section.get-magazine p:has(> a[href*="gift"]) a:any-link {
+  color: var(--accent-color);
+  font-weight: 400;
+  text-transform: none;
+  letter-spacing: normal;
+}
+
+/* PREVIEW THIS MONTH'S ISSUE — grey pill */
+main .section.get-magazine p:last-child a:any-link {
+  display: inline-block;
+  border-radius: 24px;
+  padding: 13px 32px;
+  background: rgb(120 122 126);
+  color: #fff;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+main .section.get-magazine p:last-child a:hover {
+  background: var(--text-color);
+  text-decoration: none;
+}
+
+@media (width >= 900px) {
+  /* center the whole promo group and left-align its text */
+  main .section.get-magazine > div {
+    display: block;
+    max-width: 900px;
+    margin: 0 auto;
+    text-align: left;
+  }
+
+  /* cover floats left; copy flows to its right */
+  main .section.get-magazine > div > p:first-child {
+    float: left;
+    margin: 0 56px 0 0;
+  }
+
+  main .section.get-magazine > div::after {
+    content: "";
+    display: block;
+    clear: both;
+  }
+
+  /* nudge the text block down so it sits centered against the tall cover */
+  main .section.get-magazine h2 {
+    margin-top: 30px;
+  }
+}
