@@ -120,7 +120,9 @@ function buildNav(fragment, block) {
     Array.from(topList.children).forEach((li) => {
       const item = document.createElement('li');
       item.className = 'nav-item';
-      const topLink = li.querySelector(':scope > a');
+      // The top-level link is a direct <a> on localhost, but DA/EDS wraps a
+      // standalone link in a <p> — accept either shape.
+      const topLink = li.querySelector(':scope > a, :scope > p > a');
       const submenu = li.querySelector(':scope > ul');
       if (topLink) item.append(topLink.cloneNode(true));
       if (submenu) {
