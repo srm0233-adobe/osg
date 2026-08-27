@@ -1,0 +1,41 @@
+{
+  "variantName": "advertisement",
+  "baseBlock": "advertisement",
+  "version": "1.0.0",
+  "created": "2026-08-27T00:00:00.000Z",
+  "sourceContext": {
+    "originUrl": "https://www.petersenshunting.com/",
+    "originPage": "hunting magazine homepage",
+    "blockPosition": "below-search"
+  },
+  "visualCharacteristics": {
+    "colorScheme": "grey",
+    "density": "compact",
+    "purpose": "ad-banner",
+    "imagePattern": "wide-banner"
+  },
+  "contentPattern": {
+    "structure": "one row per ad creative; each cell holds a banner image, optionally wrapped in a link",
+    "buttonCount": 0,
+    "imageCount": "1 per row"
+  },
+  "reuseGuidance": {
+    "suitableFor": [
+      "rotating banner advertisements",
+      "sponsor/creative slots on a timer",
+      "single static banner (one row)"
+    ],
+    "notSuitableFor": [
+      "text-rich promotional content",
+      "product listings",
+      "navigational carousels"
+    ]
+  },
+  "usage": {
+    "pagesUsing": [
+      "/home-local"
+    ],
+    "reuseCount": 1,
+    "lastUsed": "2026-08-27T00:00:00.000Z"
+  }
+}
