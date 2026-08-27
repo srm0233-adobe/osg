@@ -229,7 +229,7 @@ main .carousel-shows a.button:focus {
   }
 
   .carousel-shows .carousel-shows-slide-content {
-    padding: 120px 24px;
+    padding: 120px 50px 120px 48px;
   }
 
   .carousel-shows .carousel-shows-slide-content h3 {
