@@ -144,6 +144,23 @@ export function decorateMain(main) {
 }
 
 /**
+ * Eager-load images that sit within (or just below) the initial viewport.
+ * The scaffold only eager-loads the single LCP image; the rest default to
+ * `loading="lazy"`, which can leave above-the-fold imagery (e.g. the spotlight
+ * and the top of the first content grid) briefly blank on first paint. This
+ * promotes any image whose top is within ~1.25 viewports to eager so the first
+ * screen renders complete, while everything further down stays lazy.
+ * @param {Element} main The main element
+ */
+function eagerLoadVisibleImages(main) {
+  const threshold = window.innerHeight * 1.25;
+  main.querySelectorAll('img[loading="lazy"]').forEach((img) => {
+    const { top } = img.getBoundingClientRect();
+    if (top < threshold) img.setAttribute('loading', 'eager');
+  });
+}
+
+/**
  * Loads everything needed to get to LCP.
  * @param {Element} doc The container element
  */
@@ -157,6 +174,7 @@ async function loadEager(doc) {
   if (main) {
     decorateMain(main);
     doc.body.classList.add('appear');
+    eagerLoadVisibleImages(main);
     await loadSection(main.querySelector('.section'), waitForFirstImage);
   }
 
