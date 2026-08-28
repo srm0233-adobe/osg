@@ -332,6 +332,77 @@ main > .section:first-of-type {
   }
 }
 
+/* --- Author bio (Style: author-bio) ---
+ * Sits at the end of an article. A small circular author photo aligns left
+ * with the name and bio flowing beside it. On wide viewports the bio matches
+ * the width of the article's main column (the has-rail left column) so it lines
+ * up with the body above it rather than spanning the full content band. */
+main .section.author-bio {
+  border-top: 1px solid rgb(231 230 231);
+  padding-top: 28px;
+}
+
+main .section.author-bio > .default-content-wrapper {
+  display: grid;
+  grid-template-columns: 96px 1fr;
+  column-gap: 24px;
+  align-items: start;
+}
+
+/* Author photo → small circular avatar in the first column, spanning the rows */
+main .section.author-bio p:first-child {
+  grid-column: 1;
+  grid-row: 1 / 4;
+  margin: 0;
+}
+
+main .section.author-bio p:first-child img {
+  width: 96px;
+  height: 96px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+/* Name + bio + link flow in the second column */
+main .section.author-bio h2,
+main .section.author-bio p:not(:first-child) {
+  grid-column: 2;
+}
+
+main .section.author-bio h2 {
+  margin: 0 0 8px;
+  color: var(--text-color);
+  font-size: 24px;
+  text-transform: none;
+  letter-spacing: normal;
+}
+
+main .section.author-bio p:not(:first-child) {
+  margin: 0 0 12px;
+  font-size: 15px;
+}
+
+main .section.author-bio a:any-link {
+  color: var(--accent-color);
+  font-weight: 600;
+}
+
+@media (width >= 900px) {
+  /* Constrain the bio to the article's main-column width and left-align it to
+   * the nav band, matching the body above (which the rail narrows). */
+  main > .section.author-bio {
+    max-width: var(--content-max-width);
+    margin: 40px auto;
+    padding: 28px 32px 0;
+  }
+
+  main > .section.author-bio > .default-content-wrapper {
+    max-width: calc(100% - 340px);
+    margin: 0;
+    padding: 0;
+  }
+}
+
 /* section metadata */
 main .section.light,
 main .section.highlight {
