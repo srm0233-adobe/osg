@@ -332,6 +332,50 @@ main > .section:first-of-type {
   }
 }
 
+/* --- Home "Latest Articles" with a sticky right rail (Style: latest-has-rail) ---
+ * Same column model as .has-rail, but the section leads with a full-width
+ * heading (the "Latest Articles" title) that spans both columns, then the
+ * cards mosaic on the left and the sticky featured-rail on the right. */
+@media (width >= 900px) {
+  main > .section.latest-has-rail {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 300px;
+    column-gap: 40px;
+    align-items: start;
+    max-width: var(--content-max-width);
+    margin: 40px auto;
+    padding: 0 32px;
+  }
+
+  main > .section.latest-has-rail > div {
+    max-width: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  /* The three wrappers are siblings: heading (.default-content-wrapper),
+     cards (.cards-articles-wrapper), rail (.featured-rail-wrapper).
+     Heading spans both columns on row 1; cards + rail share row 2. */
+  main > .section.latest-has-rail > .default-content-wrapper {
+    grid-column: 1 / -1;
+    grid-row: 1;
+  }
+
+  main > .section.latest-has-rail > .cards-articles-wrapper {
+    grid-column: 1;
+    grid-row: 2;
+  }
+
+  /* Rail sits in the right column, top-aligned with the cards, and sticks. */
+  main > .section.latest-has-rail > .featured-rail-wrapper {
+    grid-column: 2;
+    grid-row: 2;
+    align-self: start;
+    position: sticky;
+    top: 24px;
+  }
+}
+
 /* --- Author bio (Style: author-bio) ---
  * Sits at the end of an article. A small circular author photo aligns left
  * with the name and bio flowing beside it. On wide viewports the bio matches

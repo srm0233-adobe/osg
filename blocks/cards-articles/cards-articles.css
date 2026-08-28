@@ -21,7 +21,62 @@
 
 @media (width >= 900px) {
   .cards-articles > ul {
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(3, 1fr);
+    grid-auto-flow: row dense;
+  }
+
+  /* Magazine mosaic, repeating every 12 cards. Each card is forced into a
+     fixed column and the two featured cards span 2 cols x 2 rows; dense
+     auto-flow then backfills the small cards around them, so the pattern
+     alternates and repeats without any hardcoded row numbers:
+
+       [ featured L ][ L ] small       — cards 1 (2x2), 2, 3
+       [ featured L ][ R ] small
+       small  small  small             — cards 4, 5, 6
+       small [ featured R ]            — cards 7, 8 (left), 9 (2x2)
+       small [ featured R ]
+       small  small  small             — cards 10, 11, 12
+  */
+
+  /* 1 — featured, left (cols 1-2) */
+  .cards-articles > ul > li:nth-child(12n + 1) {
+    grid-column: 1 / span 2;
+    grid-row: span 2;
+  }
+
+  /* 2, 3 — stacked in the right column */
+  .cards-articles > ul > li:nth-child(12n + 2),
+  .cards-articles > ul > li:nth-child(12n + 3) {
+    grid-column: 3;
+  }
+
+  /* 4, 5, 6 — three across */
+  .cards-articles > ul > li:nth-child(12n + 4) { grid-column: 1; }
+  .cards-articles > ul > li:nth-child(12n + 5) { grid-column: 2; }
+  .cards-articles > ul > li:nth-child(12n + 6) { grid-column: 3; }
+
+  /* 7, 8 — stacked in the left column */
+  .cards-articles > ul > li:nth-child(12n + 7),
+  .cards-articles > ul > li:nth-child(12n + 8) {
+    grid-column: 1;
+  }
+
+  /* 9 — featured, right (cols 2-3) */
+  .cards-articles > ul > li:nth-child(12n + 9) {
+    grid-column: 2 / span 2;
+    grid-row: span 2;
+  }
+
+  /* 10, 11, 12 — three across */
+  .cards-articles > ul > li:nth-child(12n + 10) { grid-column: 1; }
+  .cards-articles > ul > li:nth-child(12n + 11) { grid-column: 2; }
+  .cards-articles > ul > li:nth-child(12n + 0) { grid-column: 3; }
+
+  /* Featured cards get a larger title to match the reference hero cards. */
+  .cards-articles > ul > li:nth-child(12n + 1) .cards-articles-card-body h3,
+  .cards-articles > ul > li:nth-child(12n + 9) .cards-articles-card-body h3 {
+    font-size: 28px;
+    line-height: 1.15;
   }
 }
 

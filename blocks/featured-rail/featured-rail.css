@@ -1,0 +1,110 @@
+/* featured-rail — home "Latest Articles" sidebar: magazine promo + Featured
+ * Video. On wide viewports it sits sticky in a fixed-width column beside the
+ * cards mosaic (see .latest-has-rail in styles.css); on narrow viewports it
+ * stacks below the cards. */
+
+.featured-rail {
+  box-sizing: border-box;
+}
+
+/* --- Magazine "Preview This Month's Issue" promo --- */
+.featured-rail .featured-rail-magazine {
+  display: grid;
+  grid-template-columns: 72px 1fr;
+  align-items: center;
+  gap: 12px;
+  padding: 10px;
+  border: 1px solid rgb(231 230 231);
+}
+
+.featured-rail .featured-rail-magazine picture,
+.featured-rail .featured-rail-magazine img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.featured-rail .featured-rail-magazine p {
+  margin: 0;
+}
+
+.featured-rail .featured-rail-magazine p:first-child a {
+  color: var(--link-color);
+  font-weight: 600;
+  line-height: 1.25;
+}
+
+.featured-rail .featured-rail-magazine p:last-child {
+  color: rgb(90 92 96);
+  font-size: 14px;
+}
+
+/* --- Featured Video widget --- */
+
+/* Only the first video row (the "Featured Video" label) carries the top gap
+ * that separates the widget from the magazine promo above; subsequent rows
+ * (thumbnail, title, CTA) sit tight against it. */
+.featured-rail .featured-rail-magazine + .featured-rail-video {
+  margin-top: 24px;
+}
+
+/* First video row is the "Featured Video" label heading. */
+.featured-rail .featured-rail-magazine + .featured-rail-video h3 {
+  margin: 0 0 12px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid rgb(231 230 231);
+  color: rgb(90 92 96);
+  font-size: 15px;
+  font-weight: 600;
+  text-transform: none;
+  letter-spacing: normal;
+}
+
+.featured-rail .featured-rail-video picture,
+.featured-rail .featured-rail-video img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+}
+
+.featured-rail .featured-rail-video h4 {
+  margin: 12px 0 0;
+  font-size: 17px;
+  font-weight: 600;
+  line-height: 1.25;
+}
+
+.featured-rail .featured-rail-video h4 a:any-link {
+  color: var(--text-color);
+}
+
+.featured-rail .featured-rail-video h4 a:hover {
+  color: var(--link-hover-color);
+}
+
+/* "See All Videos" CTA — green pill, full width like the reference. */
+.featured-rail .featured-rail-video .button-container {
+  margin: 16px 0 0;
+}
+
+.featured-rail .featured-rail-video a.button:any-link {
+  display: block;
+  margin: 0;
+  border: none;
+  border-radius: 30px;
+  padding: 12px 20px;
+  background: var(--accent-color);
+  color: #fff;
+  font-weight: 600;
+  text-align: center;
+  text-transform: none;
+  letter-spacing: normal;
+}
+
+.featured-rail .featured-rail-video a.button:hover {
+  background: var(--accent-color);
+  color: #fff;
+  text-decoration: none;
+}
