@@ -294,6 +294,33 @@ main > .section:first-of-type {
   }
 }
 
+/* --- Article layout with a right-hand rail (Style: has-rail) ---
+ * The article body (default content) flows in the main column while the .rail
+ * block (sidebar ad + subscribe promo) sits in a fixed-width column on the
+ * right, aligned to the top of the content. Below 900px it stacks. */
+@media (width >= 900px) {
+  main > .section.has-rail > div {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 300px;
+    column-gap: 40px;
+    align-items: start;
+  }
+
+  /* Default-content children flow in the left column */
+  main > .section.has-rail > div > :not(.rail) {
+    grid-column: 1;
+  }
+
+  /* The rail occupies the right column and spans the section's rows so it can
+   * stay beside the article as it scrolls into view. */
+  main > .section.has-rail > div > .rail {
+    grid-column: 2;
+    grid-row: 1 / 9999;
+    position: sticky;
+    top: 24px;
+  }
+}
+
 /* section metadata */
 main .section.light,
 main .section.highlight {

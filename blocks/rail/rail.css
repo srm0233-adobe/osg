@@ -1,0 +1,95 @@
+/* rail — right-hand sidebar (advertisement + subscribe promo) for article
+ * pages. On wide viewports it sits in a fixed-width column beside the article
+ * body (see the .has-rail section layout in styles.css). On narrow viewports
+ * it stacks below the article. */
+
+.rail {
+  box-sizing: border-box;
+}
+
+.rail > div {
+  margin: 0 0 24px;
+}
+
+/* --- Sidebar advertisement --- */
+.rail .rail-ad-label {
+  margin: 0 0 6px;
+  color: rgb(150 152 156);
+  font-size: 12px;
+  letter-spacing: 0.04em;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.rail .rail-ad picture,
+.rail .rail-ad img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.rail .rail-ad a {
+  display: block;
+}
+
+/* --- Subscribe / promo block --- */
+.rail .rail-promo {
+  display: grid;
+  grid-template-columns: 40% 1fr;
+  align-items: center;
+  gap: 16px;
+  padding-top: 24px;
+  border-top: 1px solid rgb(231 230 231);
+}
+
+.rail .rail-promo picture,
+.rail .rail-promo img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.rail .rail-promo h2,
+.rail .rail-promo h3 {
+  margin: 0;
+  color: var(--text-color);
+  font-size: 30px;
+  font-weight: 300;
+  line-height: 1;
+  text-transform: none;
+  letter-spacing: normal;
+}
+
+.rail .rail-promo p {
+  margin: 4px 0 0;
+  font-size: 15px;
+}
+
+/* Subscribe CTA spans the full width of the promo, below both columns */
+.rail .rail-promo p.button-container {
+  grid-column: 1 / -1;
+  margin-top: 8px;
+}
+
+main .rail .rail-promo a.button:any-link {
+  display: block;
+  width: 100%;
+  box-sizing: border-box;
+  margin: 0;
+  border: 0;
+  border-radius: 24px;
+  padding: 14px 24px;
+  background: var(--accent-color);
+  color: #fff;
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  text-transform: none;
+  text-align: center;
+}
+
+main .rail .rail-promo a.button:hover {
+  background: var(--text-color);
+  color: #fff;
+  text-decoration: none;
+}
