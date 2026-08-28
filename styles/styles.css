@@ -637,3 +637,90 @@ main .section.get-magazine p:last-child a:hover {
     margin-top: 0;
   }
 }
+
+/* --- Newsletter signup (the default-content-wrapper in the footer promo
+   carousel section) — light-grey band with eyebrow heading, description and
+   an email field beside a green "Sign Me Up" pill, matching the reference. */
+main .section.carousel-promo-container > .default-content-wrapper {
+  box-sizing: border-box;
+  margin: 0;
+
+  /* center a ~640px content zone; content inside stays left-aligned */
+  padding: 48px max(32px, calc(50% - 320px));
+  background: rgb(244 244 244);
+  text-align: left;
+}
+
+/* eyebrow + headline */
+main .section.carousel-promo-container > .default-content-wrapper h3 {
+  margin: 0 0 4px;
+  color: var(--text-color);
+  font-size: 40px;
+  font-weight: 300;
+  line-height: 1.1;
+  text-transform: none;
+  letter-spacing: normal;
+}
+
+main .section.carousel-promo-container > .default-content-wrapper h3 em {
+  display: block;
+  margin-bottom: 6px;
+  color: var(--text-color);
+  font-style: normal;
+  font-weight: 400;
+  font-size: 0.4em;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+main .section.carousel-promo-container > .default-content-wrapper > p {
+  margin: 0;
+  color: rgb(90 92 96);
+  font-size: 16px;
+}
+
+/* "Add an email address" paragraph styled as an input field, sitting beside
+   the button on one row */
+main .section.carousel-promo-container > .default-content-wrapper > p:nth-of-type(2) {
+  display: inline-block;
+  box-sizing: border-box;
+  width: min(520px, 60%);
+  margin: 24px 12px 0 0;
+  vertical-align: middle;
+  border: 1px solid rgb(210 210 210);
+  border-radius: 4px;
+  padding: 16px 18px;
+  background: #fff;
+  color: rgb(120 122 126);
+  font-size: 16px;
+}
+
+main .section.carousel-promo-container > .default-content-wrapper > .button-container {
+  display: inline-block;
+  margin: 24px 0 0;
+  vertical-align: middle;
+}
+
+main .section.carousel-promo-container > .default-content-wrapper a.button:any-link {
+  display: inline-block;
+  margin: 0;
+  border: none;
+  border-radius: 50px;
+  padding: 17px 40px;
+  background: var(--accent-color);
+  color: #fff;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: normal;
+  text-transform: none;
+  text-decoration: none;
+}
+
+main .section.carousel-promo-container > .default-content-wrapper a.button:hover,
+main .section.carousel-promo-container > .default-content-wrapper a.button:focus {
+  background: var(--accent-color);
+  color: #fff;
+  text-decoration: none;
+  opacity: 0.92;
+}
