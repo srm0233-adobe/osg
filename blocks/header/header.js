@@ -32,12 +32,33 @@ async function fetchNavFragment() {
   return null;
 }
 
-// Search category options (from source select) — a control, built here per the fragment contract.
-const SEARCH_CATEGORIES = [
-  'All', 'Special Interest', 'Wily Whitetails', 'Hog Week', 'More Than The Hunt',
-  'Whitetail', 'Trending', 'PH TV Adventures', 'Everything Elk', 'Wheels Afield',
-  'Ultimate Season', 'SHOT Show', 'Hunting', 'Gear', 'Learn', 'Destinations', 'Recipes',
-];
+// Search category options — a control built here (not part of the nav fragment),
+// so the list is keyed by theme. The `default` set is Petersen's Hunting; each
+// brand theme adds its own entry. An unlisted theme falls back to `default`, so
+// unthemed pages are unaffected. To theme the categories for a new brand, add a
+// key matching its theme slug.
+const SEARCH_CATEGORIES_BY_THEME = {
+  default: [
+    'All', 'Special Interest', 'Wily Whitetails', 'Hog Week', 'More Than The Hunt',
+    'Whitetail', 'Trending', 'PH TV Adventures', 'Everything Elk', 'Wheels Afield',
+    'Ultimate Season', 'SHOT Show', 'Hunting', 'Gear', 'Learn', 'Destinations', 'Recipes',
+  ],
+  bowhunter: [
+    'All', 'Special Interest', 'Saddle Hunter', 'Trending', 'Bowhunting',
+    'Whitetail', 'Big Game', 'Gear', 'Gear Testing', 'Destinations', 'Recipes',
+    'News', 'Watch',
+  ],
+};
+
+/**
+ * Resolve the search category list for the current page's theme, falling back
+ * to the default (Petersen's) set for unthemed pages or unknown themes.
+ * @returns {string[]} the category option labels
+ */
+function getSearchCategories() {
+  const theme = (getMetadata('theme') || '').trim().toLowerCase();
+  return SEARCH_CATEGORIES_BY_THEME[theme] || SEARCH_CATEGORIES_BY_THEME.default;
+}
 
 function closeAllDropdowns(nav) {
   nav.querySelectorAll('.nav-item[aria-expanded="true"]').forEach((li) => {
@@ -186,7 +207,7 @@ function buildNav(fragment, block) {
   search.action = '/search';
   const select = document.createElement('select');
   select.setAttribute('aria-label', 'Search category');
-  SEARCH_CATEGORIES.forEach((cat) => {
+  getSearchCategories().forEach((cat) => {
     const opt = document.createElement('option');
     opt.textContent = cat;
     select.append(opt);
