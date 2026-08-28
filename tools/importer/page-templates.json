@@ -181,10 +181,88 @@
             "div.wrapper .caro.multi"
           ]
         }
-      ]
+      ],
+      "urlPattern": "/*"
+    },
+    {
+      "name": "editorial-article",
+      "urls": [
+        "http://localhost:8899/ammovault-raw.html"
+      ],
+      "representativeUrl": "http://localhost:8899/ammovault-raw.html",
+      "description": "Editorial article detail page. Sections in order: (1) spotlight leaderboard ad; (2) has-rail — article body (breadcrumb removed, H1 headline, grey italic deck, hero image+caption, date/byline, long-form body with H3 subheads and inline captioned figures) in a narrowed left column, plus a sticky right rail (rotating vertical ad + Subscribe & Save promo); (3) author-bio — circular avatar with name/bio/link; (4) cards-video — 'Recent Videos' grid reused from the homepage. Body and rail align to the header/nav content band.",
+      "blocks": [
+        {
+          "name": "spotlight",
+          "instances": [
+            ".spotlight"
+          ]
+        },
+        {
+          "name": "rail",
+          "instances": [
+            ".rail"
+          ]
+        },
+        {
+          "name": "cards-video",
+          "instances": [
+            ".cards-video"
+          ]
+        }
+      ],
+      "urlPattern": "/*",
+      "sections": [
+        {
+          "id": "section-1",
+          "name": "Leaderboard Advertisement",
+          "style": null,
+          "blocks": [
+            "spotlight"
+          ],
+          "defaultContent": []
+        },
+        {
+          "id": "section-2",
+          "name": "Article Body + Rail",
+          "style": "has-rail",
+          "blocks": [
+            "rail"
+          ],
+          "defaultContent": [
+            "h1",
+            "h2",
+            "p",
+            "h3",
+            "figure"
+          ]
+        },
+        {
+          "id": "section-3",
+          "name": "Author Bio",
+          "style": "author-bio",
+          "blocks": [],
+          "defaultContent": [
+            "p (author photo)",
+            "h2 (author name)",
+            "p (bio)",
+            "a (see more)"
+          ]
+        },
+        {
+          "id": "section-4",
+          "name": "Recent Videos",
+          "style": null,
+          "blocks": [
+            "cards-video"
+          ],
+          "defaultContent": [
+            "h2"
+          ]
+        }
+      ],
+      "builtReference": "content/petersen-hunting/editorial/ammovault-ammunition-reserve.plain.html",
+      "targetPathPattern": "/petersen-hunting/editorial/<slug>"
     }
-  ],
-  "metadata": {
-    "projectType": "da"
-  }
+  ]
 }
