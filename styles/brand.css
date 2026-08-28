@@ -29,3 +29,18 @@
   --heading-size-s: 18px;
   --heading-size-xs: 15px;
 }
+
+/*
+ * Theme: Bowhunter — activated by `theme: bowhunter` page metadata, which
+ * decorateTemplateAndTheme() turns into `body.bowhunter`. Only the brand
+ * tokens are overridden; header, footer, and every block consume these same
+ * custom properties, so the whole page re-themes with no per-block CSS.
+ *
+ * To add another brand theme, copy this block, rename the class to the new
+ * theme slug, and set its palette.
+ */
+body.bowhunter {
+  /* colors — bold Bowhunter red accent on charcoal/white */
+  --link-hover-color: rgb(200 16 46);   /* #c8102e */
+  --accent-color: rgb(200 16 46);       /* #c8102e */
+}
