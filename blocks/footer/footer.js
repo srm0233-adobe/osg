@@ -1,8 +1,32 @@
-// Petersen's Hunting footer — content-first.
-// Fetches content/footer.plain.html and builds:
+// Content-first, theme-aware footer.
+// Fetches a footer fragment and builds:
 //   - main footer row: brand (logo + social icons) + link columns
 //   - dark legal bar: privacy links + copyright
 // All copy/links/images come from the fragment; this file only reads + arranges.
+
+import { getMetadata } from '../../scripts/aem.js';
+
+/**
+ * Fetch the first footer fragment that resolves. A page `theme` (e.g.
+ * `bowhunter`) selects a brand-scoped footer first, falling back to the
+ * default so unthemed pages are unaffected.
+ * @returns {Promise<string|null>} the fragment HTML, or null if none resolved
+ */
+async function fetchFooterFragment() {
+  const theme = (getMetadata('theme') || '').trim().toLowerCase();
+  const candidates = [];
+  if (theme) {
+    candidates.push(`/content/footer-${theme}.plain.html`, `/footer-${theme}.plain.html`);
+  }
+  candidates.push('/content/footer.plain.html', '/footer.plain.html');
+  // eslint-disable-next-line no-restricted-syntax
+  for (const url of candidates) {
+    // eslint-disable-next-line no-await-in-loop
+    const resp = await fetch(url);
+    if (resp.ok) return resp.text();
+  }
+  return null;
+}
 
 /**
  * Build the footer DOM from the fetched fragment.
@@ -79,14 +103,10 @@ function buildFooter(fragment, block) {
  * @param {Element} block The footer block element
  */
 export default async function decorate(block) {
-  // Dual-fetch: localhost / aem up serves content under /content; DA/EDS
-  // production serves it at the site root. Try both.
-  let resp = await fetch('/content/footer.plain.html');
-  if (!resp.ok) {
-    resp = await fetch('/footer.plain.html');
-  }
-  if (!resp.ok) return;
-  const html = await resp.text();
+  // Theme-aware, dual-path fetch. Themed pages get a brand-scoped footer with
+  // a default fallback.
+  const html = await fetchFooterFragment();
+  if (!html) return;
   const fragment = document.createElement('div');
   fragment.innerHTML = html;
   buildFooter(fragment, block);

@@ -1,11 +1,36 @@
-// Petersen's Hunting header — content-first nav.
-// Fetches content/nav.plain.html (flat semantic fragment) and builds:
+// Content-first, theme-aware header nav.
+// Fetches a nav fragment and builds:
 //   - utility bar (social links + subscribe links)
 //   - masthead (logo + search + hamburger)
 //   - main nav bar (top-level links with hover/click dropdowns)
 // All copy/links/images come from the fragment; this file only reads + wires behavior.
 
+import { getMetadata } from '../../scripts/aem.js';
+
 const isDesktop = window.matchMedia('(min-width: 900px)');
+
+/**
+ * Fetch the first nav fragment that resolves. When the page declares a
+ * `theme` (e.g. `bowhunter`), a brand-scoped nav is tried first so the header
+ * chrome (logo, social, menu, subscribe CTAs) matches the theme; it falls back
+ * to the default nav so unthemed pages are unaffected.
+ * @returns {Promise<string|null>} the fragment HTML, or null if none resolved
+ */
+async function fetchNavFragment() {
+  const theme = (getMetadata('theme') || '').trim().toLowerCase();
+  const candidates = [];
+  if (theme) {
+    candidates.push(`/content/nav-${theme}.plain.html`, `/nav-${theme}.plain.html`);
+  }
+  candidates.push('/content/nav.plain.html', '/nav.plain.html');
+  // eslint-disable-next-line no-restricted-syntax
+  for (const url of candidates) {
+    // eslint-disable-next-line no-await-in-loop
+    const resp = await fetch(url);
+    if (resp.ok) return resp.text();
+  }
+  return null;
+}
 
 // Search category options (from source select) — a control, built here per the fragment contract.
 const SEARCH_CATEGORIES = [
@@ -273,14 +298,10 @@ function buildNav(fragment, block) {
  * @param {Element} block The header block element
  */
 export default async function decorate(block) {
-  // Dual-fetch: localhost / aem up serves content under /content; DA/EDS
-  // production serves it at the site root. Try both.
-  let resp = await fetch('/content/nav.plain.html');
-  if (!resp.ok) {
-    resp = await fetch('/nav.plain.html');
-  }
-  if (!resp.ok) return;
-  const html = await resp.text();
+  // Theme-aware, dual-path fetch (localhost serves under /content; DA/EDS at
+  // the site root). Themed pages get a brand-scoped nav with a default fallback.
+  const html = await fetchNavFragment();
+  if (!html) return;
   const fragment = document.createElement('div');
   fragment.innerHTML = html;
   buildNav(fragment, block);
