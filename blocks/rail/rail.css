@@ -21,6 +21,11 @@
   text-transform: uppercase;
 }
 
+/* Multiple ad creatives rotate; only the active one is shown. */
+.rail .rail-ad .rail-ad-slide:not(.rail-ad-slide-active) {
+  display: none;
+}
+
 .rail .rail-ad picture,
 .rail .rail-ad img {
   display: block;

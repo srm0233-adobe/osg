@@ -295,23 +295,37 @@ main > .section:first-of-type {
 }
 
 /* --- Article layout with a right-hand rail (Style: has-rail) ---
- * The article body (default content) flows in the main column while the .rail
- * block (sidebar ad + subscribe promo) sits in a fixed-width column on the
- * right, aligned to the top of the content. Below 900px it stacks. */
+ * The article default content and the .rail block are separate EDS wrappers.
+ * On wide viewports the SECTION becomes the centered content band (aligned to
+ * the header/nav) and lays its two wrappers into columns: the article body on
+ * the left, the fixed-width rail on the right, top-aligned. Below 900px they
+ * stack in normal order. */
 @media (width >= 900px) {
-  /* Reserve a fixed-width right gutter for the rail so every article child
-   * (headline, deck, body, images) narrows to the main column, and drop the
-   * rail into that gutter with absolute positioning aligned to the top. */
-  main > .section.has-rail > div {
-    position: relative;
-    padding-right: 340px;
+  main > .section.has-rail {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 300px;
+    column-gap: 40px;
+    align-items: start;
+    max-width: var(--content-max-width);
+    margin: 40px auto;
+    padding: 0 32px;
   }
 
-  main > .section.has-rail > div > .rail {
-    position: absolute;
-    top: 0;
-    right: 32px;
-    width: 300px;
+  /* Neutralize the per-wrapper max-width/centering so the section grid drives
+   * the layout; place article left, rail right (rail is first in source). */
+  main > .section.has-rail > div {
+    max-width: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  main > .section.has-rail > .default-content-wrapper {
+    grid-column: 1;
+  }
+
+  main > .section.has-rail > .rail-wrapper {
+    grid-column: 2;
+    grid-row: 1 / 9999;
   }
 }
 
