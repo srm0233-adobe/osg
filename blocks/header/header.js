@@ -73,7 +73,22 @@ function buildNav(fragment, block) {
   if (brandLink) {
     const brand = document.createElement('div');
     brand.className = 'nav-brand';
-    brand.append(brandLink.cloneNode(true));
+    const brandAnchor = brandLink.cloneNode(true);
+    // The logo is a vector SVG. EDS wraps images in a <picture> whose webp
+    // <source> rasterizes the SVG at a fixed width — that blurs the logo and
+    // distorts its aspect ratio. Replace the <picture> with a plain <img>
+    // pointing at the raw SVG (no ?width/&format raster params) so it stays
+    // crisp and scales to its natural ratio.
+    const logoPic = brandAnchor.querySelector('picture');
+    const logoImg = brandAnchor.querySelector('img');
+    if (logoPic && logoImg && /\.svg(\?|$)/i.test(logoImg.getAttribute('src') || '')) {
+      const svg = document.createElement('img');
+      svg.setAttribute('alt', logoImg.getAttribute('alt') || "Petersen's Hunting");
+      svg.setAttribute('loading', 'eager');
+      svg.setAttribute('src', logoImg.getAttribute('src').split('?')[0]);
+      logoPic.replaceWith(svg);
+    }
+    brand.append(brandAnchor);
     mastheadInner.append(brand);
   }
 
