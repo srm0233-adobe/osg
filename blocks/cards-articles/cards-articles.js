@@ -5,16 +5,27 @@ import { createOptimizedPicture } from '../../scripts/aem.js';
  *  1. Static — each row is a card (image cell + body cell).
  *  2. Feed-driven — a single cell holds a link to a `query-index.json`. The
  *     block then pulls the article feed and renders a card per entry.
- * Detect the feed shape: exactly one link, pointing at a query-index.json,
- * with no image alongside it.
+ * Detect the feed shape: exactly one link referencing a query-index feed,
+ * with no image alongside it. The DA authoring layer can sanitize the link's
+ * href (turning `query-index.json` into `query-index-json`), so we accept any
+ * link that mentions `query-index` in its href OR its visible text, and prefer
+ * whichever value is a proper `.json` URL for the actual fetch.
  * @param {HTMLElement} block
  * @returns {string|null} the feed URL, or null if this is a static block
  */
 function getFeedUrl(block) {
   const links = block.querySelectorAll('a[href]');
   if (links.length !== 1 || block.querySelector('picture, img')) return null;
-  const href = links[0].getAttribute('href');
-  return /query-index\.json(\?|$)/i.test(href) ? href : null;
+  const link = links[0];
+  const href = link.getAttribute('href') || '';
+  const text = (link.textContent || '').trim();
+  if (!/query-index/i.test(href) && !/query-index/i.test(text)) return null;
+  // Prefer the href — it's same-origin (relative), avoiding the CORS failure
+  // the absolute text URL would cause. DA may sanitize `query-index.json` to
+  // `query-index-json`, so normalize the extension. Fall back to the link
+  // text only if the href isn't the feed reference.
+  const feed = /query-index/i.test(href) ? href : text;
+  return feed.replace(/query-index-json/i, 'query-index.json');
 }
 
 /** Titles in the feed carry a " - Petersen's Hunting" (or similar) site suffix;
