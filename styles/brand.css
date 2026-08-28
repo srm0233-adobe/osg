@@ -44,3 +44,12 @@ body.bowhunter {
   --link-hover-color: rgb(157 34 39);   /* #9D2227 */
   --accent-color: rgb(157 34 39);       /* #9D2227 */
 }
+
+/* Swap the "Get the Magazine" cover to the Bowhunter issue (same cover shown in
+   the themed header) so the promo matches the brand. The section is plain
+   content with a single cover image, so it is replaced via `content` on the
+   <img> (matches whether or not EDS wraps the picture in a <p>); the existing
+   380x308 sizing rules still apply. */
+body.bowhunter main .section.get-magazine .default-content-wrapper img {
+  content: url("https://content.osgnetworks.tv/bowhunter/content/current-issue/bh_cover.png?dt=20260828");
+}
