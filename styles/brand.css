@@ -39,11 +39,11 @@
  * and set its palette (and any brand-specific image swaps).
  *
  * Theme: Petersen's Hunting — the site default (matches :root). Declared
- * explicitly so a page tagged `theme: petersens` is guaranteed the Petersen's
+ * explicitly so a page tagged `theme: petersen` is guaranteed the Petersen's
  * palette even if the :root defaults change, and so it reads as a first-class
  * theme alongside the others.
  */
-body.petersens {
+body.petersen {
   /* colors — Petersen's Hunting green accent on charcoal/white */
   --link-hover-color: rgb(94 127 79);
   --accent-color: rgb(94 127 79);
