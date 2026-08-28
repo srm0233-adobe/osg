@@ -256,12 +256,14 @@ main a.button:hover {
   text-decoration: underline;
 }
 
-/* "See All …" CTA under the magazine-cover grids — a full-width green pill
-   matching the reference. The link is EDS-decorated as a.button in the
-   section's default-content-wrapper (sibling of the cards-covers block), so
-   it's styled here by section container, overriding the plain-link reset. */
-main .section.cards-covers-container > .default-content-wrapper > .button-container {
-  /* block + padding-top (not margin) so the gap below the covers is real
+/* "See All …" CTA under the magazine-cover grids and the Recent Videos grid —
+   a full-width green pill matching the reference. The link is EDS-decorated as
+   a.button in the section's default-content-wrapper (sibling of the cards
+   block), so it's styled here by section container, overriding the plain-link
+   reset. */
+main .section.cards-covers-container > .default-content-wrapper > .button-container,
+main .section.cards-video-container > .default-content-wrapper > .button-container {
+  /* block + padding-top (not margin) so the gap below the cards is real
      layout space and can't collapse through the wrapper; center the pill */
   display: block;
   margin: 0;
@@ -269,7 +271,8 @@ main .section.cards-covers-container > .default-content-wrapper > .button-contai
   text-align: center;
 }
 
-main .section.cards-covers-container > .default-content-wrapper > .button-container a.button:any-link {
+main .section.cards-covers-container > .default-content-wrapper > .button-container a.button:any-link,
+main .section.cards-video-container > .default-content-wrapper > .button-container a.button:any-link {
   display: block;
   width: 100%;
   box-sizing: border-box;
@@ -289,7 +292,9 @@ main .section.cards-covers-container > .default-content-wrapper > .button-contai
 }
 
 main .section.cards-covers-container > .default-content-wrapper > .button-container a.button:hover,
-main .section.cards-covers-container > .default-content-wrapper > .button-container a.button:focus {
+main .section.cards-covers-container > .default-content-wrapper > .button-container a.button:focus,
+main .section.cards-video-container > .default-content-wrapper > .button-container a.button:hover,
+main .section.cards-video-container > .default-content-wrapper > .button-container a.button:focus {
   background: var(--accent-color);
   color: #fff;
   text-decoration: none;
