@@ -78,6 +78,38 @@
     font-size: 28px;
     line-height: 1.15;
   }
+
+  /* The featured cards span two rows, so their box is already the full height
+     of the two stacked cards beside them. Lay each out as a flex column and
+     let the image grow to fill the leftover space, so there's no whitespace
+     gap and the image bottom aligns with the second side card. */
+  .cards-articles > ul > li:nth-child(12n + 1),
+  .cards-articles > ul > li:nth-child(12n + 9) {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .cards-articles > ul > li:nth-child(12n + 1) .cards-articles-card-image,
+  .cards-articles > ul > li:nth-child(12n + 9) .cards-articles-card-image {
+    flex: 1 1 auto;
+    min-height: 0;
+  }
+
+  .cards-articles > ul > li:nth-child(12n + 1) .cards-articles-card-image a,
+  .cards-articles > ul > li:nth-child(12n + 9) .cards-articles-card-image a,
+  .cards-articles > ul > li:nth-child(12n + 1) .cards-articles-card-image p,
+  .cards-articles > ul > li:nth-child(12n + 9) .cards-articles-card-image p,
+  .cards-articles > ul > li:nth-child(12n + 1) .cards-articles-card-image picture,
+  .cards-articles > ul > li:nth-child(12n + 9) .cards-articles-card-image picture {
+    height: 100%;
+  }
+
+  /* Featured image fills its flex box instead of keeping the fixed 3:2 ratio. */
+  .cards-articles > ul > li:nth-child(12n + 1) .cards-articles-card-image img,
+  .cards-articles > ul > li:nth-child(12n + 9) .cards-articles-card-image img {
+    height: 100%;
+    aspect-ratio: auto;
+  }
 }
 
 .cards-articles > ul > li {
