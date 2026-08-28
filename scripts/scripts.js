@@ -28,7 +28,11 @@ import {
  */
 function buildHeroBlock(main) {
   const h1 = main.querySelector('h1');
-  const picture = main.querySelector('picture');
+  // Only consider default-content pictures — skip any picture that already
+  // belongs to a block (e.g. the spotlight ad banner above the headline), so
+  // a leading promo image is never mistaken for a hero image.
+  const picture = [...main.querySelectorAll('picture')]
+    .find((pic) => !pic.closest('div[class]:not(.section)'));
   // eslint-disable-next-line no-bitwise
   if (h1 && picture && (h1.compareDocumentPosition(picture) & Node.DOCUMENT_POSITION_PRECEDING)) {
     const section = document.createElement('div');
@@ -237,4 +241,3 @@ loadPage();
   // eslint-disable-next-line import/no-unresolved
   if (exp) import('https://da.live/nx/public/plugins/exp/exp.js');
 }());
-
