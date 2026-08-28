@@ -1,0 +1,108 @@
+/* Block: newsletter — reusable email-signup band.
+ * Full-viewport light-grey background; content constrained to the page
+ * content width (32px gutters) and left-aligned. Eyebrow + headline,
+ * description, then an email field beside a green "Sign Me Up" pill on one
+ * row. Fixed ~237px height with the content vertically centered. */
+
+/* Break the block wrapper out of the section's content-width cap so the grey
+   band spans the full viewport. */
+main .section > .newsletter-wrapper {
+  max-width: none;
+  padding: 0;
+}
+
+.newsletter {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+  min-height: 237px;
+  padding: 26px 32px;
+  background: rgb(244 244 244);
+}
+
+/* Fixed-width content column, centered in the band; text stays left-aligned. */
+.newsletter .newsletter-inner {
+  width: 100%;
+  max-width: 820px;
+  margin: 0 auto;
+  text-align: left;
+}
+
+/* eyebrow + headline */
+.newsletter h3 {
+  margin: 0 0 8px;
+  color: var(--text-color);
+  font-size: 40px;
+  font-weight: 300;
+  line-height: 1.1;
+  letter-spacing: normal;
+  text-transform: none;
+  white-space: nowrap;
+}
+
+.newsletter h3 em {
+  display: block;
+  margin-bottom: 12px;
+  color: var(--text-color);
+  font-style: normal;
+  font-weight: 400;
+  font-size: 0.4em;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+/* description */
+.newsletter p {
+  margin: 0;
+  color: rgb(90 92 96);
+  font-size: 16px;
+}
+
+/* "Add an email address" paragraph styled as an input field, sitting beside
+   the button on one row (marked by newsletter.js) */
+.newsletter .newsletter-email {
+  display: inline-block;
+  box-sizing: border-box;
+  width: min(520px, 60%);
+  margin: 20px 12px 0 0;
+  vertical-align: middle;
+  border: 1px solid rgb(210 210 210);
+  border-radius: 4px;
+  padding: 16px 18px;
+  background: #fff;
+  color: rgb(120 122 126);
+  font-size: 16px;
+}
+
+.newsletter .button-container {
+  display: inline-block;
+  margin: 20px 0 0;
+  vertical-align: middle;
+}
+
+/* "Sign Me Up" — green pill (overrides the global plain-link button reset) */
+main .newsletter a.button:any-link {
+  display: inline-block;
+  margin: 0;
+  border: none;
+  border-radius: 50px;
+  padding: 17px 40px;
+  background: var(--accent-color);
+  color: #fff;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: normal;
+  text-transform: none;
+  text-decoration: none;
+}
+
+main .newsletter a.button:hover,
+main .newsletter a.button:focus {
+  background: var(--accent-color);
+  color: #fff;
+  text-decoration: none;
+  opacity: 0.92;
+}

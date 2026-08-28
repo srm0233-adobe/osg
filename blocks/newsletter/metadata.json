@@ -1,0 +1,41 @@
+{
+  "variantName": "newsletter",
+  "baseBlock": "newsletter",
+  "version": "1.0.0",
+  "created": "2026-08-28T00:00:00.000Z",
+  "sourceContext": {
+    "originUrl": "https://www.petersenshunting.com/",
+    "originPage": "hunting magazine homepage",
+    "blockPosition": "footer"
+  },
+  "visualCharacteristics": {
+    "colorScheme": "light",
+    "density": "comfortable",
+    "purpose": "email-signup",
+    "imagePattern": "none"
+  },
+  "contentPattern": {
+    "structure": "eyebrow + headline, description, email field, Sign Me Up CTA",
+    "buttonCount": 1,
+    "imageCount": 0
+  },
+  "reuseGuidance": {
+    "suitableFor": [
+      "newsletter/email signup bands",
+      "full-width call-to-action strips",
+      "footer promo sign-up sections"
+    ],
+    "notSuitableFor": [
+      "image-led promos",
+      "multi-field forms",
+      "card grids"
+    ]
+  },
+  "usage": {
+    "pagesUsing": [
+      "/home-local"
+    ],
+    "reuseCount": 1,
+    "lastUsed": "2026-08-28T00:00:00.000Z"
+  }
+}
