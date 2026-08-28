@@ -299,17 +299,19 @@ main > .section:first-of-type {
  * block (sidebar ad + subscribe promo) sits in a fixed-width column on the
  * right, aligned to the top of the content. Below 900px it stacks. */
 @media (width >= 900px) {
-  /* The rail floats into a fixed-width right column; the article's default
-   * content flows in the remaining width to its left. A min-height keeps the
-   * float from being clipped when the article is short. */
+  /* Reserve a fixed-width right gutter for the rail so every article child
+   * (headline, deck, body, images) narrows to the main column, and drop the
+   * rail into that gutter with absolute positioning aligned to the top. */
   main > .section.has-rail > div {
-    overflow: hidden;
+    position: relative;
+    padding-right: 340px;
   }
 
   main > .section.has-rail > div > .rail {
-    float: right;
+    position: absolute;
+    top: 0;
+    right: 32px;
     width: 300px;
-    margin: 0 0 24px 40px;
   }
 }
 
