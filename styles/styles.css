@@ -525,9 +525,10 @@ main .section.get-magazine > div > p:first-child {
 }
 
 main .section.get-magazine > div > p:first-child img {
-  width: 340px;
+  width: 380px;
   max-width: 70vw;
-  height: auto;
+  height: 308px;
+  object-fit: contain;
 }
 
 main .section.get-magazine h2 {
@@ -599,6 +600,14 @@ main .section.get-magazine p:last-child a:hover {
 }
 
 @media (width >= 900px) {
+  /* Fixed section height (338px) with the 308px cover vertically centered. */
+  main .section.get-magazine {
+    box-sizing: border-box;
+    min-height: 338px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+  }
+
   /* Cover floats left; the copy flows tightly beside it (no row gaps). */
   main .section.get-magazine > div {
     display: block;
@@ -618,8 +627,8 @@ main .section.get-magazine p:last-child a:hover {
     clear: both;
   }
 
-  /* push the copy down so it sits roughly centered against the tall cover */
+  /* copy top-aligns with the cover; section resolves to 308 + 30 padding = 338 */
   main .section.get-magazine h2 {
-    margin-top: 40px;
+    margin-top: 0;
   }
 }
