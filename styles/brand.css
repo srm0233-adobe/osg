@@ -53,3 +53,12 @@ body.bowhunter {
 body.bowhunter main .section.get-magazine .default-content-wrapper img {
   content: url("https://content.osgnetworks.tv/bowhunter/content/current-issue/bh_cover.png?dt=20260828");
 }
+
+/* Swap the "Buy Digital Single Issues" app icon (columns-media) to the
+   Bowhunter app icon so the promo matches the brand. Only the icon column's
+   image is replaced via `content`; the existing 190x190 sizing rule still
+   applies. */
+/* stylelint-disable-next-line no-descending-specificity */
+body.bowhunter main .columns-media .columns-media-img-col img {
+  content: url("https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/27/7e/cf/277ecfd5-53cb-a0a7-a37c-a7ece483c6d3/AppIcon-0-0-1x_U007emarketing-0-8-0-85-220.png/512x512bb.jpg");
+}
