@@ -646,14 +646,14 @@ main .section.carousel-promo-container > .default-content-wrapper {
   margin: 0;
 
   /* center a ~640px content zone; content inside stays left-aligned */
-  padding: 48px max(32px, calc(50% - 320px));
+  padding: 64px max(32px, calc(50% - 320px));
   background: rgb(244 244 244);
   text-align: left;
 }
 
 /* eyebrow + headline */
 main .section.carousel-promo-container > .default-content-wrapper h3 {
-  margin: 0 0 4px;
+  margin: 0 0 10px;
   color: var(--text-color);
   font-size: 40px;
   font-weight: 300;
@@ -664,7 +664,7 @@ main .section.carousel-promo-container > .default-content-wrapper h3 {
 
 main .section.carousel-promo-container > .default-content-wrapper h3 em {
   display: block;
-  margin-bottom: 6px;
+  margin-bottom: 12px;
   color: var(--text-color);
   font-style: normal;
   font-weight: 400;
@@ -685,7 +685,7 @@ main .section.carousel-promo-container > .default-content-wrapper > p:nth-of-typ
   display: inline-block;
   box-sizing: border-box;
   width: min(520px, 60%);
-  margin: 24px 12px 0 0;
+  margin: 36px 12px 0 0;
   vertical-align: middle;
   border: 1px solid rgb(210 210 210);
   border-radius: 4px;
@@ -697,7 +697,7 @@ main .section.carousel-promo-container > .default-content-wrapper > p:nth-of-typ
 
 main .section.carousel-promo-container > .default-content-wrapper > .button-container {
   display: inline-block;
-  margin: 24px 0 0;
+  margin: 36px 0 0;
   vertical-align: middle;
 }
 
