@@ -2,21 +2,23 @@
    Values extracted from source: section#FooterMagazineGlobal_getmagazineSection .row.has-prods
    (Petersen's Hunting "Other Magazines" / "Special Interest Magazines" grids). */
 
-/* --- Grid: 2 columns mobile, 4 columns desktop --- */
+/* --- Row: 2-up mobile, single row on desktop ---
+   Flex (not fixed columns) so each grid fills the row evenly by its own
+   item count — "Other Magazines" (4 covers) lays out 4-up and "Special
+   Interest Magazines" (6 covers) lays out 6-up, from the same CSS. */
 .cards-covers > ul {
   list-style: none;
   margin: 0;
   padding: 0;
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  display: flex;
+  flex-wrap: wrap;
   gap: 24px 16px;
 }
 
 @media (width >= 900px) {
   .cards-covers > ul {
-    /* Source: 4 covers of 300px + 3 gaps of 32px = 1296px content width */
-    grid-template-columns: repeat(4, 1fr);
-    gap: 0 32px;
+    flex-wrap: nowrap;
+    gap: 0 24px;
   }
 }
 
@@ -29,6 +31,17 @@
   line-height: 1;
   color: rgb(47 46 50);
   font-family: var(--body-font-family);
+
+  /* 2-up on mobile (half width minus half the 16px column gap). */
+  flex: 0 1 calc(50% - 8px);
+}
+
+@media (width >= 900px) {
+  /* All covers in the row share the width equally, whatever the count. */
+  .cards-covers > ul > li {
+    flex: 1 1 0;
+    min-width: 0;
+  }
 }
 
 /* --- Cover image (fills the tile, sets its height) --- */
@@ -66,8 +79,9 @@
   background-color: rgb(50 52 57 / 90%);
   color: #fff;
 
-  /* Default: hidden below, leaving a 5px peek at the bottom of the cover */
-  transform: translateY(calc(100% - 5px));
+  /* Default: fully hidden below the cover so the tile shows the clean
+     artwork; the panel slides up over the cover on hover/focus. */
+  transform: translateY(100%);
   transition: transform 0.3s;
 }
 
