@@ -65,8 +65,10 @@ function buildCard(row) {
   const body = document.createElement('div');
   body.className = 'cards-articles-card-body';
 
-  // Category pill — only when the feed provides a tag/category.
-  const category = (row.tags || '').split(',').map((t) => t.trim()).filter(Boolean)[0];
+  // Category pill — from the `category` field, falling back to the first
+  // `tags` entry. Only rendered when the feed provides one.
+  const category = (row.category || '').trim()
+    || (row.tags || '').split(',').map((t) => t.trim()).filter(Boolean)[0];
   if (category) {
     const p = document.createElement('p');
     p.className = 'button-container';
@@ -91,8 +93,29 @@ function buildCard(row) {
     body.append(desc);
   }
 
+  // Author byline — always last, matching the static cards (styled as the
+  // card body's last <p>).
+  if ((row.author || '').trim()) {
+    const author = document.createElement('p');
+    author.textContent = row.author.trim();
+    body.append(author);
+  }
+
   li.append(imageCol, body);
   return li;
+}
+
+/**
+ * Order feed rows newest-first by their `date` metadata. Dates are ISO
+ * (YYYY-MM-DD) so lexical compare works, but parse to be safe; rows without a
+ * valid date sort to the bottom, preserving their original relative order.
+ */
+function byDateDesc(a, b) {
+  const ta = Date.parse(a.date);
+  const tb = Date.parse(b.date);
+  const va = Number.isNaN(ta) ? -Infinity : ta;
+  const vb = Number.isNaN(tb) ? -Infinity : tb;
+  return vb - va;
 }
 
 /**
@@ -109,6 +132,7 @@ async function renderFeed(block, feedUrl) {
     const { data = [] } = await resp.json();
     data
       .filter(isPublishable)
+      .sort(byDateDesc)
       .forEach((row) => ul.append(buildCard(row)));
   } catch (e) {
     // On failure leave the block empty rather than showing a raw JSON link.
