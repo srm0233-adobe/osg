@@ -31,13 +31,27 @@
 }
 
 /*
- * Theme: Bowhunter — activated by `theme: bowhunter` page metadata, which
- * decorateTemplateAndTheme() turns into `body.bowhunter`. Only the brand
- * tokens are overridden; header, footer, and every block consume these same
- * custom properties, so the whole page re-themes with no per-block CSS.
+ * Brand themes — activated by a `theme: <slug>` row in the page's metadata,
+ * which decorateTemplateAndTheme() turns into `body.<slug>`. Each block below
+ * overrides only the brand tokens; the header, footer, and every block consume
+ * these same custom properties, so the whole page re-themes with no per-block
+ * CSS. To add a new brand, copy a block, rename the class to the theme slug,
+ * and set its palette (and any brand-specific image swaps).
  *
- * To add another brand theme, copy this block, rename the class to the new
- * theme slug, and set its palette.
+ * Theme: Petersen's Hunting — the site default (matches :root). Declared
+ * explicitly so a page tagged `theme: petersens` is guaranteed the Petersen's
+ * palette even if the :root defaults change, and so it reads as a first-class
+ * theme alongside the others.
+ */
+body.petersens {
+  /* colors — Petersen's Hunting green accent on charcoal/white */
+  --link-hover-color: rgb(94 127 79);
+  --accent-color: rgb(94 127 79);
+}
+
+/*
+ * Theme: Bowhunter — brand red accent, plus brand-specific cover/app-icon
+ * image swaps in the sections below.
  */
 body.bowhunter {
   /* colors — Bowhunter brand red accent on charcoal/white */
