@@ -7,17 +7,34 @@
 import { getMetadata } from '../../scripts/aem.js';
 
 /**
- * Fetch the first footer fragment that resolves. A page `theme` (e.g.
- * `bowhunter`) selects a brand-scoped footer first, falling back to the
- * default so unthemed pages are unaffected.
+ * The folder that contains the current page, e.g. a page at
+ * `/magazines/bowhunter/home-local` yields `/magazines/bowhunter/`. Nav/footer
+ * fragments live alongside the pages in their brand folder, so this is where we
+ * look first.
+ * @returns {string} the current page's folder path, trailing slash included
+ */
+function currentFolder() {
+  const { pathname } = window.location;
+  return pathname.slice(0, pathname.lastIndexOf('/') + 1);
+}
+
+/**
+ * Fetch the first footer fragment that resolves. Fragments live in the page's
+ * own brand folder (e.g. `/magazines/bowhunter/`), so we look there first: a
+ * theme-scoped `footer-<theme>` (when the page declares a `theme`), then the
+ * folder's default `footer`. Legacy site-root/`/content` locations are kept as
+ * fallbacks so older content keeps working and unthemed pages are unaffected.
  * @returns {Promise<string|null>} the fragment HTML, or null if none resolved
  */
 async function fetchFooterFragment() {
   const theme = (getMetadata('theme') || '').trim().toLowerCase();
+  const folder = currentFolder();
   const candidates = [];
-  if (theme) {
-    candidates.push(`/content/footer-${theme}.plain.html`, `/footer-${theme}.plain.html`);
-  }
+  // 1. page's own brand folder — theme-scoped first, then folder default
+  if (theme) candidates.push(`${folder}footer-${theme}.plain.html`);
+  candidates.push(`${folder}footer.plain.html`);
+  // 2. legacy site-root / localhost-content fallbacks
+  if (theme) candidates.push(`/content/footer-${theme}.plain.html`, `/footer-${theme}.plain.html`);
   candidates.push('/content/footer.plain.html', '/footer.plain.html');
   // eslint-disable-next-line no-restricted-syntax
   for (const url of candidates) {

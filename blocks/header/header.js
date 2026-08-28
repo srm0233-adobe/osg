@@ -10,18 +10,34 @@ import { getMetadata } from '../../scripts/aem.js';
 const isDesktop = window.matchMedia('(min-width: 900px)');
 
 /**
- * Fetch the first nav fragment that resolves. When the page declares a
- * `theme` (e.g. `bowhunter`), a brand-scoped nav is tried first so the header
- * chrome (logo, social, menu, subscribe CTAs) matches the theme; it falls back
- * to the default nav so unthemed pages are unaffected.
+ * The folder that contains the current page, e.g. a page at
+ * `/magazines/bowhunter/home-local` yields `/magazines/bowhunter/`. Nav/footer
+ * fragments live alongside the pages in their brand folder, so this is where we
+ * look first.
+ * @returns {string} the current page's folder path, trailing slash included
+ */
+function currentFolder() {
+  const { pathname } = window.location;
+  return pathname.slice(0, pathname.lastIndexOf('/') + 1);
+}
+
+/**
+ * Fetch the first nav fragment that resolves. Fragments live in the page's own
+ * brand folder (e.g. `/magazines/bowhunter/`), so we look there first: a
+ * theme-scoped `nav-<theme>` (when the page declares a `theme`), then the
+ * folder's default `nav`. Legacy site-root/`/content` locations are kept as
+ * fallbacks so older content keeps working and unthemed pages are unaffected.
  * @returns {Promise<string|null>} the fragment HTML, or null if none resolved
  */
 async function fetchNavFragment() {
   const theme = (getMetadata('theme') || '').trim().toLowerCase();
+  const folder = currentFolder();
   const candidates = [];
-  if (theme) {
-    candidates.push(`/content/nav-${theme}.plain.html`, `/nav-${theme}.plain.html`);
-  }
+  // 1. page's own brand folder — theme-scoped first, then folder default
+  if (theme) candidates.push(`${folder}nav-${theme}.plain.html`);
+  candidates.push(`${folder}nav.plain.html`);
+  // 2. legacy site-root / localhost-content fallbacks
+  if (theme) candidates.push(`/content/nav-${theme}.plain.html`, `/nav-${theme}.plain.html`);
   candidates.push('/content/nav.plain.html', '/nav.plain.html');
   // eslint-disable-next-line no-restricted-syntax
   for (const url of candidates) {
