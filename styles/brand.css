@@ -40,7 +40,7 @@
  * theme slug, and set its palette.
  */
 body.bowhunter {
-  /* colors — bold Bowhunter red accent on charcoal/white */
-  --link-hover-color: rgb(200 16 46);   /* #c8102e */
-  --accent-color: rgb(200 16 46);       /* #c8102e */
+  /* colors — Bowhunter brand red accent on charcoal/white */
+  --link-hover-color: rgb(157 34 39);   /* #9D2227 */
+  --accent-color: rgb(157 34 39);       /* #9D2227 */
 }
