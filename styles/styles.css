@@ -645,10 +645,13 @@ main .section.carousel-promo-container > .default-content-wrapper {
   box-sizing: border-box;
   margin: 0;
 
-  /* full-width grey band; content constrained to the page content width
-     (1296px) centered with 32px gutters, and left-aligned inside.
+  /* grey band spans the full viewport (override the default content-wrapper
+     max-width), content constrained to the page content width (1296px)
+     centered with 32px gutters and left-aligned inside.
      Fixed 237px height with the content vertically centered via equal
      padding. */
+  width: 100%;
+  max-width: none;
   min-height: 237px;
   padding: 26px max(32px, calc(50% - 648px));
   background: rgb(244 244 244);
