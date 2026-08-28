@@ -119,6 +119,28 @@ main > .section > div > h2 {
   letter-spacing: 0.02em;
 }
 
+/* Article deck — the H2 that immediately follows the H1 headline is the
+ * article subtitle, not a section title. It renders as a light grey italic
+ * standfirst (matching the source), so override the green uppercase treatment. */
+main > .section > div > h1 + h2 {
+  margin: 0 0 20px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid rgb(231 230 231);
+  color: rgb(102 104 108);
+  font-size: 24px;
+  font-weight: 300;
+  font-style: italic;
+  line-height: 1.3;
+  letter-spacing: normal;
+  text-transform: none;
+}
+
+@media (width >= 900px) {
+  main > .section > div > h1 + h2 {
+    font-size: 28px;
+  }
+}
+
 p,
 dl,
 ol,
