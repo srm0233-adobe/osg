@@ -326,6 +326,9 @@ main > .section:first-of-type {
   main > .section.has-rail > .rail-wrapper {
     grid-column: 2;
     grid-row: 1 / 9999;
+    align-self: start;
+    position: sticky;
+    top: 24px;
   }
 }
 
