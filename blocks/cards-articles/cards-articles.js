@@ -105,14 +105,20 @@ function buildCard(row) {
   return li;
 }
 
+/** The article date, from our custom `publishDate` index property (the
+ *  reserved `date` column is left to the indexer's own handling). */
+function rowDate(row) {
+  return row.publishDate || row.date || '';
+}
+
 /**
- * Order feed rows newest-first by their `date` metadata. Dates are ISO
- * (YYYY-MM-DD) so lexical compare works, but parse to be safe; rows without a
- * valid date sort to the bottom, preserving their original relative order.
+ * Order feed rows newest-first by article date. Dates are ISO (YYYY-MM-DD) so
+ * lexical compare works, but parse to be safe; rows without a valid date sort
+ * to the bottom, preserving their original relative order.
  */
 function byDateDesc(a, b) {
-  const ta = Date.parse(a.date);
-  const tb = Date.parse(b.date);
+  const ta = Date.parse(rowDate(a));
+  const tb = Date.parse(rowDate(b));
   const va = Number.isNaN(ta) ? -Infinity : ta;
   const vb = Number.isNaN(tb) ? -Infinity : tb;
   return vb - va;

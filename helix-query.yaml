@@ -27,6 +27,8 @@ indices:
       category:
         select: head > meta[name="category"]
         value: attribute(el, 'content')
-      date:
+      # `date` is a reserved index column with built-in handling that ignores a
+      # custom meta select, so expose the article date under our own property.
+      publishDate:
         select: head > meta[name="date"]
         value: attribute(el, 'content')
