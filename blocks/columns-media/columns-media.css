@@ -34,6 +34,9 @@
 
 .columns-media .columns-media-img-col img {
   display: block;
+  width: 190px;
+  height: 190px;
+  object-fit: contain;
 }
 
 /* --- Video column: 16:9 player frame --- */
@@ -71,8 +74,9 @@
   flex: 1;
 }
 
-/* image / logo column keeps its natural width, does not stretch */
-.columns-media > div > .columns-media-img-col {
+/* image / logo column keeps its natural width, does not stretch
+   (higher specificity than the generic `> div { flex: 1 }` above) */
+.columns-media > div:last-child > .columns-media-img-col {
   flex: 0 0 auto;
 }
 
