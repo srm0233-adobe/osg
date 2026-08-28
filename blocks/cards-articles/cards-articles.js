@@ -1,7 +1,113 @@
 import { createOptimizedPicture } from '../../scripts/aem.js';
 
-export default function decorate(block) {
-  /* change to ul, li */
+/**
+ * A cards-articles block can be authored two ways:
+ *  1. Static — each row is a card (image cell + body cell).
+ *  2. Feed-driven — a single cell holds a link to a `query-index.json`. The
+ *     block then pulls the article feed and renders a card per entry.
+ * Detect the feed shape: exactly one link, pointing at a query-index.json,
+ * with no image alongside it.
+ * @param {HTMLElement} block
+ * @returns {string|null} the feed URL, or null if this is a static block
+ */
+function getFeedUrl(block) {
+  const links = block.querySelectorAll('a[href]');
+  if (links.length !== 1 || block.querySelector('picture, img')) return null;
+  const href = links[0].getAttribute('href');
+  return /query-index\.json(\?|$)/i.test(href) ? href : null;
+}
+
+/** Titles in the feed carry a " - Petersen's Hunting" (or similar) site suffix;
+ *  strip it for display. */
+function cleanTitle(title) {
+  return (title || '').replace(/\s*[-|–]\s*[^-|–]*Hunting\s*$/i, '').trim();
+}
+
+/** A feed row is publishable only if it has a real, non-placeholder title.
+ *  Skips empty docs and unresolved template placeholders (e.g. the
+ *  "x-schema-name" default that draft/test pages ship with). */
+function isPublishable(row) {
+  const t = cleanTitle(row.title);
+  return t && !/^x-schema-name$/i.test(t);
+}
+
+/**
+ * Build one card <li> matching the static markup the CSS expects:
+ *   li > div.cards-articles-card-image (a > picture) + div.cards-articles-card-body
+ * @param {object} row a feed entry
+ */
+function buildCard(row) {
+  const li = document.createElement('li');
+  const title = cleanTitle(row.title) || row.path.split('/').pop();
+
+  const imageCol = document.createElement('div');
+  imageCol.className = 'cards-articles-card-image';
+  const imgLink = document.createElement('a');
+  imgLink.href = row.path;
+  if (row.image) {
+    const pic = createOptimizedPicture(row.image, title, false, [{ width: '750' }]);
+    imgLink.append(pic);
+  }
+  imgLink.append(document.createTextNode(title));
+  imageCol.append(imgLink);
+
+  const body = document.createElement('div');
+  body.className = 'cards-articles-card-body';
+
+  // Category pill — only when the feed provides a tag/category.
+  const category = (row.tags || '').split(',').map((t) => t.trim()).filter(Boolean)[0];
+  if (category) {
+    const p = document.createElement('p');
+    p.className = 'button-container';
+    const a = document.createElement('a');
+    a.className = 'button';
+    a.href = row.path;
+    a.textContent = category;
+    p.append(a);
+    body.append(p);
+  }
+
+  const h3 = document.createElement('h3');
+  const titleLink = document.createElement('a');
+  titleLink.href = row.path;
+  titleLink.textContent = title;
+  h3.append(titleLink);
+  body.append(h3);
+
+  if (row.description) {
+    const desc = document.createElement('p');
+    desc.textContent = row.description;
+    body.append(desc);
+  }
+
+  li.append(imageCol, body);
+  return li;
+}
+
+/**
+ * Fetch the feed and render cards. Entries without a title (placeholder/empty
+ * docs like a stray "test" page) are skipped.
+ * @param {HTMLElement} block
+ * @param {string} feedUrl
+ */
+async function renderFeed(block, feedUrl) {
+  const ul = document.createElement('ul');
+  try {
+    const resp = await fetch(feedUrl);
+    if (!resp.ok) throw new Error(`feed ${resp.status}`);
+    const { data = [] } = await resp.json();
+    data
+      .filter(isPublishable)
+      .forEach((row) => ul.append(buildCard(row)));
+  } catch (e) {
+    // On failure leave the block empty rather than showing a raw JSON link.
+  }
+  block.textContent = '';
+  block.append(ul);
+}
+
+/** Static rendering: turn each authored row into a card <li>. */
+function renderStatic(block) {
   const ul = document.createElement('ul');
   [...block.children].forEach((row) => {
     const li = document.createElement('li');
@@ -18,4 +124,13 @@ export default function decorate(block) {
   });
   block.textContent = '';
   block.append(ul);
+}
+
+export default function decorate(block) {
+  const feedUrl = getFeedUrl(block);
+  if (feedUrl) {
+    renderFeed(block, feedUrl);
+  } else {
+    renderStatic(block);
+  }
 }
