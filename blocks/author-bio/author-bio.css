@@ -10,6 +10,14 @@ main .author-bio {
   padding-top: 28px;
 }
 
+/* When the author has no matching fragment, the block clears itself
+   (see author-bio.js) — drop the divider and spacing so the empty section
+   leaves no visible trace. */
+main .author-bio:empty {
+  border-top: 0;
+  padding-top: 0;
+}
+
 main .author-bio > .default-content-wrapper {
   display: grid;
   grid-template-columns: 96px 1fr;
