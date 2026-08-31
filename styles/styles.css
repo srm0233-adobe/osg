@@ -377,12 +377,18 @@ main > .section:first-of-type {
   }
 }
 
-/* --- Home "Latest Articles" with a sticky right rail (Style: latest-has-rail) ---
- * Same column model as .has-rail, but the section leads with a full-width
- * heading (the "Latest Articles" title) that spans both columns, then the
- * cards mosaic on the left and the sticky featured-rail on the right. */
+/* --- Home "Latest Articles" with a sticky right rail ---
+ * Two-column layout: a full-width heading (the "Latest Articles" title) spans
+ * both columns on row 1, then the cards mosaic on the left and the sticky
+ * featured-rail on the right share row 2.
+ *
+ * Triggered two ways so it never depends on authored content that can be lost
+ * on a round-trip: the explicit `latest-has-rail` section style, OR simply any
+ * section that contains a featured-rail block (:has). Either match applies the
+ * same grid. */
 @media (width >= 900px) {
-  main > .section.latest-has-rail {
+  main > .section.latest-has-rail,
+  main > .section:has(> .featured-rail-wrapper) {
     display: grid;
     grid-template-columns: minmax(0, 1fr) 300px;
     column-gap: 40px;
@@ -392,7 +398,8 @@ main > .section:first-of-type {
     padding: 0 32px;
   }
 
-  main > .section.latest-has-rail > div {
+  main > .section.latest-has-rail > div,
+  main > .section:has(> .featured-rail-wrapper) > div {
     max-width: none;
     margin: 0;
     padding: 0;
@@ -401,18 +408,21 @@ main > .section:first-of-type {
   /* The three wrappers are siblings: heading (.default-content-wrapper),
      cards (.cards-articles-wrapper), rail (.featured-rail-wrapper).
      Heading spans both columns on row 1; cards + rail share row 2. */
-  main > .section.latest-has-rail > .default-content-wrapper {
+  main > .section.latest-has-rail > .default-content-wrapper,
+  main > .section:has(> .featured-rail-wrapper) > .default-content-wrapper {
     grid-column: 1 / -1;
     grid-row: 1;
   }
 
-  main > .section.latest-has-rail > .cards-articles-wrapper {
+  main > .section.latest-has-rail > .cards-articles-wrapper,
+  main > .section:has(> .featured-rail-wrapper) > .cards-articles-wrapper {
     grid-column: 1;
     grid-row: 2;
   }
 
   /* Rail sits in the right column, top-aligned with the cards, and sticks. */
-  main > .section.latest-has-rail > .featured-rail-wrapper {
+  main > .section.latest-has-rail > .featured-rail-wrapper,
+  main > .section:has(> .featured-rail-wrapper) > .featured-rail-wrapper {
     grid-column: 2;
     grid-row: 2;
     align-self: start;
