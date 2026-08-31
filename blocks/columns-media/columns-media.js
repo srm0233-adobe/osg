@@ -3,9 +3,20 @@
 // a video file (mp4/webm) or a YouTube/Vimeo URL, it is turned into a playable
 // 16:9 video frame (lazily embedded on view). Otherwise images render as before.
 
+// DA sanitizes media links, turning `media_<hash>.mp4` into `media-<hash>-mp4`
+// (dots/underscores become dashes). Detect that shape and restore the real
+// extension so the URL points at a playable file again.
+function repairSanitizedVideoUrl(href) {
+  if (!href) return href;
+  const m = href.match(/^(.*\bmedia)-([0-9a-f]{20,})-(mp4|webm)$/i);
+  if (m) return `${m[1]}_${m[2]}.${m[3].toLowerCase()}`;
+  return href;
+}
+
 function isVideoUrl(href) {
   if (!href) return false;
-  return /youtube\.com|youtu\.be|vimeo\.com|\.mp4(\?|$)|\.webm(\?|$)|video_iframe|\/embed\//i.test(href);
+  const repaired = repairSanitizedVideoUrl(href);
+  return /youtube\.com|youtu\.be|vimeo\.com|\.mp4(\?|$)|\.webm(\?|$)|video_iframe|\/embed\//i.test(repaired);
 }
 
 function embedYoutube(url) {
@@ -75,7 +86,7 @@ function setupVideoCol(col) {
   const videoLink = [...col.querySelectorAll('a')].find((a) => isVideoUrl(a.href));
   if (!videoLink) return false;
 
-  const { href } = videoLink;
+  const href = repairSanitizedVideoUrl(videoLink.href);
   // Use an image already in the column (if any) as the poster.
   const posterImg = col.querySelector('img');
   const poster = posterImg ? (posterImg.currentSrc || posterImg.src) : '';
