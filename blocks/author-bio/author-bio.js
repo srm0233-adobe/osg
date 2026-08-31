@@ -118,11 +118,13 @@ export default async function decorate(block) {
   const href = link ? link.getAttribute('href') : block.textContent.trim();
   if (!href) return;
 
+  // If the author has no matching fragment (or it has no usable data), leave
+  // the section blank rather than showing the raw authored link.
   const html = await fetchAuthorFragment(href);
-  if (!html) return;
+  if (!html) { block.textContent = ''; return; }
 
   const data = parseAuthorFragment(html);
-  if (!data.fields.name) return;
+  if (!data.fields.name) { block.textContent = ''; return; }
 
   block.textContent = '';
   block.append(buildBio(data));
