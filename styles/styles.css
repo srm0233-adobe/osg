@@ -431,6 +431,21 @@ main > .section:first-of-type {
   }
 }
 
+/* At the full design width, pin the cards column to the exact width the fixed
+   card grid needs (965px = 3x299 + 2x34) so the mosaic images render at
+   632x421 / 299x199, with the 300px rail beside it. 965 + 300 = 1265 fills
+   the 1296px band with a 31px column-gap and full-bleed (no side padding) at
+   this width; the band still centers via max-width + margin auto. */
+@media (width >= 1296px) {
+  main > .section.latest-has-rail,
+  main > .section:has(> .featured-rail-wrapper) {
+    grid-template-columns: 965px 300px;
+    column-gap: 31px;
+    padding: 0;
+    justify-content: center;
+  }
+}
+
 /* --- Author bio (Style: author-bio) ---
  * Sits at the end of an article. A small circular author photo aligns left
  * with the name and bio flowing beside it. On wide viewports the bio matches

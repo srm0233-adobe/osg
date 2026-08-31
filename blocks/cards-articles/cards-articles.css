@@ -23,6 +23,11 @@
   .cards-articles > ul {
     grid-template-columns: repeat(3, 1fr);
     grid-auto-flow: row dense;
+
+    /* Pin every mosaic row to the small card's height so all rows are uniform;
+       the featured cards span exactly two of these rows plus the gap and no
+       longer stretch a neighbouring row. */
+    grid-auto-rows: 312px;
   }
 
   /* Magazine mosaic, repeating every 12 cards. Each card is forced into a
@@ -72,17 +77,35 @@
   .cards-articles > ul > li:nth-child(12n + 11) { grid-column: 2; }
   .cards-articles > ul > li:nth-child(12n + 0) { grid-column: 3; }
 
-  /* Featured cards get a larger title to match the reference hero cards. */
+  /* Featured cards get a larger title to match the reference hero cards, and
+     the title is clamped to 2 lines so a long headline can't stretch row 1
+     (which would grow the top side card taller than the rest). */
   .cards-articles > ul > li:nth-child(12n + 1) .cards-articles-card-body h3,
   .cards-articles > ul > li:nth-child(12n + 9) .cards-articles-card-body h3 {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    overflow: hidden;
     font-size: 28px;
     line-height: 1.15;
   }
 
-  /* The featured cards span two rows, so their box is already the full height
-     of the two stacked cards beside them. Lay each out as a flex column and
-     let the image grow to fill the leftover space, so there's no whitespace
-     gap and the image bottom aligns with the second side card. */
+  /* Only the featured cards show the description paragraph (small cards keep
+     just title + author — see the global rule that hides it). Clamp it to 3
+     lines so the featured card's content fits within its two-row span
+     (2x299-image-row + gap). */
+  .cards-articles > ul > li:nth-child(12n + 1) .cards-articles-card-body > p:not(.button-container, :last-child),
+  .cards-articles > ul > li:nth-child(12n + 9) .cards-articles-card-body > p:not(.button-container, :last-child) {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+    overflow: hidden;
+  }
+
+  /* Featured cards span two rows (658px). Lay each out as a flex column so the
+     image grows to absorb the leftover height below the body — otherwise the
+     3:2 image (421px) plus the short body leaves white space at the card
+     bottom and it no longer fills its two-row span. */
   .cards-articles > ul > li:nth-child(12n + 1),
   .cards-articles > ul > li:nth-child(12n + 9) {
     display: flex;
@@ -97,18 +120,30 @@
 
   .cards-articles > ul > li:nth-child(12n + 1) .cards-articles-card-image a,
   .cards-articles > ul > li:nth-child(12n + 9) .cards-articles-card-image a,
-  .cards-articles > ul > li:nth-child(12n + 1) .cards-articles-card-image p,
-  .cards-articles > ul > li:nth-child(12n + 9) .cards-articles-card-image p,
   .cards-articles > ul > li:nth-child(12n + 1) .cards-articles-card-image picture,
   .cards-articles > ul > li:nth-child(12n + 9) .cards-articles-card-image picture {
+    display: block;
     height: 100%;
   }
 
-  /* Featured image fills its flex box instead of keeping the fixed 3:2 ratio. */
+  /* The featured image fills the flex space (632 wide, taller than 3:2);
+     object-fit keeps it undistorted. */
   .cards-articles > ul > li:nth-child(12n + 1) .cards-articles-card-image img,
   .cards-articles > ul > li:nth-child(12n + 9) .cards-articles-card-image img {
     height: 100%;
     aspect-ratio: auto;
+  }
+}
+
+/* At the full desktop design width the tracks are pinned so card images land
+   on their exact sizes: small cards 299x199 (299 wide at 3:2), featured cards
+   632x421 (two 299 columns + the 34px gap = 632 wide at 3:2). Below this the
+   grid stays fluid (repeat(3, 1fr) above) so laptops/tablets don't overflow. */
+@media (width >= 1296px) {
+  .cards-articles > ul {
+    grid-template-columns: repeat(3, 299px);
+    justify-content: start;
+    gap: 34px;
   }
 }
 
@@ -207,4 +242,11 @@
 .cards-articles .cards-articles-card-body > p:last-child {
   margin: 0;
   font-size: 14px;
+}
+
+/* The description is the body's bare <p> that is neither the category pill nor
+   the (last) author byline. Small cards show only title + author, so hide it by
+   default; the featured cards re-show it below. */
+.cards-articles .cards-articles-card-body > p:not(.button-container, :last-child) {
+  display: none;
 }
