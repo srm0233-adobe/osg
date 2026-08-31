@@ -1,0 +1,66 @@
+/* Author Bio block — fragment-driven author bio at the end of an article.
+ * Mirrors the previous `author-bio` section styling: a small circular photo on
+ * the left with the name, bio, and "see more" link flowing beside it. On wide
+ * viewports it constrains to the article's main-column width so it lines up
+ * with the body above. The block renders a `.default-content-wrapper` inside
+ * `.author-bio` (see author-bio.js), so these rules target that. */
+
+main .author-bio {
+  border-top: 1px solid rgb(231 230 231);
+  padding-top: 28px;
+}
+
+main .author-bio > .default-content-wrapper {
+  display: grid;
+  grid-template-columns: 96px 1fr;
+  column-gap: 24px;
+  align-items: start;
+}
+
+/* Author photo → small circular avatar in the first column, spanning the rows */
+main .author-bio p:first-child {
+  grid-column: 1;
+  grid-row: 1 / 4;
+  margin: 0;
+}
+
+main .author-bio p:first-child img {
+  width: 96px;
+  height: 96px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+/* Name + bio + link flow in the second column */
+main .author-bio h2,
+main .author-bio p:not(:first-child) {
+  grid-column: 2;
+}
+
+main .author-bio h2 {
+  margin: 0 0 8px;
+  color: var(--text-color);
+  font-size: 24px;
+  text-transform: none;
+  letter-spacing: normal;
+}
+
+main .author-bio p:not(:first-child) {
+  margin: 0 0 12px;
+  font-size: 15px;
+}
+
+main .author-bio a:any-link {
+  color: var(--accent-color);
+  font-weight: 600;
+}
+
+@media (width >= 900px) {
+  /* Constrain the bio to the article's main-column width, matching the body
+   * above (which the rail narrows). */
+  main .author-bio > .default-content-wrapper {
+    max-width: calc(100% - 340px);
+    margin: 0;
+    padding: 0;
+  }
+}
