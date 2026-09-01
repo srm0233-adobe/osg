@@ -1,0 +1,58 @@
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  color: #131313;
+  background: #fff;
+}
+
+#fragments {
+  padding: 16px 20px;
+}
+
+.fragments-status {
+  margin: 0 0 12px;
+  color: #6e6e6e;
+  font-size: 13px;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+}
+
+.fragments-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 10px;
+}
+
+.fragment-item {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  width: 100%;
+  text-align: left;
+  padding: 14px 16px;
+  border: 1px solid #e1e1e1;
+  border-radius: 8px;
+  background: #fafafa;
+  cursor: pointer;
+  transition: border-color 0.15s, background 0.15s;
+}
+
+.fragment-item:hover {
+  border-color: #1473e6;
+  background: #fff;
+}
+
+.fragment-name {
+  font-size: 15px;
+  font-weight: 700;
+  text-transform: capitalize;
+}
+
+.fragment-path {
+  font-size: 12px;
+  color: #8e8e8e;
+  word-break: break-all;
+}
