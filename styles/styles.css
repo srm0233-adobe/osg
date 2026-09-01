@@ -38,14 +38,20 @@
   --heading-font-size-s: 18px;
   --heading-font-size-xs: 16px;
 
-  /* nav heights */
-  --nav-height: 64px;
+  /* nav heights — reserve the real rendered header height up front so content
+     doesn't shift down when the header block decorates (mobile: dark utility
+     bar + white masthead ≈ 107px). */
+  --nav-height: 107px;
   --breadcrumbs-height: 34px;
   --header-height: var(--nav-height);
 }
 
 @media (width >= 900px) {
   :root {
+    /* desktop nav adds the main-nav row + search row below the masthead
+       (≈ 279px total) — reserve it so the header doesn't shift the page. */
+    --nav-height: 279px;
+
     /* heading sizes (desktop) */
     --heading-font-size-xxl: 44px;
     --heading-font-size-xl: 28px;
