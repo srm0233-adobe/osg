@@ -21,23 +21,27 @@
   letter-spacing: 0.02em;
 }
 
-/* Creative stage — all ads stacked; only the active one is shown. */
+/* Creative stage — every ad is stacked in one shared grid cell so the track
+   reserves the tallest creative's height up front. Swapping the active slide
+   then never changes the height, so rotation causes no layout shift (CLS).
+   Only the active creative is visible. */
 .spotlight-track {
   position: relative;
-  display: flex;
-  justify-content: center;
+  display: grid;
+  justify-items: center;
   min-height: 90px;
 }
 
 .spotlight-item {
-  display: none;
+  grid-area: 1 / 1;
   margin: 0 auto;
   max-width: 970px;
   width: 100%;
+  visibility: hidden;
 }
 
 .spotlight-item.spotlight-item-active {
-  display: block;
+  visibility: visible;
 }
 
 .spotlight-item p {
