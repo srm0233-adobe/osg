@@ -37,11 +37,14 @@ function cleanTitle(title) {
 
 /** A feed row is publishable only if it has a real, non-placeholder title and
  *  isn't a scaffold/test doc. Skips empty docs, unresolved template
- *  placeholders (the "x-schema-name" default draft pages ship with), and any
- *  page whose path is a "test" stub left in the editorial folder. */
+ *  placeholders (draft pages ship with an "x-schema-name" default title/slug),
+ *  and any page whose path is a "test" stub left in the editorial folder.
+ *  The placeholder check runs on the RAW title — cleanTitle() would strip the
+ *  trailing "-name" and let "x-schema-name" slip through. */
 function isPublishable(row) {
-  const t = cleanTitle(row.title);
-  if (!t || /^x-schema-name$/i.test(t)) return false;
+  const raw = (row.title || '').trim();
+  if (!raw || /^x-schema(-name)?$/i.test(raw)) return false;
+  if (!cleanTitle(raw)) return false;
   if (/\/test$/i.test(row.path || '')) return false;
   return true;
 }
