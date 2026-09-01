@@ -1,3 +1,4 @@
+/* force code-sync re-sync (blocks missing from code bus) */
 .tabs .tabs-list {
   display: flex;
   gap: 0.5ch;

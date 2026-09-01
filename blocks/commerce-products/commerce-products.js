@@ -1,3 +1,4 @@
+/* force code-sync re-sync (blocks missing from code bus) */
 /**
  * Commerce Products Block
  * Fetches live product data from Adobe Commerce (Venia demo store) via GraphQL

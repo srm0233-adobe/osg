@@ -1,3 +1,4 @@
+/* force code-sync re-sync (blocks missing from code bus) */
 import { fetchPlaceholders } from '../../scripts/aem.js';
 
 function updateActiveSlide(slide) {

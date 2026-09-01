@@ -1,3 +1,4 @@
+/* force code-sync re-sync (blocks missing from code bus) */
 // eslint-disable-next-line import/no-unresolved
 import { toClassName } from '../../scripts/aem.js';
 

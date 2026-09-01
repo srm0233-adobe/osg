@@ -1,3 +1,4 @@
+/* force code-sync re-sync (blocks missing from code bus) */
 import { createOptimizedPicture } from '../../scripts/aem.js';
 
 export default function decorate(block) {

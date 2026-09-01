@@ -1,3 +1,4 @@
+/* force code-sync re-sync (blocks missing from code bus) */
 export default function decorate(block) {
   const cols = [...block.firstElementChild.children];
   block.classList.add(`columns-${cols.length}-cols`);

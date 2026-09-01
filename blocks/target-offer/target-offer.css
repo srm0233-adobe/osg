@@ -1,3 +1,4 @@
+/* force code-sync re-sync (blocks missing from code bus) */
 .target-offer {
   /* Stable hook for VEC / Replace content / cssSelector in Target activities */
   min-height: 0;
