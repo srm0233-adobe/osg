@@ -1,0 +1,1 @@
+{{#eachChunk rowFragments 2}}<mj-section>{{#each this}}<mj-column>{{{this}}}</mj-column>{{/each}}</mj-section>{{/eachChunk}}
