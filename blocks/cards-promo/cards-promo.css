@@ -1,3 +1,4 @@
+/* force code-sync re-sync (blocks missing from code bus) */
 /* cards-promo — promotional feature cards: 1 yellow (tall) + 2 navy (split) */
 .cards-promo > ul {
   list-style: none;

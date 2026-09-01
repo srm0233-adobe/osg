@@ -1,3 +1,4 @@
+/* force code-sync re-sync (blocks missing from code bus) */
 /* cards-category — image + linked-label tiles, 1-2-4-up responsive grid */
 .cards-category > ul {
   list-style: none;

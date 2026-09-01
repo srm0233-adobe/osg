@@ -1,3 +1,4 @@
+/* force code-sync re-sync (blocks missing from code bus) */
 import { loadFragment } from '../fragment/fragment.js';
 import {
   buildBlock, decorateBlock, loadBlock, loadCSS,
