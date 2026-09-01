@@ -28,11 +28,20 @@ function currentFolder() {
  */
 async function fetchFooterFragment() {
   const theme = (getMetadata('theme') || '').trim().toLowerCase();
-  const folder = currentFolder();
   const candidates = [];
-  // 1. page's own brand folder — theme-scoped first, then folder default
-  if (theme) candidates.push(`${folder}footer-${theme}.plain.html`);
-  candidates.push(`${folder}footer.plain.html`);
+  // 1. walk up the page's ancestor folders — the page's own folder first, then
+  // each parent up to the site root. This lets a nested page (e.g. an editorial
+  // article at `/magazines/bowhunter/editorial/`) inherit the brand footer that
+  // lives one level up in `/magazines/bowhunter/`. Theme-scoped `footer-<theme>`
+  // is preferred over the folder default at each level.
+  let folder = currentFolder();
+  while (folder) {
+    if (theme) candidates.push(`${folder}footer-${theme}.plain.html`);
+    candidates.push(`${folder}footer.plain.html`);
+    if (folder === '/') break;
+    // strip the trailing segment: `/magazines/bowhunter/editorial/` → `/magazines/bowhunter/`
+    folder = folder.replace(/[^/]+\/$/, '');
+  }
   // 2. legacy site-root / localhost-content fallbacks
   if (theme) candidates.push(`/content/footer-${theme}.plain.html`, `/footer-${theme}.plain.html`);
   candidates.push('/content/footer.plain.html', '/footer.plain.html');
