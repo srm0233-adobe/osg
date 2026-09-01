@@ -21,9 +21,27 @@
   text-transform: uppercase;
 }
 
-/* Multiple ad creatives rotate; only the active one is shown. */
+/* Multiple ad creatives rotate. Stack every slide in one shared grid cell (row
+   2) so the slot reserves the tallest creative's height up front — swapping the
+   active slide then never changes the block height, so rotation causes no
+   layout shift (CLS). The label sits on its own row above. Only the active
+   slide is visible/interactive. */
+.rail .rail-ad {
+  display: grid;
+  grid-template-rows: auto 1fr;
+}
+
+.rail .rail-ad .rail-ad-label {
+  grid-row: 1;
+}
+
+.rail .rail-ad .rail-ad-slide {
+  grid-row: 2;
+  grid-column: 1;
+}
+
 .rail .rail-ad .rail-ad-slide:not(.rail-ad-slide-active) {
-  display: none;
+  visibility: hidden;
 }
 
 .rail .rail-ad picture,
