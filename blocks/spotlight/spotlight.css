@@ -21,27 +21,29 @@
   letter-spacing: 0.02em;
 }
 
-/* Creative stage — every ad is stacked in one shared grid cell so the track
-   reserves the tallest creative's height up front. Swapping the active slide
-   then never changes the height, so rotation causes no layout shift (CLS).
-   Only the active creative is visible. */
+/* Creative stage — the band fits the ad currently shown. Only the active slide
+   sits in normal flow (pinned to the top), so it alone drives the track height;
+   inactive slides are pulled out of flow (absolutely positioned at the top) so
+   they don't reserve the tallest creative's height. This keeps a short ad in a
+   short band and a tall ad in a tall band. */
 .spotlight-track {
   position: relative;
-  display: grid;
-  justify-items: center;
   min-height: 90px;
+  text-align: center;
 }
 
 .spotlight-item {
-  grid-area: 1 / 1;
   margin: 0 auto;
   max-width: 970px;
   width: 100%;
-  visibility: hidden;
 }
 
-.spotlight-item.spotlight-item-active {
-  visibility: visible;
+.spotlight-item:not(.spotlight-item-active) {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  visibility: hidden;
 }
 
 .spotlight-item p {
