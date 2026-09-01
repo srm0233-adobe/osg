@@ -28,18 +28,22 @@ function getFeedUrl(block) {
   return feed.replace(/query-index-json/i, 'query-index.json');
 }
 
-/** Titles in the feed carry a " - Petersen's Hunting" (or similar) site suffix;
- *  strip it for display. */
+/** Titles in the feed carry an " - <brand>" site suffix (e.g.
+ *  " - Petersen's Hunting", " - Bowhunter"); strip the trailing " - …" segment
+ *  for display. */
 function cleanTitle(title) {
-  return (title || '').replace(/\s*[-|–]\s*[^-|–]*Hunting\s*$/i, '').trim();
+  return (title || '').replace(/\s*[-|–]\s*[^-|–]+$/i, '').trim();
 }
 
-/** A feed row is publishable only if it has a real, non-placeholder title.
- *  Skips empty docs and unresolved template placeholders (e.g. the
- *  "x-schema-name" default that draft/test pages ship with). */
+/** A feed row is publishable only if it has a real, non-placeholder title and
+ *  isn't a scaffold/test doc. Skips empty docs, unresolved template
+ *  placeholders (the "x-schema-name" default draft pages ship with), and any
+ *  page whose path is a "test" stub left in the editorial folder. */
 function isPublishable(row) {
   const t = cleanTitle(row.title);
-  return t && !/^x-schema-name$/i.test(t);
+  if (!t || /^x-schema-name$/i.test(t)) return false;
+  if (/\/test$/i.test(row.path || '')) return false;
+  return true;
 }
 
 /**
