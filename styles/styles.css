@@ -387,17 +387,18 @@ main > .section:first-of-type {
   }
 }
 
-/* --- Hide the sidebar + ads on editorial articles at the mobile breakpoint ---
+/* --- Hide the sidebar, ads + author bio on editorial articles at mobile ---
  * Editorial article pages are the ones laid out with a right-hand rail
  * (.has-rail). Below 900px (where the rail would otherwise stack under the
  * article) hide the whole sidebar — authored inline (.rail-wrapper) or pulled
- * in as a fragment (.fragment-wrapper) — along with any in-body ad banner
- * (spotlight / horizontal-ad-banner). */
+ * in as a fragment (.fragment-wrapper) — any in-body ad banner (spotlight /
+ * horizontal-ad-banner), and the author-bio section. */
 @media (width < 900px) {
   main > .section.has-rail > .rail-wrapper,
   main > .section.has-rail > .fragment-wrapper,
   body:has(main > .section.has-rail) .spotlight,
-  body:has(main > .section.has-rail) .horizontal-ad-banner {
+  body:has(main > .section.has-rail) .horizontal-ad-banner,
+  body:has(main > .section.has-rail) .section.author-bio {
     display: none;
   }
 }
