@@ -1,0 +1,1 @@
+{{#each rows}}<mj-section>{{#each this}}<mj-column>{{{this}}}</mj-column>{{/each}}</mj-section>{{/each}}

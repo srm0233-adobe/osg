@@ -1,0 +1,1 @@
+<mj-section background-color="#f4f4f4" padding="24px">{{#each rows.0}}<mj-column>{{{this}}}</mj-column>{{/each}}</mj-section>
