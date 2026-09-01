@@ -387,6 +387,20 @@ main > .section:first-of-type {
   }
 }
 
+/* --- Hide ads on editorial articles at the mobile breakpoint ---
+ * Editorial article pages are the ones laid out with a right-hand rail
+ * (.has-rail). Below 900px (where the rail stacks under the article) hide every
+ * advertisement on the page: the sidebar rail's rotating ad creative, and any
+ * in-body ad banner (spotlight / horizontal-ad-banner). The subscribe promo
+ * (.rail-promo) is a subscription CTA, not an ad, so it stays. */
+@media (width < 900px) {
+  body:has(main > .section.has-rail) .rail .rail-ad,
+  body:has(main > .section.has-rail) .spotlight,
+  body:has(main > .section.has-rail) .horizontal-ad-banner {
+    display: none;
+  }
+}
+
 /* --- Home "Latest Articles" with a sticky right rail ---
  * Two-column layout: a full-width heading (the "Latest Articles" title) spans
  * both columns on row 1, then the cards mosaic on the left and the sticky
