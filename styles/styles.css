@@ -368,11 +368,7 @@ main > .section:first-of-type {
     grid-column: 1;
   }
 
-  /* The rail may be authored inline (.rail-wrapper) or pulled in as a reusable
-   * fragment (.fragment-wrapper, e.g. fragments/article-sidebar). Either way it
-   * takes the fixed-width sticky right column. */
-  main > .section.has-rail > .rail-wrapper,
-  main > .section.has-rail > .fragment-wrapper {
+  main > .section.has-rail > .rail-wrapper {
     grid-column: 2;
     grid-row: 1 / 9999;
     align-self: start;
