@@ -6,9 +6,19 @@
    vs main nav vs dropdown) are styled in DOM order, not specificity order, for readability. */
 
 /* This nav has three stacked rows (utility, masthead, main) — let it grow
-   past the scaffold's default fixed --header-height. */
+   past the scaffold's default fixed --header-height. We reserve the real
+   rendered height up front with min-height (mobile ~107px: utility + masthead;
+   desktop adds the main-nav and search rows) so the page doesn't shift down
+   when the header block decorates. Keep height auto so it can still grow. */
 header {
   height: auto;
+  min-height: 107px;
+}
+
+@media (width >= 900px) {
+  header {
+    min-height: 279px;
+  }
 }
 
 header .nav-wrapper {
