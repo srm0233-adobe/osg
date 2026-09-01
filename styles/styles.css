@@ -398,7 +398,7 @@ main > .section:first-of-type {
   main > .section.has-rail > .fragment-wrapper,
   body:has(main > .section.has-rail) .spotlight,
   body:has(main > .section.has-rail) .horizontal-ad-banner,
-  body:has(main > .section.has-rail) .section.author-bio {
+  body:has(main > .section.has-rail) .author-bio-container {
     display: none;
   }
 }
